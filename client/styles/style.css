@@ -1,0 +1,217 @@
+*,
+*::before,
+*::after {
+  box-sizing: inherit;
+}
+
+html {
+  box-sizing: border-box;
+  background: #fff;
+  min-height: 100%;
+}
+
+body {
+  margin: 0;
+  margin-top: 10px;
+  font-family: 'Lato', sans-serif;
+  height: 100%;
+  color: #000;
+}
+
+a {
+  display: block;
+  color: #333;
+  font-size: 14px;
+  text-decoration: none;
+  text-align: center;
+}
+
+h1 {
+  font-size: 40px;
+  margin-bottom: 10px;
+  text-align: center;
+  text-transform: uppercase;
+  font-weight: 100;
+}
+
+h1.sub {
+  font-size: 40px;
+  margin-bottom: 80px;
+  text-transform: inherit;
+  font-weight: 100;
+}
+
+.navigation {
+  width: 300px;
+  height: 40px;
+  margin: 0 auto;
+}
+
+.navigation ul {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.filter {
+  width: 200px;
+}
+
+.navigation li {
+  float: left;
+}
+
+.navigation li a {
+  width: 100px;
+  height: 20px;
+  line-height: 20px;
+  display: block;
+  text-align: center;
+  color: #fff;
+  text-transform: uppercase;
+  font-weight: 100;
+  letter-spacing: .5px;
+}
+
+.navigation li a:hover {
+  text-decoration: overline;
+}
+
+.navigation li a.selected {
+  background-color: #ccc;
+}
+
+#container {
+  clear: both;
+  margin-top: 10px;
+}
+
+.link {
+  clear: both;
+  margin-bottom: 5px;
+  padding: 5px;
+  min-height: 50px;
+}
+
+input#button {
+  display: block;
+  padding: 10px;
+  background-color: white;
+}
+
+form {
+  width: 200px;
+  margin: 10px auto;
+}
+
+.sub-link {
+  color: #fff;
+  font-weight: 100;
+  letter-spacing: .5px;
+  width: 220px;
+  display: block;
+  margin: 0 auto;
+}
+
+input[type=url] {
+  display: inline
+}
+
+input[type=url]:focus {
+  outline: none;
+}
+
+.link .title {
+  font-weight: 300;
+}
+
+button {
+  display: block;
+  margin: 0 auto;
+  width: 100%;
+  height: 30px;
+  font-size: 17px;
+}
+
+.ng-binding {
+  color: #fff;
+  font-weight: 100;
+}
+
+.error {
+  border: red solid 4px;
+  padding: 10px;
+  margin: 0 10px;
+}
+
+.clean {
+  border: #efe solid 2px;
+  padding: 10px;
+  margin: 0 10px;
+}
+
+.creator {
+  height: 50px;
+}
+
+.creator form {
+  float: left;
+  height: 80px;
+}
+
+.creator img.spinner {
+  height: 46px;
+  margin-bottom: 5px;
+  padding: 10px;
+  display: none;
+}
+
+.creator .message {
+  clear: both;
+}
+
+/* ////////////////////////////////////////////////////////// 
+// 
+//  MAIN
+//
+////////////////////////////////////////////////////////// */
+
+input {
+  width: 50%;
+  display: block;
+  font-size: 13px;
+  padding: 5px;
+  margin: 5px auto;
+  text-align: left;
+}
+
+input:focus {
+  outline: 1px solid black;
+}
+
+.roles-input__container {
+  margin-top: 30px
+}
+
+.template-description-input {
+  height: 200px;
+}
+
+.template-submission-button__container {
+  width: 50%;
+  margin: 20px auto;
+}
+
+.template-submission-button{
+  width: 100%;
+  background-color: #ccc;
+  padding: 15px 0px;
+  text-align: center;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.16), 0 2px 4px rgba(0,0,0,0.23);
+  transition: 0.2s;
+}
+
+.template-submission-button--clicked {
+  transform: translateY(2px);
+  box-shadow: 0 1px 2px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
+}
