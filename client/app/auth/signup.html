@@ -1,0 +1,10 @@
+<div id='signup'>
+  <h1 class="sub">signup</h1>
+  <form name="signupForm" ng-submit='signup()'>
+    <input placeholder='username' type='text' ng-model='user.username'>
+    <input placeholder='password' type="password" ng-model='user.password'>
+    <button>signup</button>
+  </form>
+  <a href="#/signin" class="sub-link">Already have an account? Signin ...</a>
+  <div class="message">{{message}}</div>
+</div>
