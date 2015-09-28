@@ -4,7 +4,14 @@
       <input class="roles-input" placeholder="Role" ng-model="template.role"></input>
     </div>
     <div class="event-dropdown__container">
-      DROPDOWN
+      <select class="event-dropdown" name="events" ng-model="template.event">
+        <option value="Monday">Monday</option>
+        <option value="Tuesday">Tuesday</option>
+        <option value="Wednesday">Wednesday</option>
+        <option value="Thursday">Thursday</option>
+        <option value="Friday">Friday</option>
+        <option value="Saturday">Saturday</option>
+      </select>
     </div>
     <div class="template-description__container">
       <input class="template-description-input" placeholder="Description" ng-model="template.description"></input>
