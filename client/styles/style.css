@@ -193,6 +193,15 @@ input:focus {
   margin-top: 30px
 }
 
+.event-dropdown__container {
+  width: 50%;
+  margin: 20px auto;
+}
+
+.event-dropdown {
+  width: 100%;
+}
+
 .template-description-input {
   height: 200px;
 }
