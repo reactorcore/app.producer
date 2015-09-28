@@ -176,7 +176,7 @@ button {
 //
 ////////////////////////////////////////////////////////// */
 
-input {
+input, textarea{
   width: 50%;
   display: block;
   font-size: 13px;
@@ -185,7 +185,7 @@ input {
   text-align: left;
 }
 
-input:focus {
+input:focus, textarea:focus {
   outline: 1px solid black;
 }
 

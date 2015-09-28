@@ -5,6 +5,7 @@
     </div>
     <div class="event-dropdown__container">
       <select class="event-dropdown" name="events" ng-model="template.event">
+        <option value="" disabled selected>Event</option>
         <option value="Monday">Monday</option>
         <option value="Tuesday">Tuesday</option>
         <option value="Wednesday">Wednesday</option>
@@ -14,7 +15,7 @@
       </select>
     </div>
     <div class="template-description__container">
-      <input class="template-description-input" placeholder="Description" ng-model="template.description"></input>
+      <textarea class="template-description-input" placeholder="Description" ng-model="template.description"></textarea>
     </div>
   </div>
   <div class="template-submission-button__container">
