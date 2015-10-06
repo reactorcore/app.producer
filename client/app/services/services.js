@@ -7,7 +7,7 @@ angular.module('producer.services', [])
     submitTemplate: function(template){
       $http({
         method: 'Post',
-        url: '/api/templates/postTemplate',
+        url: '/templates',
         data: template
       })
       .then(function(resp){
@@ -15,57 +15,5 @@ angular.module('producer.services', [])
         return resp.data;
       });
     }
-  };
-})
-
-.factory('Auth', function ($http, $location, $window) {
-  // 
-  // THIS FACTORY IS NOT BEING USED FOR THE FIRST ITERATION OF PRODUCER
-  //
-
-  // This service is responsible for authenticating users
-  // We are currently not using this service, as authentication will com later
-  // by exchanging the user's username and password
-  // for a JWT from the server
-  // that JWT is then stored in localStorage as 'auth.producer'
-  // after you signin/signup open devtools, click resources,
-  // then localStorage and you'll see your token from the server
-  var signin = function (user) {
-    return $http({
-      method: 'POST',
-      url: '/api/users/signin',
-      data: user
-    })
-    .then(function (resp) {
-      return resp.data.token;
-    });
-  };
-
-  var signup = function (user) {
-    return $http({
-      method: 'POST',
-      url: '/api/users/signup',
-      data: user
-    })
-    .then(function (resp) {
-      return resp.data.token;
-    });
-  };
-
-  var isAuth = function () {
-    return !!$window.localStorage.getItem('auth.producer');
-  };
-
-  var signout = function () {
-    $window.localStorage.removeItem('auth.producer');
-    $location.path('/signin');
-  };
-
-
-  return {
-    signin: signin,
-    signup: signup,
-    isAuth: isAuth,
-    signout: signout
   };
 });
