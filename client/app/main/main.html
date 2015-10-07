@@ -1,0 +1,24 @@
+<div id="main-container" ng-controller = "mainController">
+  <div class="template-submission__container">
+    <div class="roles-input__container">
+      <input class="roles-input" placeholder="Role" ng-model="template.role"></input>
+    </div>
+    <div class="event-dropdown__container">
+      <select class="event-dropdown" name="events" ng-model="template.event">
+        <option value="" disabled selected>Event</option>
+        <option value="Monday">Monday</option>
+        <option value="Tuesday">Tuesday</option>
+        <option value="Wednesday">Wednesday</option>
+        <option value="Thursday">Thursday</option>
+        <option value="Friday">Friday</option>
+        <option value="Saturday">Saturday</option>
+      </select>
+    </div>
+    <div class="template-description__container">
+      <textarea class="template-description-input" placeholder="Description" ng-model="template.description"></textarea>
+    </div>
+  </div>
+  <div class="template-submission-button__container">
+    <div class="template-submission-button" ng-click="submitTemplate()" ng-class="{'template-submission-button--clicked': buttonClicked}"><span>Submit</span></div>
+  </div>
+</div>
