@@ -1,6 +1,7 @@
 var Asana = require('asana');
-console.log("API KEY: ", process.env.ASANA_API_KEY)
+
 var client = Asana.Client.create().useBasicAuth(process.env.ASANA_API_KEY);
+
 module.exports = {
   addTask: function(task, description) {
     client.users.me()
