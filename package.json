@@ -6,6 +6,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "asana": "^0.12.0",
     "body-parser": "^1.4.3",
     "express": "^4.13.2",
     "morgan": "^1.1.1",
