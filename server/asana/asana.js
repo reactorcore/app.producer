@@ -1,6 +1,7 @@
 var Asana = require('asana');
 
-var client = Asana.Client.create().useBasicAuth("API_KEY_HERE");
+var client = Asana.Client.create().useBasicAuth(process.env.ASANA_API_KEY);
+
 module.exports = {
   addTask: function(task, description) {
     client.users.me()
@@ -11,8 +12,8 @@ module.exports = {
         return client.tasks.create({
           assignee: userId,
           name: task,
-          workspace: "498346170860",
-          projects: "56218871247864",
+          workspace: process.env.WORKSPACE_ID,
+          projects: process.env.PROJECT_ID,
           notes: description
         });
       })
