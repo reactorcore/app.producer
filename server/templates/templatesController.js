@@ -8,7 +8,7 @@ module.exports = {
   postTemplate: function (req, res, next) {
     console.log("TRIED TO POST A TEMPLATE: ", req.body);
     // ***** Send correctly formatted template to Asana *****
-    asana.addTask();
+    asana.addTask("test2", "description");
     res.send("Template Submitted!");
   }
 };
