@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html ng-app='producer'>
+  <head>
+    <meta charset="utf-8" />
+    <title>Producer</title>
+    <link rel="stylesheet" type="text/css" href="styles/style.css"/>
+    <link href='http://fonts.googleapis.com/css?family=Lato:400,900,300,100' rel='stylesheet' type='text/css'>
+  </head>
+  <body>
+    <h1>Producer</h1>
+
+    <div id='container'></div>
+
+    <!-- the ng-view directive is where our templates will be loaded into when navigated to -->
+    <div ng-view></div>
+
+    <script src="lib/angular/angular.js"></script>
+    <script src="lib/angular-route/angular-route.js"></script>
+
+    <script src="app/main/main.js"></script>
+    <script src="app/services/services.js"></script>
+    <script src="app/app.js"></script>
+  </body>
+</html>
