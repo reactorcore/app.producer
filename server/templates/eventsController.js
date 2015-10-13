@@ -13,17 +13,24 @@ module.exports = {
         "Content-Type": "application/json"
       }
     }, function(error, response, body) {
-      // res.send(body);
-      var days = [
-          { "text": "Monday" },
-          { "text": "Tuesday" },
-          { "text": "Wednesday" },
-          { "text": "Thursday" },
-          { "text": "Friday" },
-          { "text": "Saturday" },
-          { "text": "Sunday" }
-        ];
-      res.send(days);
+      console.log(body);
+      var parsedData = JSON.parse(body);
+      var abbreviations = {
+        M:'Monday',
+        T:'Tuesday',
+        W:'Wednesday',
+        R:'Thursday',
+        F:'Friday',
+        S:'Saturday'
+      };
+
+      var events = parsedData.active.map(function(event) {
+        return {
+          "abbreviation": event,
+          "text": abbreviations[event]
+        };
+      });
+      res.send(events);
     });
   }
 };
