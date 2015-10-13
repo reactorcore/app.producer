@@ -1,7 +1,8 @@
 angular.module('producer', [
   'producer.services',
   'producer.main',
-  'ngRoute'
+  'ngRoute',
+  'ngTagsInput'
 ])
 .config(function($routeProvider, $httpProvider) {
   $routeProvider
@@ -14,6 +15,5 @@ angular.module('producer', [
       controller: 'mainController'
     })
 })
-
 .run(function ($rootScope, $location) {
 });
