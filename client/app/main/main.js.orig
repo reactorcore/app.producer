@@ -1,8 +1,9 @@
 angular.module('producer.main', [])
 
-.controller('mainController', function ($scope, Template, Roles) {
+<<<<<<< HEAD
+.controller('mainController', function ($scope, $http, Template) {
   $scope.template = {role: '', event: '', description: ''};
-  $scope.roles = [];
+
   $scope.submitTemplate = function() {
     $scope.template.event = $scope.tags.reduce(function(eventList, currEvent) {
       return eventList+= currEvent.abbreviation;
@@ -12,6 +13,7 @@ angular.module('producer.main', [])
       event: $scope.template.event,
       description: $scope.template.description
     };
+    console.log(template);
     Template.submitTemplate(template);
   };
 
@@ -20,9 +22,15 @@ angular.module('producer.main', [])
   $scope.loadTags = function($query) {
     return Template.eventsList($query);
   };
-});
-
-$scope.getRoles = function() {
+=======
+.controller('mainController', function ($scope, Template, Roles) {
+  $scope.template = {role: '', event: '', description: ''};
+  $scope.roles = [];
+  $scope.submitTemplate = function() {
+    console.log("Template: ", $scope.template)
+    Template.submitTemplate($scope.template);
+  }
+  $scope.getRoles = function() {
     Roles.getRoles(function(roles){
       roles.forEach(function(role){
         $scope.roles.push(role.name);
@@ -34,4 +42,5 @@ $scope.getRoles = function() {
       source: $scope.roles
     });
   });
+>>>>>>> (feat) roles autocomplete working from asana task list, somewhat dirty code
 });

@@ -30,4 +30,19 @@ angular.module('producer.services', [])
       });
     }
   };
+})
+
+.factory('Roles', function ($http) {
+  return {
+    getRoles: function(callback){
+      $http({
+        method: 'Get',
+        url: '/roles',
+      })
+      .then(function(resp){
+        console.log("ROLES: ", resp.data);
+        callback(resp.data.data);
+      });
+    }
+  };
 });
