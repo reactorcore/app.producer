@@ -4,7 +4,7 @@
       <input class="roles-input" placeholder="Role" ng-model="template.role"></input>
     </div>
     <div class="event-dropdown__container">
-      <tags-input class="bootstrap" ng-model="tags" add-on-paste="true" add-from-autocomplete-only="true">
+      <tags-input class="bootstrap" ng-model="tags" add-on-paste="true" add-from-autocomplete-only="true" min-length="1">
         <auto-complete source="loadTags($query)" min-length="1"></auto-complete>
       </tags-input>
     </div>
