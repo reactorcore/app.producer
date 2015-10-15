@@ -7,6 +7,10 @@ module.exports = {
     client.users.me()
       .then(function(user) {
         var userId = user.id;
+<<<<<<< HEAD
+=======
+        var workspaceId = user.workspaces[1].id;
+>>>>>>> (feat) roles autocomplete working from asana task list, somewhat dirty code
         return client.tasks.create({
           assignee: userId,
           name: role,
