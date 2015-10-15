@@ -15,6 +15,10 @@ module.exports = {
     }, function(error, response, body) {
       console.log(body);
       var parsedData = JSON.parse(body);
+      var text = parsedData;
+
+      //Temporary hack
+      //TODO: deprecate
       var abbreviations = {
         M:'Monday',
         T:'Tuesday',
@@ -23,11 +27,13 @@ module.exports = {
         F:'Friday',
         S:'Saturday'
       };
+      text = abbreviations[event];
+      // endhack
 
       var events = parsedData.active.map(function(event) {
         return {
           "abbreviation": event,
-          "text": abbreviations[event]
+          "text": text
         };
       });
       res.send(events);
