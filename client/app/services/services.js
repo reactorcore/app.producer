@@ -14,6 +14,20 @@ angular.module('producer.services', [])
         console.log(" ---- RESPONSE DATA ---- : ", resp.data);
         return resp.data;
       });
+    },
+
+    eventsList: function($query) {
+      return $http({
+        method: 'GET',
+        url: '/events'
+      })
+      .then(function(resp) {
+        console.log(resp);
+        var events = resp.data;
+        return events.filter(function(event) {
+          return event.text.toLowerCase().indexOf($query.toLowerCase()) !== -1;
+        });
+      });
     }
   };
 });

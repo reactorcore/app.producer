@@ -4,15 +4,9 @@
       <input class="roles-input" placeholder="Role" ng-model="template.role"></input>
     </div>
     <div class="event-dropdown__container">
-      <select class="event-dropdown" name="events" ng-model="template.event">
-        <option value="" disabled selected>Event</option>
-        <option value="Monday">Monday</option>
-        <option value="Tuesday">Tuesday</option>
-        <option value="Wednesday">Wednesday</option>
-        <option value="Thursday">Thursday</option>
-        <option value="Friday">Friday</option>
-        <option value="Saturday">Saturday</option>
-      </select>
+      <tags-input class="bootstrap" ng-model="tags" add-on-paste="true" add-from-autocomplete-only="true" min-length="1">
+        <auto-complete source="loadTags($query)" min-length="1"></auto-complete>
+      </tags-input>
     </div>
     <div class="template-description__container">
       <textarea class="template-description-input" placeholder="Description" ng-model="template.description"></textarea>

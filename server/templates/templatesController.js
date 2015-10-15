@@ -7,8 +7,10 @@ module.exports = {
   // It may also be valuable to submit an author with each template
   postTemplate: function (req, res, next) {
     console.log("TRIED TO POST A TEMPLATE: ", req.body);
+    var data = req.body;
     // ***** Send correctly formatted template to Asana *****
-    asana.addTask("adamTest", "description");
+    asana.addTask(data.role, data.event, data.description);
+    // asana.addTask("test2", "description");
     res.send("Template Submitted!");
   }
 };
