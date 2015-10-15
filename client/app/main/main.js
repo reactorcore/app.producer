@@ -7,12 +7,7 @@ angular.module('producer.main', [])
     $scope.template.event = $scope.tags.reduce(function(eventList, currEvent) {
       return eventList+= currEvent.abbreviation;
     }, '');
-    var template = {
-      role: $scope.template.role,
-      event: $scope.template.event,
-      description: $scope.template.description
-    };
-    Template.submitTemplate(template);
+    Template.submitTemplate($scope.template);
   };
 
   $scope.tags = [];
@@ -20,18 +15,19 @@ angular.module('producer.main', [])
   $scope.loadTags = function($query) {
     return Template.eventsList($query);
   };
-});
 
-$scope.getRoles = function() {
+  $scope.getRoles = function() {
     Roles.getRoles(function(roles){
       roles.forEach(function(role){
         $scope.roles.push(role.name);
       });
-    })
-  }
+    });
+  };
+
   $(function() {
     $(".roles-input").autocomplete({
       source: $scope.roles
     });
   });
+
 });
