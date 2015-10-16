@@ -25,15 +25,16 @@ module.exports = {
         W:'Wednesday',
         R:'Thursday',
         F:'Friday',
-        S:'Saturday'
+        S:'Saturday',
+        break: 'break'
       };
-      text = abbreviations[event];
+      text = abbreviations;
       // endhack
 
       var events = parsedData.active.map(function(event) {
         return {
           "abbreviation": event,
-          "text": text
+          "text": text[event]
         };
       });
       res.send(events);
