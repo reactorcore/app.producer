@@ -1,4 +1,4 @@
-var asana = require('../asana/asana');
+var asana = require('../asana');
 
 module.exports = {
   // postTemplate will send a template to Asana that has been created by the client 

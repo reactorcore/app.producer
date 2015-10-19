@@ -1,5 +1,5 @@
 var templatesController = require('./templates/templatesController.js');
-var eventsController = require('./templates/eventsController');
+var eventsController = require('./events/eventsController');
 var rolesController = require('./roles/rolesController.js');
 
 module.exports = function (app) {

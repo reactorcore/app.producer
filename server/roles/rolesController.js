@@ -1,4 +1,4 @@
-var asana = require('../asana/asana');
+var asana = require('../asana');
 
 module.exports = {
   // getRoles will query Asana for a list of possible roles 
