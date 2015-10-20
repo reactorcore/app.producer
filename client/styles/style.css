@@ -163,7 +163,7 @@ input:focus, textarea:focus {
   outline: 1px solid black;
 }
 
-.roles-input__container {
+.main-input__container {
   margin-top: 30px
 }
 
