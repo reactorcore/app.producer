@@ -16,17 +16,17 @@ angular.module('producer.main', [])
     return Template.eventsList($query);
   };
 
-  $scope.getRoles = function() {
-    Roles.getRoles(function(roles){
-      roles.forEach(function(role){
-        $scope.roles.push(role.name);
-      });
-    });
-  };
-
+  // Set up autocomplete for Roles Input
   $(function() {
     $(".roles-input").autocomplete({
       source: $scope.roles
+    });
+  });
+
+  // Fetch existing roles from Asana
+  Roles.getRoles(function(roles){
+    roles.forEach(function(role){
+      $scope.roles.push(role.name);
     });
   });
 

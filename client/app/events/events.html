@@ -2,13 +2,13 @@
   <div class="events-left-side__container">
     <div class="events-list__container">
       <ul class="events-list">
-        <li class="event__item" ng-repeat="event in events">
-          Item
+        <li class="event__item" ng-repeat="event in events" ng-click="toggleEventDetails()">
+          {{event.title}}
         </li>
       </ul>
     </div>
     <div class="add-event-button__container">
-      <div class="add-event__button">
+      <div class="add-event__button" ng-click="toggleCreateEvent()">
         Create New Event
       </div>
     </div>

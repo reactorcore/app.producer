@@ -149,7 +149,8 @@ button {
 //
 ////////////////////////////////////////////////////////// */
 
-#main-conatiner input, textarea{
+#main-container input, 
+#main-container textarea {
   width: 50%;
   display: block;
   font-size: 13px;

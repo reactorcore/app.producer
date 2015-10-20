@@ -1,7 +1,28 @@
 angular.module('producer.events', [])
 
 .controller('eventsController', function ($scope) {
-  $scope.events = ['item', 'item2', 'item3', 'item4', 'item5', 6,7,8,9,10,11,12,13,14,15];
+  $scope.events = [];
   $scope.detailsBox = false;
   $scope.submissionBox = true;
+
+  $scope.event = {
+    title: 'Amazing event',
+    cron: '0 2 1-10 * * du -h --max-depth=1',
+    description: 'Descriptions and things!'
+  };
+
+  $scope.toggleCreateEvent = function(){
+    $scope.detailsBox = false;
+    $scope.submissionBox = true;
+  }
+
+  $scope.toggleEventDetails = function(){
+    $scope.detailsBox = true;
+    $scope.submissionBox = false;
+  }
+
+  for (var i = 1; i < 15; i++){
+    $scope.events.push({title: 'Event ' + i})
+  }
+
 });
