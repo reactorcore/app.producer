@@ -370,6 +370,18 @@ ul
   float: left;
 }
 
+.producer-button__container {
+  width: 50%;
+
+  margin: 20px auto 0 auto;
+}
+
+.producer-button {
+  width: 100%;
+  text-align: center;
+  padding: 13px;
+  background-color: #ccc;
+}
 
 ::-webkit-scrollbar {
     -webkit-appearance: none;
