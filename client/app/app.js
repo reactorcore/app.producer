@@ -1,19 +1,25 @@
 angular.module('producer', [
   'producer.services',
   'producer.main',
-  'ngRoute',
+  'producer.events',
+  'ui.router',
   'ngTagsInput'
 ])
-.config(function($routeProvider, $httpProvider) {
-  $routeProvider
-    .when('/main', {
+.config(function($stateProvider, $urlRouterProvider) {
+  $stateProvider
+    .state('main', {
+      url: '/',
       templateUrl: 'app/main/main.html',
       controller: 'mainController'
     })
-    .when('/', {
-      templateUrl: 'app/main/main.html',
-      controller: 'mainController'
+    .state('events', {
+      url: '/events',
+      templateUrl: 'app/events/events.html',
+      controller: 'eventsController'
     })
+
+  $urlRouterProvider.otherwise('/');
+
 })
 .run(function ($rootScope, $location) {
 });
