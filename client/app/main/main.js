@@ -1,13 +1,14 @@
 angular.module('producer.main', [])
 
 .controller('mainController', function ($scope, Template, Roles) {
-  $scope.template = {role: '', event: '', description: ''};
+  $scope.template = {title: '', role: '', event: '', description: ''};
   $scope.roles = [];
   $scope.submitTemplate = function() {
     $scope.template.event = $scope.tags.reduce(function(eventList, currEvent) {
       return eventList+= currEvent.abbreviation;
     }, '');
-    Template.submitTemplate($scope.template);
+    console.log($scope.template);
+    // Template.submitTemplate($scope.template);
   };
 
   $scope.tags = [];
@@ -19,7 +20,10 @@ angular.module('producer.main', [])
   // Set up autocomplete for Roles Input
   $(function() {
     $(".roles-input").autocomplete({
-      source: $scope.roles
+      source: $scope.roles,
+      select: function(event, ui){
+        $scope.template.role = ui.item.value;
+      }
     });
   });
 

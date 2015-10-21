@@ -164,12 +164,12 @@ input:focus, textarea:focus {
 }
 
 .main-input__container {
-  margin-top: 30px
+  margin-top: 15px
 }
 
 .event-dropdown__container {
   width: 50%;
-  margin: 20px auto;
+  margin: 15px auto;
 }
 
 .event-dropdown {
