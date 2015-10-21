@@ -6,6 +6,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "app-boot": "^1.0.3",
     "asana": "^0.12.0",
     "body-parser": "^1.4.3",
     "dotenv": "^1.2.0",
