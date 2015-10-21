@@ -1,14 +1,26 @@
-var express = require('express');
-var bootable = require('app-boot');
-var app = require('express')();
+var express   = require('express');
+var bootable  = require('app-boot');
+var app       = require('express')();
 
-require('./config/config.js');
+var boot      = bootable(app); 
 
-// configure our server with all the middleware and and routing
-require('./config/middleware.js')(app);
+function config(app, next) {
+  require('./config/config.js')(app);
+  next();
+}
 
-// export our app for testing and flexibility, required by index.js
+function middleware(app, next) {
+  require('./config/middleware.js')(app);
+  next();
+}
 
-app.listen(8000);
+function routes(app, next) {
+  require('./routes.js')(app);
+  next();
+}
 
-module.exports = app;
+boot.phase(config)
+boot.phase(middleware)
+boot.phase(routes);
+
+module.exports = boot;

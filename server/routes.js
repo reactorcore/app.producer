@@ -5,6 +5,7 @@ var eventsController = require('./events/eventsController');
 var rolesController = require('./roles/rolesController.js');
 
 module.exports = function (app) {
+  // could be abstracted out into router file
   app.use(express.Router());
   app.use(express.static(__dirname + '/../client'));
 

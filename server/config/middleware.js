@@ -12,6 +12,5 @@ module.exports = function (app) {
 
   app.use(helpers.errorLogger);
   app.use(helpers.errorHandler);
-
-  require('../routes.js')(app);
+  
 };

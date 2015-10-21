@@ -1,1 +1,3 @@
-require('dotenv').load();
+module.exports = function() {
+  require('dotenv').load();
+};
