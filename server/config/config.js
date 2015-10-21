@@ -1,3 +1,3 @@
 module.exports = function() {
-  require('dotenv').load();
+  require('dotenv').config({path: '../.env'});
 };
