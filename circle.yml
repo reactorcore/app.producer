@@ -1,0 +1,100 @@
+machine:
+  python:
+    version: 2.7.3
+  services:
+    - docker
+dependencies:
+  pre:
+    - if [ -z ${PRODUCTION_OWNER+x} ]; then echo "PRODUCTION_OWNER not set." && exit 1; fi
+    - sudo apt-get update && sudo apt-get install jq
+  override:
+    - npm install;
+    - |
+      MAJOR_VERSION=$(jq -r '.version' package.json | grep -e '\d*' -oh);
+      if [[ ${MAJOR_VERSION} -eq '' ]]; then MAJOR_VERSION="0"; fi;
+      CLEAN_NAME=$(echo $CIRCLE_PROJECT_REPONAME | sed "s;api\.;;g" | sed "s;app\.;;g");
+      CLEAN_REPONAME="quay.io/$QUAY_ORG/$CLEAN_NAME";
+      docker build -t $CLEAN_REPONAME .;
+test:
+  override:
+      - |
+        MAJOR_VERSION=$(jq -r '.version' package.json | grep -e '\d*' -oh);
+        if [[ ${MAJOR_VERSION} -eq '' ]]; then MAJOR_VERSION="0"; fi;
+        CLEAN_NAME=$(echo $CIRCLE_PROJECT_REPONAME | sed "s;api\.;;g" | sed "s;app\.;;g");
+        VERSIONED_NAME=$CLEAN_NAME'/v'$MAJOR_VERSION;
+        CLEAN_REPONAME="quay.io/$QUAY_ORG/$CLEAN_NAME";
+        docker run $CLEAN_REPONAME;
+deployment:
+  deploy:
+    #owner: $PRODUCTION_OWNER
+    branch: master
+    commands:
+      - pip install awscli==1.7.28
+      - aws --version
+      - aws configure set aws_access_key_id $AWSKEY
+      - aws configure set aws_secret_access_key $AWSSECRETKEY
+      - aws configure set default.region us-west-2
+      - aws configure set default.output json
+      - |
+        # Push to Docker
+        MAJOR_VERSION=$(jq -r '.version' package.json | grep -e '\d*' -oh);
+        if [[ ${MAJOR_VERSION} -eq '' ]]; then MAJOR_VERSION="0"; fi;
+        CLEAN_NAME=$(echo $CIRCLE_PROJECT_REPONAME | sed "s;api\.;;g" | sed "s;app\.;;g");
+        VERSIONED_NAME=$CLEAN_NAME'/v'$MAJOR_VERSION;
+        CLEAN_REPONAME="quay.io/$QUAY_ORG/$CLEAN_NAME";
+
+        docker login -e $QUAY_EMAIL -u $QUAY_USER -p $QUAY_PASS quay.io || (echo "Unconfigured Environment: Requires valid ENV Variables QUAY_EMAIL, QUAY_USER, QUAY_PASS" && exit 1);
+        docker tag $CLEAN_REPONAME:latest $CLEAN_REPONAME:$CIRCLE_SHA1 || (echo "Strange Error: Could not tag" && exit 1);
+        docker push $CLEAN_REPONAME:$CIRCLE_SHA1 || (echo "Connection Error: Could not push to quay.io" && exit 1);
+      - |
+        # Deploy to EC2 Container Service
+        MAJOR_VERSION=$(jq -r '.version' package.json | grep -e '\d*' -oh);
+        if [[ ${MAJOR_VERSION} -eq '' ]]; then MAJOR_VERSION="0"; fi;
+        CLEAN_NAME=$(echo $CIRCLE_PROJECT_REPONAME | sed "s;api\.;;g" | sed "s;app\.;;g");
+        VERSIONED_NAME=$CLEAN_NAME'_'$MAJOR_VERSION; # For family titles
+        VERSIONED_PATH=$CLEAN_NAME'/v'$MAJOR_VERSION; # For restful calls
+        CLEAN_REPONAME="quay.io/$QUAY_ORG/$CLEAN_NAME";
+        NEW_SERVICE=false;
+        TASK_REVISION="1";
+        STATUS="N/A";
+        DESIRED_COUNT="1";
+        
+        TASK_DESCRIPTION=`aws ecs describe-task-definition --task-definition $VERSIONED_NAME`
+        if [ $? -gt 0 ]; then
+          DEPLOY='[ { "image": "'$CLEAN_REPONAME':'$CIRCLE_SHA1'", "name": "'$VERSIONED_NAME'", "cpu": 10, "memory": 256, "entryPoint": ["/nodejs/bin/npm"], "command": ["start"], "essential": true, "environment": [{"name": "SERVICE_TAGS","value": "rest"}, {"name": "SERVICE_NAME", "value": "'${VERSIONED_PATH}'"}, {"name": "PORT", "value": "8080"}], "portMappings": [ { "containerPort": 8080, "hostPort": 0 } ] } ]'
+          NEW_SERVICE=true;
+          DESIRED_COUNT="1";
+        else
+          DEPLOY=$(echo $TASK_DESCRIPTION | jq '.taskDefinition.containerDefinitions' | sed -e 's;"image": ".*";"image": "'$CLEAN_REPONAME:$CIRCLE_SHA1'";g');
+          TASK_REVISION=`echo $TASK_DESCRIPTION | jq .taskDefinition.revision`;
+          STATUS=`echo $TASK_DESCRIPTION | jq .taskDefinition.status`;
+          SERVICE_DESCRIPTION=`aws ecs describe-services --services $VERSIONED_NAME`;
+        fi;
+        
+        eval $(echo aws ecs register-task-definition --family $VERSIONED_NAME --container-definitions "'"$DEPLOY"'")
+        if [ $? -gt 0 ]; then echo "Failed to define task." && exit 1; fi;
+        
+        TASK_DESCRIPTION=`aws ecs describe-task-definition --task-definition $VERSIONED_NAME`
+        if [ $? -gt 0 ]; then echo "Failed to define task." && exit 1; fi;
+        
+        
+        TASK_REVISION=`echo $TASK_DESCRIPTION | jq .taskDefinition.revision`;
+        
+        if [ $? -gt 0 ] || [ -z ${SERVICE_DESCRIPTION+x} ] || [[ $SERVICE_DESCRIPTION =~ .*MISSING.* ]]; then
+          NEW_SERVICE=true
+        else
+          DESIRED_COUNT=`echo $SERVICE_DESCRIPTION | jq .services[0].desiredCount`;
+          if [ -z ${DESIRED_COUNT+x} ] || [ $DESIRED_COUNT -lt 1 ]; then DESIRED_COUNT=1; fi;
+        fi;
+
+        # Four possible states of the system
+        # No value for desired_count means nothing returned and no service exists.
+        # Status is set to INACTIVE which means someone deleted it. Recreate it.
+        # Desired_Count is zero. Someone dropped it to zero for some reason, increment it.
+        # Otherwise, all is usual: update it.
+        if [ $NEW_SERVICE = true ] || [[ ${STATUS} = "INACTIVE" ]]; then
+          DESIRED_COUNT="1";
+          aws ecs create-service --cluster default --service $VERSIONED_NAME --task-definition $VERSIONED_NAME:${TASK_REVISION} --desired-count ${DESIRED_COUNT} || (echo "AWS Error: Could not set task definition." && exit 1);
+        else 
+          aws ecs update-service --cluster default --service $VERSIONED_NAME --task-definition $VERSIONED_NAME:${TASK_REVISION} --desired-count ${DESIRED_COUNT} || (echo "AWS Error: Could not set task definition." && exit 1);
+        fi;
