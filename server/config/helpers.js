@@ -1,4 +1,3 @@
-
 module.exports = {
   errorLogger: function (error, req, res, next) {
     // log the error then send it to the next middleware in
