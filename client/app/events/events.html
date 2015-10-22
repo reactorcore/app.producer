@@ -1,0 +1,40 @@
+<div id="events-container" ng-controller = "eventsController">
+  <div class="events-left-side__container">
+    <div class="events-list__container">
+      <ul class="events-list">
+        <li class="event__item" ng-repeat="event in events" ng-click="toggleEventDetails()">
+          {{event.title}}
+        </li>
+      </ul>
+    </div>
+    <div class="add-event-button__container">
+      <div class="add-event__button" ng-click="toggleCreateEvent()">
+        Create New Event
+      </div>
+    </div>
+  </div>
+  
+  <div class="event-details__container" ng-show="detailsBox">
+    <div class="details-heading">Details</div>
+    <div class="event-title">Title: {{event.title}}</div>
+    <div class="event-cron">Cron: {{event.cron}}</div>
+    <div class="event-description">Description: {{event.description}}</div>
+  </div>
+
+  <div class="event-submission__container" ng-show="submissionBox">
+    <div class="submission-heading">Create Event</div>
+    <div class="title-input__container">
+      <span>Title: </span><input class="event-title__input"></input>
+    </div>
+    <div class="cron-input__container">
+      <span>Cron: </span><input class="event-cron__input"></input>
+    </div>
+    <div class="description-input__container">
+      <span class="description">Description: </span><textarea class="event-description__input"></textarea>
+    </div>
+  </div>
+  <div class="producer-button__container">
+    <a class="producer-button"  ng-href="#/main">Return to Producer</a>
+  </div>
+
+</div>

@@ -1,0 +1,30 @@
+
+{
+  Title: "Take out the trash",
+  Role: "Keeping the kitchen clean",
+  Event: "Monday",
+  Description: "
+  Grab the bag and hurl it out the window.
+  "
+}
+
+- transform to asana land ->
+
+"Take out the trash"
+"
+Who: Keeping the kitchen clean
+When: M
+
+Grab the bag and hurl it out the window.
+"
+
+
+----
+
+POST /events/
+{
+  name: "third mondays"
+  chron: this object is not accurate and is only a sketch
+}
+
+

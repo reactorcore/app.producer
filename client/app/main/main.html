@@ -1,6 +1,9 @@
 <div id="main-container" ng-controller = "mainController">
   <div class="template-submission__container">
-    <div class="roles-input__container">
+    <div class="main-input__container">
+      <input class="title-input" placeholder="Title" ng-model="template.title"></input>
+    </div>
+    <div class="main-input__container">
       <input class="roles-input" placeholder="Role" ng-model="template.role"></input>
     </div>
     <div class="event-dropdown__container">
@@ -16,6 +19,6 @@
     <div class="template-submission-button" ng-click="submitTemplate()" ng-class="{'template-submission-button--clicked': buttonClicked}"><span>Submit</span></div>
   </div>
   <div class="template-submission-button__container">
-    <div class="template-submission-button" ng-click="getRoles()"><span>Get Roles</span></div>
+    <a class="template-submission-button" ng-href="#/events"><span>Events Manager</span></a>
   </div>
 </div>
