@@ -7,8 +7,7 @@ angular.module('producer.main', [])
     $scope.template.event = $scope.tags.reduce(function(eventList, currEvent) {
       return eventList+= currEvent.abbreviation;
     }, '');
-    console.log($scope.template);
-    // Template.submitTemplate($scope.template);
+    Template.submitTemplate($scope.template); 
   };
 
   $scope.tags = [];
