@@ -41,6 +41,14 @@ h1.sub {
   font-weight: 100;
 }
 
+#producer-head {
+  font-family: 'Lato', sans-serif;
+  font-size: 40px;
+  margin-bottom: 15px;
+  text-align: center;
+  text-transform: uppercase;
+  font-weight: 100;
+}
 
 .filter {
   width: 200px;
@@ -98,19 +106,6 @@ input[type=url]:focus {
   font-weight: 300;
 }
 
-button {
-  display: block;
-  margin: 0 auto;
-  width: 100%;
-  height: 30px;
-  font-size: 17px;
-}
-
-/*.ng-binding {
-  color: #fff;
-  font-weight: 100;
-}*/
-
 .error {
   border: red solid 4px;
   padding: 10px;
@@ -159,8 +154,18 @@ button {
   text-align: left;
 }
 
-input:focus, textarea:focus {
-  outline: 1px solid black;
+#main-container textarea {
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  resize: none;
+  box-shadow: inset 0 1px 1px rgba(0, 0, 0, .075);
+}
+
+#main-container textarea:focus {
+  border-color: #66afe9;
+  outline: 0;
+  -webkit-box-shadow: inset 0 1px 1px rgba(0,0,0,.075), 0 0 8px rgba(102, 175, 233, .6);
+          box-shadow: inset 0 1px 1px rgba(0,0,0,.075), 0 0 8px rgba(102, 175, 233, .6);
 }
 
 .main-input__container {
@@ -238,7 +243,6 @@ input:focus, textarea:focus {
 
 .bootstrap .autocomplete .suggestion-item.selected {
   color: #262626;
-  /*background-color: #e9e9e9;*/
 }
 
 .bootstrap .autocomplete .suggestion-item em {
@@ -250,14 +254,27 @@ input:focus, textarea:focus {
   color: #262626;
 }
 
+.form input.ng-invalid.ng-touched {
+  border-color: #FA787E;
+}
+
+.warning-message {
+  width: 50%;
+  display: block;
+  font-size: 13px;
+  padding: 5px;
+  margin: 5px auto;
+  text-align: left;
+  color: red;
+}
+
 /* ////////////////////////////////////////////////////////// 
 // 
 //  EVENTS MANAGER
 //
 ////////////////////////////////////////////////////////// */
 
-ul
-{
+ul {
     list-style-type: none;
     -webkit-padding-start: 0px;
 }
@@ -373,12 +390,18 @@ ul
 
 .producer-button__container {
   width: 50%;
-
   margin: 20px auto 0 auto;
 }
 
-.producer-button {
+button {
+  display: block;
+  margin: 0 auto;
   width: 100%;
+  height: 30px;
+  font-size: 17px;
+}
+
+.producer-button {
   text-align: center;
   padding: 13px;
   background-color: #ccc;
@@ -393,4 +416,3 @@ ul
     background-color: rgba(0,0,0,.5);
     -webkit-box-shadow: 0 0 1px rgba(255,255,255,.5);
 }
-

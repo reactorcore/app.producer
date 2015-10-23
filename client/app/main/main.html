@@ -1,14 +1,16 @@
-<div id="main-container" ng-controller = "mainController">
-  <form name="templateForm" ng-submit="submitTemplate()" novalidate>
+<div id="main-container" ng-controller="mainController">
+  <form name="templateForm" class="form" ng-submit="submitTemplate()" novalidate>
     <div class="template-submission__container">
       <div class="main-input__container">
-        <input class="title-input" placeholder="Title" ng-model="template.title" required />
+        <input class="title-input" name="title" placeholder="Title" ng-model="template.title" required />
+        <p class="warning-message" ng-show="templateForm.title.$invalid && !templateForm.title.$pristine">Title is required.</p>
       </div>
       <div class="main-input__container">
-        <input class="roles-input" placeholder="Role" ng-model="template.role" required />
+        <input class="roles-input" name="role" placeholder="Role" ng-model="template.role" required />
+        <p class="warning-message" ng-show="templateForm.role.$invalid && !templateForm.role.$pristine">Role is required.</p>
       </div>
       <div class="event-dropdown__container">
-        <tags-input class="bootstrap" ng-model="tags" add-on-paste="true" add-from-autocomplete-only="true" min-length="1" required>
+        <tags-input name="tags" class="bootstrap" ng-model="tags" add-on-paste="true" add-from-autocomplete-only="true" min-length="1">
           <auto-complete source="loadTags($query)" min-length="1"></auto-complete>
         </tags-input>
       </div>
