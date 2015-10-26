@@ -6,13 +6,15 @@ angular.module('producer.services', [])
   return {
     submitTemplate: function(template){
       $http({
-        method: 'Post',
+        method: 'POST',
         url: '/templates',
         data: template
       })
-      .then(function(resp){
-        console.log(" ---- RESPONSE DATA ---- : ", resp.data);
+      .then(function successCallback(resp){
+        console.log(' ---- RESPONSE DATA ---- : ', resp, '------------------------------');
         return resp.data;
+      }, function errorCallback(resp) {
+        console.log('error: ', resp)
       });
     },
 
@@ -36,7 +38,7 @@ angular.module('producer.services', [])
   return {
     getRoles: function(callback){
       $http({
-        method: 'Get',
+        method: 'GET',
         url: '/roles',
       })
       .then(function(resp){
