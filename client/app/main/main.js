@@ -3,6 +3,8 @@ angular.module('producer.main', [])
 .controller('mainController', function ($scope, Template, Roles) {
   $scope.template = {title: '', role: '', event: '', description: ''};
   $scope.roles = [];
+
+  // submits template in correct format
   $scope.submitTemplate = function() {
     $scope.template.event = $scope.tags.reduce(function(eventList, currEvent) {
       return eventList+= currEvent.abbreviation;
@@ -10,8 +12,10 @@ angular.module('producer.main', [])
     Template.submitTemplate($scope.template); 
   };
 
+  // create array to hold tags
   $scope.tags = [];
 
+  // load event tags based on user query
   $scope.loadTags = function($query) {
     return Template.eventsList($query);
   };
