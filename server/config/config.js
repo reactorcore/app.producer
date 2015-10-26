@@ -13,6 +13,6 @@ module.exports = function() {
     }
   }
   catch (error) {
-    console.log(error);
+    console.log('.env not found, short-circuiting dotenv');
   }
 };
