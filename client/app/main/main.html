@@ -10,7 +10,7 @@
         <p class="warning-message" ng-show="templateForm.role.$invalid && !templateForm.role.$pristine">Role is required.</p>
       </div>
       <div class="event-dropdown__container">
-        <tags-input name="tags" class="bootstrap" ng-model="tags" add-on-paste="true" add-from-autocomplete-only="true" min-length="1">
+        <tags-input name="tags" class="ng-tags-input" ng-model="tags" add-on-paste="true" add-from-autocomplete-only="true" min-length="1" required>
           <auto-complete source="loadTags($query)" min-length="1"></auto-complete>
         </tags-input>
       </div>

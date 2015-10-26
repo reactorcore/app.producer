@@ -204,7 +204,7 @@ input[type=url]:focus {
   box-shadow: 0 1px 2px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
 }
 
-.bootstrap .tags {
+.ng-tags-input .tags {
   background-color: #fff;
   border: 1px solid #ccc;
   border-radius: 4px;
@@ -212,45 +212,45 @@ input[type=url]:focus {
   transition: border-color ease-in-out .15s, box-shadow ease-in-out .15s;
 }
 
-.bootstrap .tags.focused {
+.ng-tags-input .tags.focused {
   border-color: #66afe9;
   box-shadow: inset 0 1px 1px rgba(0,0,0,0.075), 0 0 8px rgba(102,175,233,0.6);
 }
 
-.bootstrap .tags .tag-item {
+.ng-tags-input .tags .tag-item {
   background: #428bca;
   border: 1px solid #357ebd;
   border-radius: 4px;
   color: #fff;
 }
 
-.bootstrap .tags .tag-item.selected {
+.ng-tags-input .tags .tag-item.selected {
   background: #d9534f;
   border: 1px solid #d43f3a;
   border-radius: 4px;
   color: #fff;
 }
 
-.bootstrap .tags .tag-item button {
+.ng-tags-input .tags .tag-item button {
   background: transparent;
   color: #000;
   opacity: .4;
 }
 
-.bootstrap .autocomplete {
+.ng-tags-input .autocomplete {
   border-radius: 4px;
 }
 
-.bootstrap .autocomplete .suggestion-item.selected {
+.ng-tags-input .autocomplete .suggestion-item.selected {
   color: #262626;
 }
 
-.bootstrap .autocomplete .suggestion-item em {
+.ng-tags-input .autocomplete .suggestion-item em {
   font-weight: normal;
   background-color: #ffff00;
 }
 
-.bootstrap .autocomplete .suggestion-item.selected em {
+.ng-tags-input .autocomplete .suggestion-item.selected em {
   color: #262626;
 }
 
