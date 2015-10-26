@@ -9,10 +9,11 @@
         <input class="roles-input" name="role" placeholder="Role" ng-model="template.role" required />
         <p class="warning-message" ng-show="templateForm.role.$invalid && !templateForm.role.$pristine">Role is required.</p>
       </div>
-      <div class="event-dropdown__container">
-        <tags-input name="tags" class="ng-tags-input" ng-model="tags" add-on-paste="true" add-from-autocomplete-only="true" min-length="1" required>
+      <div class="main-input__container">
+        <tags-input name="tags" ng-model="tags" add-on-paste="true" add-from-autocomplete-only="true" min-length="1" required>
           <auto-complete source="loadTags($query)" min-length="1"></auto-complete>
         </tags-input>
+        <p class="warning-message" ng-show="templateForm.tags.$invalid && !templateForm.tags.$pristine">At least one tag is required.</p>
       </div>
       <div class="template-description__container">
         <textarea class="template-description-input" placeholder="Description" ng-model="template.description"></textarea>
