@@ -5,16 +5,10 @@ angular.module('producer.services', [])
   // If data ever needs to be retrieved from Asana, it will be done through this service 
   return {
     submitTemplate: function(template){
-      $http({
+      return $http({
         method: 'POST',
         url: '/templates',
         data: template
-      })
-      .then(function successCallback(resp){
-        console.log(' ---- RESPONSE DATA ---- : ', resp, '------------------------------');
-        return resp.data;
-      }, function errorCallback(resp) {
-        console.log('error: ', resp)
       });
     },
 
