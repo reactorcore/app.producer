@@ -1,16 +1,16 @@
 module.exports = function asana(client) {
   return {
-    addTask: function(role, event, description) {
+    addTask: function(title, role, event, description) {
       console.log(client);
       client.users.me()
         .then(function(user) {
           var userId = user.id;
           return client.tasks.create({
             assignee: userId,
-            name: role,
+            name: title,
             workspace: process.env.WORKSPACE_ID,
             projects: process.env.PROJECT_ID,
-            notes: "Who: " + role + "\nWhen: " + event + "\n\nDescription: " + description + "\nTemplate: link-to-template"
+            notes: title + "\n\nWho: " + role + "\nWhen: " + event + "\n\nDescription: " + description + "\nTemplate: link-to-template"
           });
         })
         .then(function(response) {

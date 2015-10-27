@@ -3,15 +3,28 @@ angular.module('producer.main', [])
 .controller('mainController', function ($scope, Template, Roles) {
   $scope.template = {title: '', role: '', event: '', description: ''};
   $scope.roles = [];
+  $scope.tags = [];
+
+  var submitSuccess = function(response) {
+    $scope.messages = 'Your form has been sent!';
+    console.log(' ---- RESPONSE DATA ---- : ', response, '------------------------------');
+  };
+
+  var submitError = function(response) {
+    $scope.messages = 'Sorry, there was an error submitting your form. Please submit again.';
+    console.log('error: ', response);
+  };
+  
+  // submits template in correct format
   $scope.submitTemplate = function() {
     $scope.template.event = $scope.tags.reduce(function(eventList, currEvent) {
       return eventList+= currEvent.abbreviation;
     }, '');
-    Template.submitTemplate($scope.template); 
+    Template.submitTemplate($scope.template).then(submitSuccess, submitError); 
   };
 
-  $scope.tags = [];
 
+  // load event tags based on user query
   $scope.loadTags = function($query) {
     return Template.eventsList($query);
   };
