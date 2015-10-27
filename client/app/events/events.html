@@ -2,7 +2,7 @@
   <div class="events-left-side__container">
     <div class="events-list__container">
       <ul class="events-list">
-        <li class="event__item" ng-repeat="event in events" ng-click="toggleEventDetails()">
+        <li class="event__item" ng-repeat="event in events" ng-click="toggleEventDetails(event)">
           {{event.title}}
         </li>
       </ul>
@@ -24,13 +24,19 @@
   <div class="event-submission__container" ng-show="submissionBox">
     <div class="submission-heading">Create Event</div>
     <div class="title-input__container">
-      <span>Title: </span><input class="event-title__input"></input>
+      <span>Title: </span>
+      <input class="event-title__input" ng-model="newEvent.title"></input>
     </div>
     <div class="cron-input__container">
-      <span>Cron: </span><input class="event-cron__input"></input>
+      <span>Cron: </span>
+      <input class="event-cron__input" ng-model="newEvent.cron"></input>
     </div>
     <div class="description-input__container">
-      <span class="description">Description: </span><textarea class="event-description__input"></textarea>
+      <span class="description">Description: </span>
+      <textarea class="event-description__input" ng-model="newEvent.description"></textarea>
+    </div>
+    <div class="producer-button__container">
+      <div class="producer-button" ng-click="submitEvent()">Submit Event</div>
     </div>
   </div>
 </div>

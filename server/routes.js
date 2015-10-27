@@ -12,4 +12,5 @@ module.exports = function (app) {
   app.post('/templates', templatesController.postTemplate);
   app.get('/roles', rolesController.getRoles);
   app.get('/events', eventsController.getEventsList);
+  app.post('/events', eventsController.createEvent);
 };
