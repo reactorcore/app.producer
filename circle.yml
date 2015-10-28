@@ -23,7 +23,7 @@ test:
         CLEAN_NAME=$(echo $CIRCLE_PROJECT_REPONAME | sed "s;api\.;;g" | sed "s;app\.;;g");
         VERSIONED_NAME=$CLEAN_NAME'/v'$MAJOR_VERSION;
         CLEAN_REPONAME="quay.io/$QUAY_ORG/$CLEAN_NAME";
-        docker run $CLEAN_REPONAME;
+        docker run -d $CLEAN_REPONAME;
 deployment:
   deploy:
     #owner: $PRODUCTION_OWNER
@@ -98,3 +98,4 @@ deployment:
         else 
           aws ecs update-service --cluster default --service $VERSIONED_NAME --task-definition $VERSIONED_NAME:${TASK_REVISION} --desired-count ${DESIRED_COUNT} || (echo "AWS Error: Could not set task definition." && exit 1);
         fi;
+        
