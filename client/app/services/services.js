@@ -27,7 +27,7 @@ angular.module('producer.services', [])
         console.log(resp);
         var events = resp.data;
         return events.filter(function(event) {
-          return event.title.toLowerCase().indexOf($query.toLowerCase()) !== -1;
+          return event.text.toLowerCase().indexOf($query.toLowerCase()) !== -1;
         });
       });
     },

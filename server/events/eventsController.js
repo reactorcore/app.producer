@@ -35,6 +35,7 @@ module.exports = {
       var events = parsedData.rhythms.map(function(rhythm) {
         return {
           "abbreviation": rhythm[0],
+          "text": text[rhythm[0]] || rhythm[0],
           "title": text[rhythm[0]] || rhythm[0],
           "url": rhythm[1],
           "cron": rhythm[2]
@@ -45,14 +46,13 @@ module.exports = {
   },
   createEvent: function(req, res, next) {
     var event = req.body;
-    event.trigger = process.env.CHOREOGRAPHER_URL + '/signal/:' + event.title;;
+    event.trigger = process.env.CHOREOGRAPHER_URL + '/signal/' + event.title;
     event.interval = event.cron;
-    stringifiedEvent = JSON.stringify(event);
     request({
       method: 'POST',
-      uri: process.env.CHOREOGRAPHER_URL +  '/metronome/events/:' + event.title,
+      uri: process.env.CHOREOGRAPHER_URL +  '/metronome/events/' + event.title,
       headers: headers,
-      data: stringifiedEvent
+      json: event
     }, function(error, response, body) {
       if (error) {
         console.log("Error: ", error);
