@@ -2,7 +2,7 @@
   "name": "producer",
   "version": "0.0.0",
   "description": "",
-  "main": "app.js",
+  "main": "server/index.js",
   "author": "",
   "license": "ISC",
   "dependencies": {
