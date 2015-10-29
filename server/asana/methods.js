@@ -10,7 +10,7 @@ module.exports = function asana(client) {
             name: title,
             workspace: process.env.WORKSPACE_ID,
             projects: process.env.PROJECT_ID,
-            notes: title + "\n\nWho: " + role + "\nWhen: " + event + "\n\nDescription: " + description + "\nTemplate: link-to-template"
+            notes: "Who: " + role + "\nWhen: " + event + "\n\nDescription: " + description + "\nTemplate: link-to-template"
           });
         })
         .then(function(response) {
