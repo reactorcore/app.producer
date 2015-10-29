@@ -1,6 +1,6 @@
 angular.module('producer.main', [])
 
-.controller('mainController', function ($scope, Template, Roles) {
+.controller('mainController', function ($scope, Template, Roles, Events) {
   $scope.template = {title: '', role: '', event: '', description: ''};
   $scope.roles = [];
   $scope.tags = [];
@@ -26,7 +26,7 @@ angular.module('producer.main', [])
 
   // load event tags based on user query
   $scope.loadTags = function($query) {
-    return Template.eventsList($query);
+    return Events.eventsList($query);
   };
 
   // Set up autocomplete for Roles Input
