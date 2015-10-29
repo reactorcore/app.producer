@@ -23,7 +23,8 @@ angular.module('producer.events', [])
     Events.submitEvent($scope.newEvent);
   }
 
-  Events.getEvents(function(events){
+  Events.getEvents().then(function(resp){
+    var events = resp.data;
     $scope.events = events;
   });
 
