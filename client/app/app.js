@@ -3,8 +3,7 @@ angular.module('producer', [
   'producer.templates',
   'producer.events',
   'ui.router',
-  'ngTagsInput',
-  'ngMock'
+  'ngTagsInput'
 ])
 .config(function($stateProvider, $urlRouterProvider) {
   $stateProvider
