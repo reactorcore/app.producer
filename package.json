@@ -18,7 +18,7 @@
   },
   "scripts": {
     "start": "npm install; bower install --allow-root; node server/index.js",
-    "test": "jasmine-node spec --verbose"
+    "test": "karma start"
   },
   "devDependencies": {
     "bower": "^1.6.5",
