@@ -18,27 +18,11 @@ angular.module('producer.services', [])
 
 .factory('Events', function ($http) {
   return {
-    eventsList: function($query) {
+    getEvents: function() {
       return $http({
         method: 'GET',
+        cache: true,
         url: '/events'
-      })
-      .then(function(resp) {
-        console.log(resp);
-        var events = resp.data;
-        return events.filter(function(event) {
-          return event.text.toLowerCase().indexOf($query.toLowerCase()) !== -1;
-        });
-      });
-    },
-
-    getEvents: function(callback) {
-      return $http({
-        method: 'GET',
-        url: '/events'
-      })
-      .then(function(resp) {
-        callback(resp.data);
       });
     },
 

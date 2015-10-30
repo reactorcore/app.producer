@@ -1,8 +1,8 @@
 {
   "name": "producer",
-  "version": "0.0.0",
+  "version": "0.1.0",
   "description": "",
-  "main": "app.js",
+  "main": "server/index.js",
   "author": "",
   "license": "ISC",
   "dependencies": {
@@ -16,7 +16,11 @@
     "request": "^2.36.0"
   },
   "scripts": {
-    "start": "node server/index.js",
-    "test": "jasmine"
+    "start": "npm install; bower install; node server/index.js",
+    "test": "jasmine-node spec --verbose"
+  },
+  "devDependencies": {
+    "bower": "^1.6.5",
+    "jasmine": "^2.3.2"
   }
 }

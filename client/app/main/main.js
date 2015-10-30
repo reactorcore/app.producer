@@ -22,11 +22,14 @@ angular.module('producer.main', [])
     }, '');
     Template.submitTemplate($scope.template).then(submitSuccess, submitError); 
   };
-
-
-  // load event tags based on user query
+  
   $scope.loadTags = function($query) {
-    return Events.eventsList($query);
+    return Events.getEvents().then(function(resp) {
+      var events = resp.data;
+      return events.filter(function(event) {
+        return event.text.toLowerCase().indexOf($query.toLowerCase()) !== -1;
+      });
+    });
   };
 
   // Set up autocomplete for Roles Input

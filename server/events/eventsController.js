@@ -9,7 +9,7 @@ var headers = {
 
 
 module.exports = {
-  getEventsList: function(req, res, next) {
+  getEventsData: function(req, res, next) {
     request({
       method: 'GET',
       uri: process.env.CHOREOGRAPHER_URL + '/metronome/events',
