@@ -16,7 +16,7 @@
     "request": "^2.36.0"
   },
   "scripts": {
-    "start": "npm install; bower install; node server/index.js",
+    "start": "npm install; bower install --allow-root; node server/index.js",
     "test": "jasmine-node spec --verbose"
   },
   "devDependencies": {
