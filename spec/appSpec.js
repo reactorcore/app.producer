@@ -2,7 +2,7 @@ describe("producer.main module", function() {
   // set up module
   beforeEach(module("producer.main"));
 
-  var $controller, TemplateServiceMock, EventsServiceMock, RolesServiceMock;
+  var $controller, TemplateServiceMock, EventsServiceMock, RolesServiceMock, createController;
 
   beforeEach(inject(function(_$controller_){
     // The injector unwraps the underscores (_) from around the parameter names when matching
@@ -22,15 +22,30 @@ describe("producer.main module", function() {
     };
   }));
 
+
   describe("mainController controller", function() {
-    it("should be defined", function() {
-      var $scope = {};
-      var mainController = $controller('mainController', { 
+    var $scope, mainController;
+
+    beforeEach(function() {
+      $scope = {};
+      mainController = $controller('mainController', { 
         $scope: $scope, 
-        Template:  TemplateServiceMock, 
+        Template: TemplateServiceMock, 
         Roles: RolesServiceMock, 
-        Events: EventsServiceMock});
-      expect(mainController).toBeDefined();
-    });    
+        Events: EventsServiceMock });
+    });
+
+    describe("the mainController object", function() {
+      it("should be defined", function() {
+        expect(mainController).toBeDefined();
+      });
+
+      it("should have all the necessary $scope methods", function() {
+        expect($scope.submitTemplate).toBeDefined();
+        expect($scope.loadTags).toBeDefined();
+      });
+      
+    });
+
   });
 });
