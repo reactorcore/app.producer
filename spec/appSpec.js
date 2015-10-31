@@ -1,4 +1,4 @@
-describe("producer.main module", function() {
+describe("the producer.main module", function() {
   // set up module
   beforeEach(module("producer.main"));
 
@@ -23,7 +23,7 @@ describe("producer.main module", function() {
   }));
 
 
-  describe("mainController controller", function() {
+  describe("the mainController controller", function() {
     var $scope, mainController;
 
     beforeEach(function() {
@@ -32,7 +32,8 @@ describe("producer.main module", function() {
         $scope: $scope, 
         Template: TemplateServiceMock, 
         Roles: RolesServiceMock, 
-        Events: EventsServiceMock });
+        Events: EventsServiceMock 
+      });
     });
 
     describe("the mainController object", function() {
@@ -40,11 +41,16 @@ describe("producer.main module", function() {
         expect(mainController).toBeDefined();
       });
 
+      it("should have all the necessary $scope variables", function() {
+        expect($scope.template.constructor).toBe(Object);
+        expect($scope.roles.constructor).toBe(Array);
+        expect($scope.tags.constructor).toBe(Array);
+      });
+
       it("should have all the necessary $scope methods", function() {
         expect($scope.submitTemplate).toBeDefined();
         expect($scope.loadTags).toBeDefined();
       });
-      
     });
 
   });
