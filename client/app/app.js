@@ -8,7 +8,7 @@ angular.module('producer', [
 .config(function($stateProvider, $urlRouterProvider) {
   $stateProvider
     .state('templates', {
-      url: '/',
+      url: '/templates',
       templateUrl: 'app/templates/templates.html',
       controller: 'templatesController'
     })
@@ -18,7 +18,7 @@ angular.module('producer', [
       controller: 'eventsController'
     })
 
-  $urlRouterProvider.otherwise('/');
+  $urlRouterProvider.otherwise('/templates');
 
 })
 .run(function ($rootScope, $location) {

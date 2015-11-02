@@ -21,7 +21,7 @@ angular.module('producer.services', [])
     getEvents: function() {
       return $http({
         method: 'GET',
-        cache: true,
+        // cache: true,
         url: 'events'
       });
     },
@@ -31,9 +31,6 @@ angular.module('producer.services', [])
         method: 'POST',
         url: 'events',
         data: event
-      })
-      .then(function(resp) {
-        console.log(resp);
       });
     }
   };
