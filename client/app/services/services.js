@@ -7,7 +7,7 @@ angular.module('producer.services', [])
     submitTemplate: function(template){
       return $http({
         method: 'POST',
-        url: '/templates',
+        url: 'templates',
         data: template
       });
     }
@@ -22,14 +22,14 @@ angular.module('producer.services', [])
       return $http({
         method: 'GET',
         cache: true,
-        url: '/events'
+        url: 'events'
       });
     },
 
     submitEvent: function(event) {
       return $http({
         method: 'POST',
-        url: '/events',
+        url: 'events',
         data: event
       })
       .then(function(resp) {
@@ -44,7 +44,7 @@ angular.module('producer.services', [])
     getRoles: function(callback){
       $http({
         method: 'Get',
-        url: '/roles',
+        url: 'roles',
       })
       .then(function(resp){
         console.log("ROLES: ", resp.data);
