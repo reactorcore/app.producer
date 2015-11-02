@@ -38,7 +38,8 @@ module.exports = {
           "text": text[rhythm[0]] || rhythm[0],
           "title": text[rhythm[0]] || rhythm[0],
           "url": rhythm[1],
-          "cron": rhythm[2]
+          "cron": rhythm[2],
+          "description": rhythm[3]
         };
       });
       res.send(events);
