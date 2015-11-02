@@ -25,8 +25,10 @@ angular.module('producer.events', [])
 
   var submitSuccess = function(response) {
     $scope.messages = 'Your event was created!';
-    setTimeout(function(){$scope.messages=null},3000);
-    console.log(' ---- RESPONSE DATA ---- : ', response, '------------------------------');
+    setTimeout(function(){
+      $scope.messages = null;
+      $scope.$apply();
+    },3000);
     $scope.getEvents();
   };
 
@@ -41,6 +43,24 @@ angular.module('producer.events', [])
       $scope.events = events;
     });
   }
+
+  $scope.deleteEvent = function(){
+    Events.deleteEvent($scope.event).then(deleteSuccess, deleteError)
+  }
+
+  var deleteSuccess = function(response) {
+    $scope.messages = 'Event Deleted';
+    setTimeout(function(){
+      $scope.messages = null;
+      $scope.$apply();
+    },3000);
+    $scope.getEvents();
+  };
+
+  var deleteError = function(response) {
+    $scope.messages = 'Sorry, there was an error submitting your form. Please submit again.';
+    console.log('error: ', response);
+  };
 
   $scope.getEvents();
 

@@ -484,6 +484,11 @@ ul {
   bottom: 0;
 }
 
+.delete-event-button__container {
+  position: relative;
+  width: 100%;
+}
+
 .add-event__button {
   width: 80%;
   position: relative;
@@ -493,6 +498,16 @@ ul {
   text-align: center;
   top: 50%;
   transform: translateY(-50%);
+}
+
+.delete-event__button {
+  width: 40%;
+  position: relative;
+  background-color: #F3F3F3;
+  padding: 7px 0;
+  margin: 0 auto;
+  margin-top: 20px;
+  text-align: center;
 }
 
 .details-heading, .submission-heading {

@@ -7,7 +7,10 @@ angular.module('producer.templates', [])
 
   var submitSuccess = function(response) {
     $scope.messages = 'Your form has been sent!';
-    console.log(' ---- RESPONSE DATA ---- : ', response, '------------------------------');
+    setTimeout(function(){
+      $scope.messages = null;
+      $scope.$apply();
+    },3000);
   };
 
   var submitError = function(response) {

@@ -32,6 +32,13 @@ angular.module('producer.services', [])
         url: 'events',
         data: event
       });
+    },
+
+    deleteEvent: function(event) {
+      return $http({
+        method: 'DELETE',
+        url: 'events/' + event.title,
+      });
     }
   };
 })
