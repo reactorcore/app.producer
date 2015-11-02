@@ -1,6 +1,6 @@
-angular.module('producer.main', [])
+angular.module('producer.templates', [])
 
-.controller('mainController', function ($scope, Template, Roles, Events) {
+.controller('templatesController', function ($scope, Template, Roles, Events) {
   $scope.template = {title: '', role: '', event: '', description: ''};
   $scope.roles = [];
   $scope.tags = [];

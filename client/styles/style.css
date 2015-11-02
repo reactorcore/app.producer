@@ -152,14 +152,14 @@ input[type=url]:focus {
 
 /* ////////////////////////////////////////////////////////// 
 // 
-//  MAIN
+//  TEMPLATES
 //
 ////////////////////////////////////////////////////////// */
 
-#main-container input, 
-#main-container tags-input,
-#main-container .warning-message,
-#main-container textarea {
+#templates-container input, 
+#templates-container tags-input,
+#templates-container .warning-message,
+#templates-container textarea {
   width: 50%;
   display: block;
   font-size: 13px;
@@ -168,21 +168,21 @@ input[type=url]:focus {
   text-align: left;
 }
 
-#main-container textarea {
+#templates-container textarea {
   border: 1px solid #ccc;
   border-radius: 4px;
   resize: none;
   box-shadow: inset 0 1px 1px rgba(0, 0, 0, .075);
 }
 
-#main-container textarea:focus {
+#templates-container textarea:focus {
   border-color: #66afe9;
   outline: 0;
   -webkit-box-shadow: inset 0 1px 1px rgba(0,0,0,.075), 0 0 8px rgba(102, 175, 233, .6);
           box-shadow: inset 0 1px 1px rgba(0,0,0,.075), 0 0 8px rgba(102, 175, 233, .6);
 }
 
-.main-input__container {
+.templates-input__container {
   margin-top: 15px
 }
 
