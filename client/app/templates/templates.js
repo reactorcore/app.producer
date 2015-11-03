@@ -1,13 +1,16 @@
-angular.module('producer.main', [])
+angular.module('producer.templates', [])
 
-.controller('mainController', function ($scope, Template, Roles, Events) {
+.controller('templatesController', function ($scope, Template, Roles, Events) {
   $scope.template = {title: '', role: '', event: '', description: ''};
   $scope.roles = [];
   $scope.tags = [];
 
   var submitSuccess = function(response) {
     $scope.messages = 'Your form has been sent!';
-    console.log(' ---- RESPONSE DATA ---- : ', response, '------------------------------');
+    setTimeout(function(){
+      $scope.messages = null;
+      $scope.$apply();
+    },3000);
   };
 
   var submitError = function(response) {

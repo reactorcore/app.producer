@@ -19,6 +19,10 @@
     <div class="event-title">Title: {{event.title}}</div>
     <div class="event-cron">Cron: {{event.cron}}</div>
     <div class="event-description">Description: {{event.description}}</div>
+    <div class="delete-event-button__container">
+      <div class="delete-event__button" ng-click="deleteEvent()">Delete Event</div>
+    </div>
+    <div class="alert alert-success" data-ng-show="messages" data-ng-bind="messages"></div>
   </div>
 
   <div class="event-submission__container" ng-show="submissionBox">
@@ -38,5 +42,6 @@
     <div class="producer-button__container">
       <div class="producer-button" ng-click="submitEvent()">Submit Event</div>
     </div>
+    <div class="alert alert-success" data-ng-show="messages" data-ng-bind="messages"></div>
   </div>
 </div>

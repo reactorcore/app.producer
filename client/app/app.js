@@ -1,16 +1,16 @@
 angular.module('producer', [
   'producer.services',
-  'producer.main',
+  'producer.templates',
   'producer.events',
   'ui.router',
   'ngTagsInput'
 ])
 .config(function($stateProvider, $urlRouterProvider) {
   $stateProvider
-    .state('main', {
-      url: '/',
-      templateUrl: 'app/main/main.html',
-      controller: 'mainController'
+    .state('templates', {
+      url: '/templates',
+      templateUrl: 'app/templates/templates.html',
+      controller: 'templatesController'
     })
     .state('events', {
       url: '/events',
@@ -18,7 +18,7 @@ angular.module('producer', [
       controller: 'eventsController'
     })
 
-  $urlRouterProvider.otherwise('/');
+  $urlRouterProvider.otherwise('/templates');
 
 })
 .run(function ($rootScope, $location) {

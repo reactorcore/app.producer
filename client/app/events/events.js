@@ -20,12 +20,49 @@ angular.module('producer.events', [])
   }
 
   $scope.submitEvent = function(){
-    Events.submitEvent($scope.newEvent);
+    Events.submitEvent($scope.newEvent).then(submitSuccess, submitError)
   }
 
-  Events.getEvents().then(function(resp){
-    var events = resp.data;
-    $scope.events = events;
-  });
+  var submitSuccess = function(response) {
+    $scope.messages = 'Your event was created!';
+    setTimeout(function(){
+      $scope.messages = null;
+      $scope.$apply();
+    },3000);
+    $scope.getEvents();
+  };
+
+  var submitError = function(response) {
+    $scope.messages = 'Sorry, there was an error submitting your form. Please submit again.';
+    console.log('error: ', response);
+  };
+
+  $scope.getEvents = function(){
+    Events.getEvents().then(function(resp){
+      var events = resp.data;
+      $scope.events = events;
+    });
+  }
+
+  $scope.deleteEvent = function(){
+    Events.deleteEvent($scope.event).then(deleteSuccess, deleteError)
+  }
+
+  var deleteSuccess = function(response) {
+    $scope.messages = 'Event Deleted';
+    setTimeout(function(){
+      $scope.messages = null;
+      $scope.$apply();
+    },3000);
+    $scope.getEvents();
+  };
+
+  var deleteError = function(response) {
+    $scope.messages = 'Sorry, there was an error submitting your form. Please submit again.';
+    console.log('error: ', response);
+  };
+
+  $scope.getEvents();
+
 
 });

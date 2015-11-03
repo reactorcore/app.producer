@@ -38,7 +38,8 @@ module.exports = {
           "text": text[rhythm[0]] || rhythm[0],
           "title": text[rhythm[0]] || rhythm[0],
           "url": rhythm[1],
-          "cron": rhythm[2]
+          "cron": rhythm[2],
+          "description": rhythm[3]
         };
       });
       res.send(events);
@@ -61,6 +62,26 @@ module.exports = {
         res.send(200);
       }
     });
-  }
+  },
 
+  getEventName: function(req, res, next, name){
+    req.eventName = name;
+    next()
+  },
+
+  deleteEvent: function(req, res, next) { 
+    var eventName = req.eventName;
+    request({
+      method: 'DELETE',
+      uri: process.env.CHOREOGRAPHER_URL +  '/metronome/events/' + eventName,
+      headers: headers,
+    }, function(error, response, body) {
+      if (error) {
+        console.log("Error: ", error);
+        res.send(400);
+      } else {
+        res.send(200);
+      }
+    });
+  }
 };
