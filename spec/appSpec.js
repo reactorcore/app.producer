@@ -1,6 +1,6 @@
-describe("the producer.main module", function() {
+describe("the producer.templates module", function() {
   // set up module
-  beforeEach(module("producer.main"));
+  beforeEach(module("producer.templates"));
 
   var $controller, TemplateServiceMock, EventsServiceMock, RolesServiceMock, createController;
 
@@ -23,12 +23,12 @@ describe("the producer.main module", function() {
   }));
 
 
-  describe("the mainController controller", function() {
-    var $scope, mainController;
+  describe("the templatesController controller", function() {
+    var $scope, templatesController;
 
     beforeEach(function() {
       $scope = {};
-      mainController = $controller('mainController', { 
+      templatesController = $controller("templatesController", { 
         $scope: $scope, 
         Template: TemplateServiceMock, 
         Roles: RolesServiceMock, 
@@ -36,9 +36,9 @@ describe("the producer.main module", function() {
       });
     });
 
-    describe("the mainController object", function() {
+    describe("the templatesController object", function() {
       it("should be defined", function() {
-        expect(mainController).toBeDefined();
+        expect(templatesController).toBeDefined();
       });
 
       it("should have all the necessary $scope variables", function() {

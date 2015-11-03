@@ -5,6 +5,7 @@ tests
 main.js
 functions we have:
 - loadTags
+  - TODO: mock $http requests
   - expect that it exists
   - expect that it autocompletes
 - submitSuccess
