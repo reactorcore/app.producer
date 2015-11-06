@@ -43,6 +43,33 @@ angular.module('producer.services', [])
   };
 })
 
+.factory('Procedures', function ($http) {
+  return {
+    getProcedures: function() {
+      return $http({
+        method: 'GET',
+        // cache: true,
+        url: 'procedures'
+      });
+    },
+
+    submitProcedure: function(procedure) {
+      return $http({
+        method: 'POST',
+        url: 'procedures',
+        data: procedure
+      });
+    },
+
+    deleteProcedure: function(procedure) {
+      return $http({
+        method: 'DELETE',
+        url: 'procedures/' + procedure.title,
+      });
+    }
+  };
+})
+
 .factory('Roles', function ($http) {
   return {
     getRoles: function(callback){

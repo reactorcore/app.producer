@@ -3,6 +3,7 @@ var express = require('express');
 var templatesController = require('./templates/templatesController.js');
 var eventsController = require('./events/eventsController');
 var rolesController = require('./roles/rolesController.js');
+var proceduresController = require('./procedures/proceduresController.js');
 
 module.exports = function (app) {
   // could be abstracted out into router file
@@ -14,8 +15,11 @@ module.exports = function (app) {
   app.get('/events', eventsController.getEventsData);
   app.post('/events', eventsController.createEvent);
   app.delete('/events/:eventName', eventsController.deleteEvent);
+  app.get('/procedures', proceduresController.getProcedures);
+  app.post('/procedures', proceduresController.createProcedure);
+  app.delete('/procedures/:procedureName', proceduresController.deleteProcedure);
 
-  app.param('eventName', eventsController.getEventName)
-
+  app.param('eventName', eventsController.getEventName);
+  app.param('procedureName', proceduresController.getProcedureName);
 
 };
