@@ -15,6 +15,7 @@
     "ng-tags-input": "~3.0.0",
     "typeahead.js": "~0.11.1",
     "angular-ui-router": "~0.2.15",
-    "jquery-ui": "~1.11.4"
+    "jquery-ui": "~1.11.4",
+    "angular-cron-jobs": "~1.4.1"
   }
 }

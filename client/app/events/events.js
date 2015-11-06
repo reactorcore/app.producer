@@ -3,6 +3,7 @@ angular.module('producer.events', [])
 .controller('eventsController', function ($scope, Events) {
   $scope.events = [];
   $scope.showEvent = false;
+  $scope.cronJob;
 
   $scope.event = {};
   $scope.newEvent = {};

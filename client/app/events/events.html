@@ -22,6 +22,7 @@
     <div class="content__input--container">
       <label class="content__input--title">Cron:</label>
       <input class="content__input--field" ng-model="newEvent.cron"></input>
+      <cron-selection output="cronJob" config="myConfig"></cron-selection>
     </div>
     <div class="content__input--container">
       <label class="content__input--title">Procedure:</label>

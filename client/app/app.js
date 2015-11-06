@@ -4,7 +4,8 @@ angular.module('producer', [
   'producer.events',
   'producer.procedures',
   'ui.router',
-  'ngTagsInput'
+  'ngTagsInput',
+  'angular-cron-jobs'
 ])
 .config(function($stateProvider, $urlRouterProvider) {
   $stateProvider
