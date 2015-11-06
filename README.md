@@ -45,14 +45,14 @@ Node/Express + AngularJS
 * `nodemon`
 
 These should be inside of the .env file:
-* ASANA_API_KEY=YOUR_API_KEY
-* WORKSPACE_ID=FROM_YOUR_ASANA_ACCOUNT
-* PROJECT_ID=FROM_YOUR_ASANA_ACCOUNT
-* ROLES_ID=FROM_YOUR_ASANA_ACCOUNT
-* ASANA_ACCESS_TOKEN=YOUR_ACCESS_TOKEN
-* EVENTS_URL=http://api.staging.hackreactor.com/choreographer/v0/metronome/events
-* CHOREOGRAPHER_URL=http://api.staging.hackreactor.com/choreographer/v0
-* PORT=8000
+* **ASANA_API_KEY**=YOUR_API_KEY
+* **WORKSPACE_ID**=FROM_YOUR_ASANA_ACCOUNT
+* **PROJECT_ID**=FROM_YOUR_ASANA_ACCOUNT
+* **ROLES_ID**=FROM_YOUR_ASANA_ACCOUNT
+* **ASANA_ACCESS_TOKEN**=YOUR_ACCESS_TOKEN
+* **EVENTS_URL**=http://api.staging.hackreactor.com/choreographer/v0/metronome/events
+* **CHOREOGRAPHER_URL**=http://api.staging.hackreactor.com/choreographer/v0
+* **PORT**=8000
 
 For local development, a personal Asana account is needed. Once you have created an account, complete the following:
 * go to your profile settings and click the 'Apps' tab 
