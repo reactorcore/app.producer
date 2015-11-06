@@ -1,0 +1,22 @@
+tests
+- expect a GET request to /events to return an object containing a 'text' key
+
+
+main.js
+functions we have:
+- loadTags
+  - TODO: mock $http requests
+  - expect that it exists
+  - expect that it autocompletes
+- submitSuccess
+- submitError
+- submitTemplate
+- 2 roles functions:
+  - TODO: FUNCTIONALIZE
+    - autocomplete for roles input
+    - fetching for roles
+
+relic from attempting to test services.js
+// testing GET request to /events
+// must return a JSON object
+// JSON object must contain a 'text' key

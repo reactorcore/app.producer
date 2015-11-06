@@ -17,10 +17,18 @@
   },
   "scripts": {
     "start": "npm install; bower install --allow-root; node server/index.js",
-    "test": "jasmine-node spec --verbose"
+    "test": "karma start"
   },
   "devDependencies": {
     "bower": "^1.6.5",
-    "jasmine": "^2.3.2"
+    "jasmine": "^2.3.2",
+    "jasmine-core": "^2.3.4",
+    "jasmine-node": "^1.14.5",
+    "karma": "^0.13.14",
+    "karma-chrome-launcher": "^0.2.1",
+    "karma-jasmine": "^0.3.6",
+    "karma-phantomjs-launcher": "^0.2.1",
+    "karma-spec-reporter": "0.0.22",
+    "phantomjs": "^1.9.18"
   }
 }

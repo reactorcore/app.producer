@@ -4,10 +4,9 @@
     <meta charset="utf-8" />
     <title>Producer</title>
     <link rel="stylesheet" type="text/css" href="styles/style.css"/>
-    <link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
+    <link rel="stylesheet" type="text/css" href="lib/jquery-ui/themes/smoothness/jquery-ui.css"/>
+    <!-- <link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css"> -->
     <link href='http://fonts.googleapis.com/css?family=Lato:400,900,300,100' rel='stylesheet' type='text/css'>
-    <script src="//code.jquery.com/jquery-1.10.2.js"></script>
-    <script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
   </head>
   <body>
     <h1 id="producer-head">Producer</h1>
@@ -21,6 +20,9 @@
     <!-- the ng-view directive is where our templates will be loaded into when navigated to -->
     <div ui-view></div>
 
+    <script src="lib/jquery/dist/jquery.js"></script>
+    <script src="lib/jquery-ui/jquery-ui.js"></script>
+
     <script src="lib/angular/angular.js"></script>
     <script src="lib/angular-ui-router/release/angular-ui-router.min.js"></script>
 
@@ -31,5 +33,6 @@
 
     <script src="lib/typeahead.js/dist/bloodhound.js"></script>
     <script src="lib/ng-tags-input/ng-tags-input.js"></script>
+
   </body>
 </html>
