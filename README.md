@@ -83,7 +83,7 @@ dev-dependencies
 * [jasmine-core](https://www.npmjs.com/package/jasmine-core)
 * [jasmine-node](https://www.npmjs.com/package/jasmine-node)
 * [karma](https://www.npmjs.com/package/karma)
-* [karma-chrome-launcher](https://www.npmjs.com/package/karma-chrome-launcher) *** may not need this
+* [karma-chrome-launcher](https://www.npmjs.com/package/karma-chrome-launcher)
 * [karma-jasmine](https://www.npmjs.com/package/karma-jasmine)
 * [karma-phantomjs-launcher](https://www.npmjs.com/package/karma-phantomjs-launcher)
 * [karma-spec-reporter](https://www.npmjs.com/package/karma-spec-reporter)
