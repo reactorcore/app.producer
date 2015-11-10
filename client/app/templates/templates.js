@@ -4,6 +4,7 @@ angular.module('producer.templates', [])
   $scope.template = {title: '', role: '', event: '', description: ''};
   $scope.roles = [];
   $scope.tags = [];
+  var events;
 
   var submitSuccess = function(response) {
     $scope.messages = 'Your form has been sent!';
@@ -18,7 +19,7 @@ angular.module('producer.templates', [])
     console.log('error: ', response);
   };
 
-  // submits template in correct format
+  // Submits template in correct format
   $scope.submitTemplate = function() {
     $scope.template.event = $scope.tags.reduce(function(eventList, currEvent) {
       return eventList+= currEvent.abbreviation;
@@ -26,12 +27,18 @@ angular.module('producer.templates', [])
     Template.submitTemplate($scope.template).then(submitSuccess, submitError);
   };
 
-  $scope.loadTags = function($query) {
-    return Events.getEvents().then(function(resp) {
-      var events = resp.data;
-      return events.filter(function(event) {
-        return event.text.toLowerCase().indexOf($query.toLowerCase()) !== -1;
+  // Loads events/tags off $scope
+  var loadTags = function() {
+    return Events.getEvents()
+      .then(function(eventsObj) {
+        events = eventsObj.data;
       });
+  };
+
+  // Return filtered events/tags per query
+  var eventsFilter = function($query) {
+    return events.filter(function(event) {
+      return event.text.toLowerCase().indexOf($query.toLowerCase()) !== -1;
     });
   };
 
@@ -53,7 +60,16 @@ angular.module('producer.templates', [])
         el.style.border = "4px solid rgba(000, 113, 206, 0.2)";
       }
     }
-  }
+  };
+
+  // If events exists return filtered events/tags, 
+  // if not, load events/tags and return filtered
+  $scope.filterTags = function($query) {
+    return events ? eventsFilter($query) :
+      loadTags().then(function() {
+        return eventsFilter($query);
+      });
+  };
 
   // Set up autocomplete for Roles Input
   $(function() {
