@@ -84,3 +84,19 @@ angular.module('producer.services', [])
     }
   };
 })
+
+.factory('SuccessMessages', function ($http) {
+  return {
+    submitSuccess: function () {
+      
+    }
+  };
+})
+
+.factory('ErrorMessages', function ($http) {
+  return {
+    submitError: function () {
+
+    }
+  }
+})
