@@ -97,9 +97,7 @@ angular.module('producer.services', [])
     setMessage: function (text, kind) {
       this.message.text = text;
       this.message.kind = kind;
-      console.log("setting the message", this.message.text);
       $timeout(function() {
-        console.log('in the set timeout.');
         this.message.text = ''; 
       }.bind(this), 3000);
     }
