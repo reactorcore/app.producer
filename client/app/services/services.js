@@ -85,32 +85,23 @@ angular.module('producer.services', [])
   };
 })
 
-.factory('SuccessMessages', function ($http) {
-
-  var messages = {
-    SUBMIT_PROCEDURE_SUCCESS: 'Your procedure was created!',
-    SUBMIT_EVENTS_SUCCESS: 'Your event was created!',
-    DELETE_PROCEDURE_SUCCESS: 'Procedure Deleted.',
-    DELETE_EVENT_SUCCESS: 'Event Deleted.'
-  };
+.factory('Messages', function ($timeout) {
 
   return {
-    submitSuccess: function (response, message) {
 
+    message: {
+      text: null,
+      kind: null
+    },
+
+    setMessage: function (text) {
+      this.message.text = text;
+      console.log("setting the message", this.message.text);
+      $timeout(function() {
+        console.log('in the set timeout.');
+        this.message.text = ''; 
+      }.bind(this), 3000);
     }
+
   };
-})
-
-.factory('ErrorMessages', function ($http) {
-
-  var messages = {
-    PROCEDURE_ERROR: 'Sorry, there was an error submitting your form. Please submit again.',
-    EVENTS_ERROR: 'something else'
-  };
-
-  return {
-    submitError: function (response, messageKind) {
-
-    }
-  }
 })
