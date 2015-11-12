@@ -1,6 +1,6 @@
 angular.module('producer.events', [])
 
-.controller('eventsController', function ($scope, Events) {
+.controller('eventsController', function ($scope, Events, Messages) {
   $scope.events = [];
   $scope.showEvent = false;
 
@@ -12,21 +12,16 @@ angular.module('producer.events', [])
   }
 
   var submitSuccess = function(response) {
-    $scope.messages = 'Your event was created!';
-    setTimeout(function(){
-      $scope.messages = null;
-      $scope.$apply();
-    },3000);
+    Messages.setMessage('Your event was created!');
     $scope.getEvents();
   };
 
   var submitError = function(response) {
     if ((400 <= response.status) && (response.status < 500)) {
-      $scope.messages = 'Sorry, there was an error submitting your form. Please submit again.';
+      Messages.setMessage('Sorry, there was an error submitting your form. Please submit again.', 'error');
     } else {
-      $scope.messages = response.data;
+      Message.set(response.data, 'error');
     }
-    console.log('error: ', response);
   };
 
   $scope.getEvents = function(){
@@ -56,19 +51,16 @@ angular.module('producer.events', [])
     $scope.newEvent.cron = "";
     $scope.newEvent.description = "";
     $scope.showEvent = false;
+    Events.deleteEvent($scope.event).then(deleteSuccess, deleteError);
   }
 
   var deleteSuccess = function(response) {
-    $scope.messages = 'Event Deleted';
-    setTimeout(function(){
-      $scope.messages = null;
-      $scope.$apply();
-    },3000);
+    Messages.setMessage('Event Deleted.')
     $scope.getEvents();
   };
 
   var deleteError = function(response) {
-    $scope.messages = 'Sorry, there was an error submitting your form. Please submit again.';
+    Messages.setMessage('Sorry, there was an error submitting your form. Please submit again.')
     console.log('error: ', response);
   };
 
