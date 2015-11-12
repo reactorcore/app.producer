@@ -1,4 +1,4 @@
-angular.module('producer.events', [])
+angular.module('producer.events', ['alertMessageDirective'])
 
 .controller('eventsController', function ($scope, Events, Messages) {
   $scope.events = [];
@@ -12,7 +12,7 @@ angular.module('producer.events', [])
   }
 
   var submitSuccess = function(response) {
-    Messages.setMessage('Your event was created!');
+    Messages.setMessage('Your event was created!', 'success');
     $scope.getEvents();
   };
 
@@ -55,7 +55,7 @@ angular.module('producer.events', [])
   }
 
   var deleteSuccess = function(response) {
-    Messages.setMessage('Event Deleted.')
+    Messages.setMessage('Event Deleted.', 'success');
     $scope.getEvents();
   };
 
