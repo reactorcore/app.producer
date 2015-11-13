@@ -58,8 +58,6 @@ module.exports = {
       if (error) {
         console.log("Error: ", error);
         res.send(400);
-      } else if (response.statusCode === 200) {
-        res.send(200);
       } else {
         res.status(response.statusCode).send(response.body);
       }
