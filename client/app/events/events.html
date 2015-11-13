@@ -1,14 +1,12 @@
 <div id="main__content--container">
-  <div class="events-left-side__container">
-    <div class="events-list__container">
-      <ul class="events-list">
-        <li class="event__item" ng-repeat="event in events" ng-click="toggleEventDetails(event)">
-          {{event.title}}
-        </li>
-      </ul>
-    </div>
-    <div class="add-event-button__container">
-      <div class="add-event__button" ng-click="toggleCreateEvent()">
+  <div class="right__nav--container">
+    <ul>
+      <li class="right__nav--item" ng-repeat="event in events" ng-click="toggleEventDetails(event)">
+        {{event.title}}
+      </li>
+    </ul>
+    <div class="nav__button--container">
+      <div class="nav__button" ng-click="toggleCreateEvent()">
         Create New Event
       </div>
     </div>
@@ -25,22 +23,22 @@
     <div class="alert alert-success" data-ng-show="messages" data-ng-bind="messages"></div>
   </div>
 
-  <div class="event-submission__container" ng-show="submissionBox">
-    <div class="submission-heading">Create Event</div>
-    <div class="title-input__container">
-      <span>Title: </span>
-      <input class="event-title__input" ng-model="newEvent.title"></input>
+  <div class="content__main" ng-show="submissionBox">
+    <h1 class="content__title">Create Event</h1>
+    <div class="content__input--container">
+      <label class="content__input--title">Title:</label>
+      <input class="content__input--field" ng-model="newEvent.title" autofocus></input>
     </div>
-    <div class="cron-input__container">
-      <span>Cron: </span>
-      <input class="event-cron__input" ng-model="newEvent.cron"></input>
+    <div class="content__input--container">
+      <label class="content__input--title">Cron:</label>
+      <input class="content__input--field" ng-model="newEvent.cron"></input>
     </div>
-    <div class="description-input__container">
-      <span class="description">Description: </span>
-      <textarea class="event-description__input" ng-model="newEvent.description"></textarea>
+    <div class="content__input--container">
+      <label class="content__input--title">Procedure:</label>
+      <textarea class="content__input--field content__input--procedure" ng-model="newEvent.description"></textarea>
     </div>
-    <div class="producer-button__container">
-      <div class="producer-button" ng-click="submitEvent()">Submit Event</div>
+    <div class="content__input--container">
+      <button ng-click="submitEvent()" class="content__input--submit">Submit</button>
     </div>
     <div class="alert alert-success" data-ng-show="messages" data-ng-bind="messages"></div>
   </div>
