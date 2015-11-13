@@ -405,10 +405,15 @@ tags-input .autocomplete .suggestion-item em {
   background-color: rgba(000, 113, 206, 0.2);
 }
 
-.cron-select,
-.select-options {
-  display: inline;
+
+/*CRON INPUT*/
+.cron-col {
+  width: 22%;
+  display: inline-block;
 }
-.cron-input {
-  display: inline;
+.cron-col span {
+  text-align: right;
+}
+.cron-row {
+  padding: 2px 0;
 }
