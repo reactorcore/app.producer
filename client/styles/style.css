@@ -1,3 +1,47 @@
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed,
+figure, figcaption, footer, header, hgroup,
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font-size: 100%;
+  font: inherit;
+  vertical-align: baseline;
+}
+/* HTML5 display-role reset for older browsers */
+article, aside, details, figcaption, figure,
+footer, header, hgroup, menu, nav, section {
+  display: block;
+}
+body {
+  line-height: 1;
+}
+ol, ul {
+  list-style: none;
+}
+blockquote, q {
+  quotes: none;
+}
+blockquote:before, blockquote:after,
+q:before, q:after {
+  content: '';
+  content: none;
+}
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+
 *,
 *::before,
 *::after {
@@ -6,234 +50,181 @@
 
 html {
   box-sizing: border-box;
-  background: #fff;
-  min-height: 100%;
+  background: #FFF;
+  height: 100%;
+  width: 100%;
+  font-family: 'Museo Sans', 'Lato', sans-serif;
 }
 
 body {
-  margin: 0;
-  margin-top: 10px;
-  font-family: 'Lato', sans-serif;
   height: 100%;
-  color: #000;
+  background-color: rgba(000, 113, 206, 0.1);
+  min-height: 650px;
 }
 
-a {
+
+
+/*LEFT NAV*/
+
+#left__nav--container {
+  position: absolute;
+  height: 100%;
+  min-height: 650px;
+  width: 200px;
+  background-color: rgba(000, 113, 206, 0.5);
+}
+
+#left__nav--container h1 {
+  font-size: 2rem;
+  font-weight: 100;
+  text-align: center;
+  margin: 20px;
+  color: rgba(000, 113, 206, 1);
+}
+
+#left__nav--container a {
   display: block;
-  color: #333;
-  font-size: 14px;
   text-decoration: none;
-  text-align: center;
-}
-
-h1 {
-  font-size: 40px;
-  margin-bottom: 10px;
-  text-align: center;
-  text-transform: uppercase;
-  font-weight: 100;
-}
-
-h1.sub {
-  font-size: 40px;
-  margin-bottom: 80px;
-  text-transform: inherit;
-  font-weight: 100;
-}
-
-#producer-head {
-  font-family: 'Lato', sans-serif;
-  font-size: 40px;
-  margin-bottom: 15px;
-  text-align: center;
-  text-transform: uppercase;
-  font-weight: 100;
-}
-
-#nav-bar {
-  width: 100%;
-  text-align: center;
-}
-
-.nav-button {
-  width: 25%;
-  padding: 5px;
-  background-color: #ccc;
-  display: inline-block;
-}
-
-.filter {
+  color: #FFF;
+  font-weight: 300;
+  letter-spacing: 1px;
+  background-color: rgba(000, 113, 206, 0.5);
+  padding: 20px;
+  border-bottom: 1px solid rgba(000, 113, 206, 0.5);
   width: 200px;
 }
 
-.navigation li a:hover {
-  text-decoration: overline;
+.left__nav--link {
+  border-top: 1px solid rgba(000, 113, 206, 0.5);
 }
 
-.navigation li a.selected {
-  background-color: #ccc;
+
+/*RIGHT NAV*/
+
+.right__nav--container {
+  position: absolute;
+  height: 100%;
+  min-height: 650px;
+  width: 200px;
+  right: 0;
+  top: 0;
+  background-color: rgba(000, 113, 206, 0.5);
 }
 
-#container {
-  clear: both;
-  margin-top: 10px;
-}
-
-.link {
-  clear: both;
-  margin-bottom: 5px;
-  padding: 5px;
-  min-height: 50px;
-}
-
-input#button {
+.right__nav--container li {
+  cursor: pointer;
   display: block;
-  padding: 10px;
-  background-color: white;
-}
-
-form {
-  width: 100%;
-  margin: 10px auto;
-}
-
-.sub-link {
-  color: #fff;
-  font-weight: 100;
-  letter-spacing: .5px;
-  width: 220px;
-  display: block;
-  margin: 0 auto;
-}
-
-input[type=url] {
-  display: inline
-}
-
-input[type=url]:focus {
-  outline: none;
-}
-
-.link .title {
+  color: #FFF;
   font-weight: 300;
+  letter-spacing: 1px;
+  background-color: rgba(000, 113, 206, 0.3);
+  padding: 20px;
+  border-bottom: 1px solid rgba(000, 113, 206, 0.3);
+  width: 200px;
+  text-align: center;
 }
 
-.error {
-  border: red solid 4px;
-  padding: 10px;
-  margin: 0 10px;
-}
-
-.clean {
-  border: #efe solid 2px;
-  padding: 10px;
-  margin: 0 10px;
-}
-
-.creator {
+/*RIGHT NAV BUTTONS*/
+.nav__button--container {
+  overflow: hidden;
+  position: absolute;
+  bottom: 0;
+  width: 200px;
+  text-align: center;
   height: 50px;
+  line-height: 50px;
+  color: #FFF;
+  font-weight: 300;
+  border-top: 1px solid rgba(000, 113, 206, 0.5);
+  background-color: rgba(000, 113, 206, 0.5);
+  cursor: pointer;
 }
 
-.creator form {
-  float: left;
-  height: 80px;
+.nav__button {
+  height: 100%;
+  margin: 0;
+  padding: 0;
 }
 
-.creator img.spinner {
-  height: 46px;
-  margin-bottom: 5px;
-  padding: 10px;
-  display: none;
+/*MAIN CONTENT*/
+
+#main__content--container {
+  margin-left: 200px;
+  overflow: hidden;
 }
 
-.creator .message {
-  clear: both;
+.content__title {
+  text-align: center;
+  font-weight: 100;
+  color: #000;
+  font-size: 2.5rem;
+  margin: 10px 0 10px 200px;
 }
 
-/* ////////////////////////////////////////////////////////// 
-// 
-//  TEMPLATES
-//
-////////////////////////////////////////////////////////// */
-
-#templates-container input, 
-#templates-container tags-input,
-#templates-container .warning-message,
-#templates-container textarea {
-  width: 50%;
+.content__main {
+  position: relative;
   display: block;
-  font-size: 13px;
+  width: 100%;
+  right: 200px;
+}
+
+.content__input--title {
+  display: block;
+  font-weight: 300;
+  margin-bottom: 5px;
+  margin-top: 20px;
+}
+
+.content__input--container {
+  width: calc(100% - 250px);
+  margin-left: 225px;
+}
+
+.content__input--field {
+  width: 100%;
+  height: 30px;
+  border: 4px solid rgba(000, 113, 206, 0.2);
   padding: 5px;
-  margin: 5px auto;
-  text-align: left;
 }
 
-#templates-container textarea {
-  border: 1px solid #ccc;
-  border-radius: 4px;
+.content__input--field:focus {
+  outline: 2px solid rgba(000, 113, 206, 0.4);
+}
+
+.content__input--procedure {
   resize: none;
-  box-shadow: inset 0 1px 1px rgba(0, 0, 0, .075);
-}
-
-#templates-container textarea:focus {
-  border-color: #66afe9;
-  outline: 0;
-  -webkit-box-shadow: inset 0 1px 1px rgba(0,0,0,.075), 0 0 8px rgba(102, 175, 233, .6);
-          box-shadow: inset 0 1px 1px rgba(0,0,0,.075), 0 0 8px rgba(102, 175, 233, .6);
-}
-
-.templates-input__container {
-  margin-top: 15px
-}
-
-.template-description-input {
   height: 200px;
 }
 
-.template-submission-button__container,
-.alert {
-  width: 50%;
-  margin: 20px auto;
+.content__input--submit,
+.content__submit--left,
+.content__submit--right {
+  display: block;
+  margin: 30px auto;
+  width: 200px;
+  height: 50px;
+  background-color: rgba(000, 113, 206, 0.2);
+  font-size: 2rem;
+  font-weight: 200;
+  letter-spacing: 1px;
+  color: #FFF;
+  border: 2px solid rgba(000, 113, 206, 0.2);
+  outline: 4px solid rgba(000, 113, 206, 0.2);
+  cursor: pointer;
 }
 
-.alert {
-  padding: 15px;
-  margin-bottom: 20px;
-  border: 1px solid transparent;
-  border-radius: 4px;
+.content__submit--left {
+  float: left;
+  margin-left: 5px;
 }
 
-.alert-success {
-  color: #3c763d;
-  background-color: #dff0d8;
-  border-color: #d6e9c6;
-  text-align: center;
-}
-
-.template-submission-button{
-  width: 100%;
-  background-color: #ccc;
-  padding: 15px 0px;
-  text-align: center;
-  box-shadow: 0 2px 4px rgba(0,0,0,0.16), 0 2px 4px rgba(0,0,0,0.23);
-  transition: 0.2s;
-}
-
-.template-submission-button--clicked {
-  transform: translateY(2px);
-  box-shadow: 0 1px 2px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
-}
-
-.warning-message {
-  color: red;
+.content__submit--right {
+  float: left;
+  margin-left: 30px;
 }
 
 
-/* ////////////////////////////////////////////////////////// 
-// 
-//  NG-TAGS-INPUT STYLING
-//
-////////////////////////////////////////////////////////// */
+/*TAGS*/
 
 tags-input .tags .tag-item button {
   background: transparent;
@@ -268,7 +259,7 @@ tags-input .tags {
   word-wrap: break-word;
   cursor: text;
   background-color: #fff;
-  border: 1px solid #ccc;
+  border: 4px solid rgba(000, 113, 206, 0.2);
   border-radius: 4px;
   box-shadow: inset 0 1px 1px rgba(0,0,0,0.075);
   height: 100%;
@@ -367,7 +358,6 @@ tags-input[disabled] .tags .input {
 tags-input .autocomplete {
   margin-top: 5px;
   position: absolute;
-  padding: 5px 0;
   z-index: 999;
   width: 100%;
   background-color: #fff;
@@ -400,337 +390,22 @@ tags-input .autocomplete .suggestion-item {
 
 tags-input .autocomplete .suggestion-item.selected {
   color: #262626;
-  background-color: #0097cf;
+  background-color: rgba(000, 113, 206, 0.2);
 }
 
 tags-input .autocomplete .suggestion-item.selected em {
   font-weight: normal;
   color: #262626;
-  background-color: #0097cf;
+  background-color: rgba(000, 113, 206, 0.2);
 }
 
 tags-input .autocomplete .suggestion-item em {
   font-weight: normal;
   color: #000;
-  background-color: #ffff00;
+  background-color: rgba(000, 113, 206, 0.2);
 }
 
-/* ////////////////////////////////////////////////////////// 
-// 
-//  EVENTS MANAGER
-//
-////////////////////////////////////////////////////////// */
 
-ul {
-    list-style-type: none;
-    -webkit-padding-start: 0px;
-}
 
-#events-container {
-  position: relative;
-  display: block;
-  width: 75%;
-  height: 500px;
-  margin: 0 auto;
-  background-color: #333;
-}
 
-.events-left-side__container{
-  position: relative;
-  display: inline-block;
-  width: 33%;
-  height: 100%;
-  background-color: #aaa;
-}
 
-.events-list__container {
-  position: absolute;
-  display: inline-block;
-  width: 100%;
-  height: 80%;
-  background-color: #777;
-  overflow-y: scroll;
-}
-
-.event-details__container {
-  position: absolute;
-  display: inline-block;
-  width: 67%;
-  height: 500px;
-  background-color: #999;
-}
-
-.event-submission__container {
-  position: absolute;
-  display: inline-block;
-  width: 67%;
-  height: 500px;
-  background-color: #999;
-}
-
-.event__item {
-  width: 90%;
-  background-color: #CCC;
-  margin: 6px auto;
-  padding: 5px 0;
-  text-align: center;
-}
-
-.add-event-button__container {
-  position: absolute;
-  width: 100%;
-  height: 20%;
-  background-color: #444;
-  bottom: 0;
-}
-
-.delete-event-button__container {
-  position: relative;
-  width: 100%;
-}
-
-.add-event__button {
-  width: 80%;
-  position: relative;
-  background-color: #999;
-  padding: 10px 0;
-  margin: 0 auto;
-  text-align: center;
-  top: 50%;
-  transform: translateY(-50%);
-}
-
-.delete-event__button {
-  width: 40%;
-  position: relative;
-  background-color: #F3F3F3;
-  padding: 7px 0;
-  margin: 0 auto;
-  margin-top: 20px;
-  text-align: center;
-}
-
-.details-heading, .submission-heading {
-  text-align: center;
-  font-size: 20px;
-  margin-top: 10px;
-  margin-bottom: 10px;
-}
-
-.event-title {
-  margin-top: 10px;
-}
-
-.event-title,
-.event-cron,
-.event-description {
-  margin-left: 3%;
-  padding: 4px 0;
-}
-
-.title-input__container, 
-.cron-input__container,
-.description-input__container {
-  margin-left: 3%;
-  padding: 4px 0;
-}
-
-.event-submission__container input,
-.event-submission__container textarea {
-  position: absolute;
-  width: 50%;
-  left: 25%;
-}
-
-.description-input__container {
-  height: 120px;
-}
-
-.event-submission__container textarea {
-  height: 120px;
-}
-
-.description {
-  float: left;
-}
-
-.producer-button__container {
-  width: 50%;
-  margin: 20px auto 0 auto;
-}
-
-button {
-  display: block;
-  margin: 0 auto;
-  width: 100%;
-  height: 30px;
-  font-size: 17px;
-}
-
-.producer-button {
-  text-align: center;
-  padding: 13px;
-  background-color: #ccc;
-}
-
-/* ////////////////////////////////////////////////////////// 
-// 
-//  PROCEDURES MANAGER
-//
-////////////////////////////////////////////////////////// */
-
-#procedures-container {
-  position: relative;
-  display: block;
-  width: 75%;
-  height: 500px;
-  margin: 0 auto;
-  background-color: #333;
-}
-
-.procedures-left-side__container{
-  position: relative;
-  display: inline-block;
-  width: 33%;
-  height: 100%;
-  background-color: #aaa;
-}
-
-.procedures-list__container {
-  position: absolute;
-  display: inline-block;
-  width: 100%;
-  height: 80%;
-  background-color: #777;
-  overflow-y: scroll;
-}
-
-.procedure-details__container {
-  position: absolute;
-  display: inline-block;
-  width: 67%;
-  height: 500px;
-  background-color: #999;
-}
-
-.procedure-submission__container {
-  position: absolute;
-  display: inline-block;
-  width: 67%;
-  height: 500px;
-  background-color: #999;
-}
-
-.procedure__item {
-  width: 90%;
-  background-color: #CCC;
-  margin: 6px auto;
-  padding: 5px 0;
-  text-align: center;
-}
-
-.add-procedure-button__container {
-  position: absolute;
-  width: 100%;
-  height: 20%;
-  background-color: #444;
-  bottom: 0;
-}
-
-.delete-procedure-button__container {
-  position: relative;
-  width: 100%;
-}
-
-.add-procedure__button {
-  width: 80%;
-  position: relative;
-  background-color: #999;
-  padding: 10px 0;
-  margin: 0 auto;
-  text-align: center;
-  top: 50%;
-  transform: translateY(-50%);
-}
-
-.delete-procedure__button {
-  width: 40%;
-  position: relative;
-  background-color: #F3F3F3;
-  padding: 7px 0;
-  margin: 0 auto;
-  margin-top: 20px;
-  text-align: center;
-}
-
-.details-heading, .submission-heading {
-  text-align: center;
-  font-size: 20px;
-  margin-top: 10px;
-  margin-bottom: 10px;
-}
-
-.procedure-title {
-  margin-top: 10px;
-}
-
-.procedure-title,
-.procedure-cron,
-.procedure-procedure {
-  margin-left: 3%;
-  padding: 4px 0;
-}
-
-.title-input__container, 
-.procedure-input__container {
-  margin-left: 3%;
-  padding: 4px 0;
-}
-
-.procedure-submission__container input,
-.procedure-submission__container textarea {
-  position: absolute;
-  width: 50%;
-  left: 25%;
-}
-
-.procedure-input__container {
-  height: 120px;
-}
-
-.procedure-submission__container textarea {
-  height: 120px;
-}
-
-.procedure {
-  float: left;
-}
-
-.producer-button__container {
-  width: 50%;
-  margin: 20px auto 0 auto;
-}
-
-button {
-  display: block;
-  margin: 0 auto;
-  width: 100%;
-  height: 30px;
-  font-size: 17px;
-}
-
-.producer-button {
-  text-align: center;
-  padding: 13px;
-  background-color: #ccc;
-}
-
-::-webkit-scrollbar {
-    -webkit-appearance: none;
-    width: 7px;
-}
-::-webkit-scrollbar-thumb {
-    border-radius: 4px;
-    background-color: rgba(0,0,0,.5);
-    -webkit-box-shadow: 0 0 1px rgba(255,255,255,.5);
-}

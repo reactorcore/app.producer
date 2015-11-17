@@ -1,19 +1,15 @@
-<div id="procedures-container">
-  <div class="procedures-left-side__container">
-    <div class="procedures-list__container">
-      <ul class="procedures-list">
-        <li class="procedure__item" ng-repeat="procedure in procedures" ng-click="toggleProcedureDetails(procedure)">
-          {{procedure.title}}
-        </li>
-      </ul>
-    </div>
-    <div class="add-procedure-button__container">
-      <div class="add-procedure__button" ng-click="toggleCreateProcedure()">
-        Create New Procedure
-      </div>
+<div id="main__content--container">
+  <div class="right__nav--container">
+    <ul>
+      <li class="right__nav--item" ng-repeat="procedure in procedures" ng-click="toggleProcedureDetails(procedure)">
+        {{procedure.title}}
+      </li>
+    </ul>
+    <div class="nav__button--container">
+      <div ng-click="toggleCreateProcedure()" class="nav__button">Create New Procedure</div>
     </div>
   </div>
-  
+
   <div class="procedure-details__container" ng-show="detailsBox">
     <div class="details-heading">Details</div>
     <div class="procedure-title">Title: {{procedure.title}}</div>
@@ -24,18 +20,19 @@
     <div class="alert alert-success" data-ng-show="messages" data-ng-bind="messages"></div>
   </div>
 
-  <div class="procedure-submission__container" ng-show="submissionBox">
-    <div class="submission-heading">Create Procedure</div>
-    <div class="title-input__container">
-      <span>Title: </span>
-      <input class="Procedure-title__input" ng-model="newProcedure.title"></input>
+  <div class="content__main" ng-show="submissionBox">
+    <h1 class="content__title">Create Procedure</h1>
+
+    <div class="content__input--container">
+      <label class="content__input--title">Title:</label>
+      <input class="content__input--field" ng-model="newProcedure.title" autofocus></input>
     </div>
-    <div class="procedure-input__container">
-      <span class="procedure">Procedure: </span>
-      <textarea class="procedure__input" ng-model="newProcedure.text"></textarea>
+    <div class="content__input--container">
+      <label class="content__input--title">Procedure:</label>
+      <textarea class="content__input--field content__input--procedure" ng-model="newProcedure.text"></textarea>
     </div>
-    <div class="producer-button__container">
-      <div class="producer-button" ng-click="submitProcedure()">Submit Procedure</div>
+    <div class="content__input--container">
+      <button ng-click="submitProcedure()" class="content__input--submit">Submit</button>
     </div>
     <div class="alert alert-success" data-ng-show="messages" data-ng-bind="messages"></div>
   </div>
