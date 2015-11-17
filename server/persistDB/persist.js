@@ -1,5 +1,3 @@
-// var winston = require('winston');
-// var logger = require('../logging/winstonSetup')(winston);
 var fs = require('fs');
 var path = require('path');
 var s3 = require('s3');
@@ -65,13 +63,11 @@ var persist = {
     var downloader = client.downloadDir(params);
     downloader.on('error', function(err) {
       console.error('unable to download:', err.stack);
-      logger.error('unable to download:', err.stack);
       done(err);
       done = function noop (){};
     });
     downloader.on('end', function() {
       console.log('done downloading');
-      logger.info('done downloading');
       done();
     });
   }
