@@ -1,30 +1,20 @@
 <div id="main__content--container">
   <div class="right__nav--container">
     <ul>
-      <li class="right__nav--item" ng-repeat="event in events" ng-click="toggleEventDetails(event)">
+      <li class="right__nav--item" ng-repeat="event in events" ng-click="setMaster(event)">
         {{event.title}}
       </li>
     </ul>
     <div class="nav__button--container">
-      <div class="nav__button" ng-click="toggleCreateEvent()">
+      <div class="nav__button" ng-click="createNewEvent()">
         Create New Event
       </div>
     </div>
   </div>
 
-  <div class="event-details__container" ng-show="detailsBox">
-    <div class="details-heading">Details</div>
-    <div class="event-title">Title: {{event.title}}</div>
-    <div class="event-cron">Cron: {{event.cron}}</div>
-    <div class="event-description">Description: {{event.description}}</div>
-    <div class="delete-event-button__container">
-      <div class="delete-event__button" ng-click="deleteEvent()">Delete Event</div>
-    </div>
-    <div class="alert alert-success" data-ng-show="messages" data-ng-bind="messages"></div>
-  </div>
-
-  <div class="content__main" ng-show="submissionBox">
-    <h1 class="content__title">Create Event</h1>
+  <div class="content__main">
+    <h1 class="content__title" ng-show="!showEvent">Create Event</h1>
+    <h1 class="content__title" ng-show="showEvent">{{newEvent.title}}</h1>
     <div class="content__input--container">
       <label class="content__input--title">Title:</label>
       <input class="content__input--field" ng-model="newEvent.title" autofocus></input>
@@ -38,7 +28,9 @@
       <textarea class="content__input--field content__input--procedure" ng-model="newEvent.description"></textarea>
     </div>
     <div class="content__input--container">
-      <button ng-click="submitEvent()" class="content__input--submit">Submit</button>
+      <button ng-show="!showEvent" ng-click="submitEvent()" class="content__input--submit">Submit</button>
+      <button ng-show="showEvent" ng-click="deleteEvent()" class="content__submit--left">Delete</button>
+      <button ng-show="showEvent" ng-click="submitEvent()" class="content__submit--right">Resubmit</button>
     </div>
     <div class="alert alert-success" data-ng-show="messages" data-ng-bind="messages"></div>
   </div>

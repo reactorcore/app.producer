@@ -7,20 +7,17 @@
     <h1 class="content__title">Create Template</h1>
     <div class="content__input--container">
       <label class="content__input--title">Title:</label>
-      <input class="content__input--field" name="title" ng-model="template.title" required autofocus/>
-      <p class="warning__message" ng-show="templateForm.title.$invalid && !templateForm.title.$pristine">Title is required.</p>
+      <input class="content__input--field" id="template__title" ng-change="checkInput('title')" name="title" ng-model="template.title" required autofocus/>
     </div>
     <div class="content__input--container">
       <label class="content__input--title">Role:</label>
-      <input class="content__input--field roles-input" name="role" ng-model="template.role" required />
-      <p class="warning-message" ng-show="templateForm.role.$invalid && !templateForm.role.$pristine">Role is required.</p>
+      <input class="content__input--field roles-input" id="template__role" ng-change="checkInput('role')" name="role" ng-model="template.role" required />
     </div>
     <div class="content__input--container">
       <label class="content__input--title">Tags:</label>
-      <tags-input name="tags"  ng-model="tags" add-on-paste="true" add-from-autocomplete-only="true" min-length="1" required>
+      <tags-input name="tags" id="template__tags" ng-keyup="checkInput('tags')"  ng-model="tags" add-on-paste="true" add-from-autocomplete-only="true" min-length="1" required>
         <auto-complete source="loadTags($query)" min-length="1"></auto-complete>
       </tags-input>
-      <p class="warning-message" ng-show="templateForm.tags.$invalid && !templateForm.tags.$pristine">At least one tag is required.</p>
     </div>
     <div class="content__input--container">
       <label class="content__input--title">Procedure:</label>

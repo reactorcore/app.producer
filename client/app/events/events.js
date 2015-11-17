@@ -2,22 +2,10 @@ angular.module('producer.events', [])
 
 .controller('eventsController', function ($scope, Events) {
   $scope.events = [];
-  $scope.detailsBox = false;
-  $scope.submissionBox = true;
+  $scope.showEvent = false;
 
   $scope.event = {};
   $scope.newEvent = {};
-
-  $scope.toggleCreateEvent = function(){
-    $scope.detailsBox = false;
-    $scope.submissionBox = true;
-  }
-
-  $scope.toggleEventDetails = function(event){
-    $scope.event = event;
-    $scope.detailsBox = true;
-    $scope.submissionBox = false;
-  }
 
   $scope.submitEvent = function(){
     Events.submitEvent($scope.newEvent).then(submitSuccess, submitError)
@@ -45,7 +33,25 @@ angular.module('producer.events', [])
   }
 
   $scope.deleteEvent = function(){
+    console.log($scope.event);
     Events.deleteEvent($scope.event).then(deleteSuccess, deleteError)
+  };
+
+  $scope.setMaster = function(section) {
+    $scope.selected = section;
+    console.log($scope.selected);
+    $scope.newEvent.title = $scope.selected.title;
+    $scope.newEvent.cron = $scope.selected.cron;
+    $scope.newEvent.description = $scope.selected.description;
+    $scope.showEvent = true;
+    $scope.event = section;
+  };
+
+  $scope.createNewEvent = function() {
+    $scope.newEvent.title = "";
+    $scope.newEvent.cron = "";
+    $scope.newEvent.description = "";
+    $scope.showEvent = false;
   }
 
   var deleteSuccess = function(response) {

@@ -196,7 +196,9 @@ body {
   height: 200px;
 }
 
-.content__input--submit {
+.content__input--submit,
+.content__submit--left,
+.content__submit--right {
   display: block;
   margin: 30px auto;
   width: 200px;
@@ -209,6 +211,16 @@ body {
   border: 2px solid rgba(000, 113, 206, 0.2);
   outline: 4px solid rgba(000, 113, 206, 0.2);
   cursor: pointer;
+}
+
+.content__submit--left {
+  float: left;
+  margin-left: 5px;
+}
+
+.content__submit--right {
+  float: left;
+  margin-left: 30px;
 }
 
 
