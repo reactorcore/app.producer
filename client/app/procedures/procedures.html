@@ -17,7 +17,7 @@
     <div class="delete-procedure-button__container">
       <div class="delete-procedure__button" ng-click="deleteProcedure()">Delete Procedure</div>
     </div>
-    <div class="alert alert-success" data-ng-show="messages" data-ng-bind="messages"></div>
+    <alert-message></alert-message>
   </div>
 
   <div class="content__main" ng-show="submissionBox">
@@ -34,6 +34,6 @@
     <div class="content__input--container">
       <button ng-click="submitProcedure()" class="content__input--submit">Submit</button>
     </div>
-    <div class="alert alert-success" data-ng-show="messages" data-ng-bind="messages"></div>
+    <alert-message></alert-message>
   </div>
 </div>

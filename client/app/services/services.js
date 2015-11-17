@@ -84,3 +84,23 @@ angular.module('producer.services', [])
     }
   };
 })
+
+.factory('Messages', function ($timeout) {
+
+  return {
+
+    message: {
+      text: null,
+      kind: null
+    },
+
+    setMessage: function (text, kind) {
+      this.message.text = text;
+      this.message.kind = kind;
+      $timeout(function() {
+        this.message.text = ''; 
+      }.bind(this), 3000);
+    }
+
+  };
+})

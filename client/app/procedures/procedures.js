@@ -1,6 +1,6 @@
-angular.module('producer.procedures', [])
+angular.module('producer.procedures', ['alertMessageDirective'])
 
-.controller('proceduresController', function ($scope, Procedures) {
+.controller('proceduresController', function ($scope, Procedures, Messages) {
   $scope.procedures = [];
   $scope.detailsBox = false;
   $scope.submissionBox = true;
@@ -24,16 +24,12 @@ angular.module('producer.procedures', [])
   }
 
   var submitSuccess = function(response) {
-    $scope.messages = 'Your procedure was created!';
-    setTimeout(function(){
-      $scope.messages = null;
-      $scope.$apply();
-    },3000);
+    Messages.setMessage('Your procedure was created!', 'success');
     $scope.getProcedures();
   };
 
   var submitError = function(response) {
-    $scope.messages = 'Sorry, there was an error submitting your form. Please submit again.';
+    Messages.setMessage('Sorry, there was an error submitting your form. Please submit again.', 'error');
     console.log('error: ', response);
   };
 
@@ -48,16 +44,12 @@ angular.module('producer.procedures', [])
   }
 
   var deleteSuccess = function(response) {
-    $scope.messages = 'Procedure Deleted';
-    setTimeout(function(){
-      $scope.messages = null;
-      $scope.$apply();
-    },3000);
+    Messages.setMessage('Procedure Deleted', 'success');
     $scope.getProcedures();
   };
 
   var deleteError = function(response) {
-    $scope.messages = 'Sorry, there was an error submitting your form. Please submit again.';
+    Messages.setMessage('Sorry, there was an error submitting your form. Please submit again.', 'error');
     console.log('error: ', response);
   };
 
