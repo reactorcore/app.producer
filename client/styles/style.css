@@ -406,6 +406,14 @@ tags-input .autocomplete .suggestion-item em {
 }
 
 
-
-
-
+/*CRON INPUT*/
+.cron-col {
+  width: 22%;
+  display: inline-block;
+}
+.cron-col span {
+  text-align: right;
+}
+.cron-row {
+  padding: 2px 0;
+}
