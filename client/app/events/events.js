@@ -21,7 +21,11 @@ angular.module('producer.events', [])
   };
 
   var submitError = function(response) {
-    $scope.messages = 'Sorry, there was an error submitting your form. Please submit again.';
+    if ((400 <= response.status) && (response.status < 500)) {
+      $scope.messages = 'Sorry, there was an error submitting your form. Please submit again.';
+    } else {
+      $scope.messages = response.data;
+    }
     console.log('error: ', response);
   };
 

@@ -59,7 +59,7 @@ module.exports = {
         console.log("Error: ", error);
         res.send(400);
       } else {
-        res.send(200);
+        res.status(response.statusCode).send(response.body);
       }
     });
   },
