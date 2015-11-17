@@ -35,7 +35,6 @@ var persist = {
       },
     };
 
-    // logger.info("Updating and uploading with params = " + JSON.stringify(params));
     console.log("Updating and uploading with params = " + JSON.stringify(params));
 
     var uploader = client.uploadFile(params);
@@ -61,7 +60,6 @@ var persist = {
       },
     };
 
-    // logger.info("Retrieving directory with params = " + JSON.stringify(params));
     console.log("Retrieving directory with params = " + JSON.stringify(params));
     
     var downloader = client.downloadDir(params);
