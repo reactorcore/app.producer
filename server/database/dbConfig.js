@@ -13,6 +13,7 @@ console.log("Using database: " + path.join(__dirname, db));
 
 module.exports = {
   database: path.join(__dirname, db),
+  // TO DO: MAY BE UNECCESSARY
   options: {
     valueEncoding: 'json'
   }
