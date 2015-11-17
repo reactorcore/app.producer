@@ -20,7 +20,7 @@ angular.module('producer.events', ['alertMessageDirective'])
     if ((400 <= response.status) && (response.status < 500)) {
       Messages.setMessage('Sorry, there was an error submitting your form. Please submit again.', 'error');
     } else {
-      Message.set(response.data, 'error');
+      Messages.setMessage(response.data, 'error');
     }
   };
 
