@@ -29,7 +29,7 @@ angular.module('producer.events', ['alertMessageDirective'])
       var events = resp.data;
       $scope.events = events;
     });
-  }
+  };
 
   $scope.deleteEvent = function(){
     console.log($scope.event);
