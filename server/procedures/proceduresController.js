@@ -20,10 +20,13 @@ module.exports = {
     });
   },
 
-  createProcedure: function (req, res) {
+  updateProcedure: function (req, res) {
     var procedureId = req.body.id;
+    var procedureData = req.body;
 
-    db.update('procedure', procedureId, function (err, data) {
+    var procedureDBModel = new Procedure(procedureData);
+
+    db.update('procedure', procedureId, procedureDBModel, function (err, data) {
       if (err) {
         console.log('Error in updateProcedure ', err);
       } else {
