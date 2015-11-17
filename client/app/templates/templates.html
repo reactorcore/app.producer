@@ -1,3 +1,4 @@
+
 <div id="main__content--container">
 
   <div class="right__nav--container">
@@ -8,6 +9,7 @@
     <div class="content__input--container">
       <label class="content__input--title">Title:</label>
       <input class="content__input--field" id="template__title" ng-change="checkInput('title')" name="title" ng-model="template.title" required autofocus/>
+
     </div>
     <div class="content__input--container">
       <label class="content__input--title">Role:</label>
@@ -16,7 +18,7 @@
     <div class="content__input--container">
       <label class="content__input--title">Tags:</label>
       <tags-input name="tags" id="template__tags" ng-keyup="checkInput('tags')"  ng-model="tags" add-on-paste="true" add-from-autocomplete-only="true" min-length="1" required>
-        <auto-complete source="loadTags($query)" min-length="1"></auto-complete>
+        <auto-complete source="filterTags($query)" min-length="1"></auto-complete>
       </tags-input>
     </div>
     <div class="content__input--container">
