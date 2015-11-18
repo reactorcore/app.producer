@@ -13,7 +13,6 @@ var persist = {
   watchDir: function(dirPath) {
     var realPath = dirPath + '/' + (process.env.NODE_ENV || 'development')
     console.log(realPath)
-    // logger.info("Watching directory " + realPath + " for changes.");
     fs.watch(realPath, function (e, filename) {
       if (e === 'change') {
         console.log('changed:', filename);
