@@ -1,21 +1,11 @@
 var path = require('path');
-var db = '';
 
-if (process.env.NODE_ENV === 'production') {
-  db = './data/production';
-} else if (process.env.NODE_ENV === 'staging') {
-  db = './data/staging';
-} else {
-  db = './data/development'
-}
+var env = process.env.NODE_ENV || 'development';
+var db = './data/' + env;
 
 console.log("Using database: " + path.join(__dirname, db));
 
 module.exports = {
-  database: path.join(__dirname, db),
-  // TO DO: MAY BE UNECCESSARY
-  options: {
-    valueEncoding: 'json'
-  }
+  database: path.join(__dirname, db)
 }
 
