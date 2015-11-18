@@ -1,0 +1,1 @@
+module.exports = require('./dbMethods.js')(require('./db.js'));

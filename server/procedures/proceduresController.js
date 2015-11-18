@@ -1,5 +1,5 @@
 var Procedure = require('./../database/models/procedure.js');
-var db = require('./../database/db.js');
+var db = require('./../database');
 
 module.exports = {
   getProcedures: function(req, res) {
