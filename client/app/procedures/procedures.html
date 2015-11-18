@@ -1,26 +1,16 @@
 <div id="main__content--container">
   <div class="right__nav--container">
     <ul>
-      <li class="right__nav--item" ng-repeat="procedure in procedures" ng-click="toggleProcedureDetails(procedure)">
+      <li class="right__nav--item" ng-repeat="procedure in procedures" ng-click="setMaster(procedure)">
         {{procedure.title}}
       </li>
     </ul>
     <div class="nav__button--container">
-      <div ng-click="toggleCreateProcedure()" class="nav__button">Create New Procedure</div>
+      <div ng-click="createNewEvent()" class="nav__button">Create New Procedure</div>
     </div>
   </div>
 
-  <div class="procedure-details__container" ng-show="detailsBox">
-    <div class="details-heading">Details</div>
-    <div class="procedure-title">Title: {{procedure.title}}</div>
-    <div class="procedure-text">Procedure: {{procedure.text}}</div>
-    <div class="delete-procedure-button__container">
-      <div class="delete-procedure__button" ng-click="deleteProcedure()">Delete Procedure</div>
-    </div>
-    <alert-message></alert-message>
-  </div>
-
-  <div class="content__main" ng-show="submissionBox">
+  <div class="content__main">
     <h1 class="content__title">Create Procedure</h1>
 
     <div class="content__input--container">
@@ -32,7 +22,9 @@
       <textarea class="content__input--field content__input--procedure" ng-model="newProcedure.text"></textarea>
     </div>
     <div class="content__input--container">
-      <button ng-click="submitProcedure()" class="content__input--submit">Submit</button>
+      <button ng-show="!showProcedure" ng-click="submitProcedure()" class="content__submit--left">Submit</button>
+      <button ng-show="showProcedure" ng-click="deleteProcedure()" class="content__submit--left">Delete</button>
+      <button ng-show="showProcedure" ng-click="" class="content__submit--right">Resubmit</button>
     </div>
     <alert-message></alert-message>
   </div>
