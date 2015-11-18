@@ -1,1 +1,1 @@
-module.exports = require('./dbMethods.js')(require('./db.js'));
+module.exports = require('./dbClient.js')(require('./db.js'));
