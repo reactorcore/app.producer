@@ -2,22 +2,10 @@ angular.module('producer.procedures', ['alertMessageDirective'])
 
 .controller('proceduresController', function ($scope, Procedures, Messages) {
   $scope.procedures = [];
-  $scope.detailsBox = false;
-  $scope.submissionBox = true;
+  $scope.showProcedure = false;
 
   $scope.procedure = {};
   $scope.newProcedure = {};
-
-  $scope.toggleCreateProcedure = function(){
-    $scope.detailsBox = false;
-    $scope.submissionBox = true;
-  }
-
-  $scope.toggleProcedureDetails = function(procedure){
-    $scope.procedure = procedure;
-    $scope.detailsBox = true;
-    $scope.submissionBox = false;
-  }
 
   $scope.submitProcedure = function(){
     Procedures.submitProcedure($scope.newProcedure).then(submitSuccess, submitError)
@@ -41,6 +29,20 @@ angular.module('producer.procedures', ['alertMessageDirective'])
 
   $scope.deleteProcedure = function(){
     Procedures.deleteProcedure($scope.procedure).then(deleteSuccess, deleteError)
+  }
+
+  $scope.setMaster = function(section) {
+    $scope.selected = section;
+    $scope.newProcedure.title = $scope.selected.title;
+    $scope.newProcedure.text = $scope.selected.text;
+    $scope.showProcedure = true;
+    $scope.procedure = section;
+  };
+
+  $scope.createNewProcedure = function() {
+    $scope.newProcedure.title = "";
+    $scope.newProcedure.text = "";
+    $scope.showProcedure = false;
   }
 
   var deleteSuccess = function(response) {
