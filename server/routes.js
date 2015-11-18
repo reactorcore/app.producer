@@ -18,9 +18,9 @@ module.exports = function (app) {
   app.delete('/events/:eventName', eventsController.deleteEvent);
   app.get('/procedures', proceduresController.getProcedures);
   app.post('/procedures', proceduresController.createProcedure);
-  app.delete('/procedures/:procedureName', proceduresController.deleteProcedure);
+  app.delete('/procedures/:procedureId', proceduresController.deleteProcedure);
 
   app.param('eventName', eventsController.getEventName);
-  app.param('procedureName', proceduresController.getProcedureName);
+  // app.param('procedureName', proceduresController.getProcedureName);
 
 };
