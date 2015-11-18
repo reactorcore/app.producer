@@ -5,7 +5,14 @@ var db = require('./../database');
 
 module.exports = {
   getProcedures: function(req, res) {
-    // TODO: GET ALL PROCEDURES
+    db.readAll('procedure', function (err, data) {
+      if (err) {
+        console.log('Error in getProcedures ', err);
+      } else {
+        res.status(200);
+        res.send(data);
+      }
+    });
   },
 
   createProcedure: function (req, res) {
