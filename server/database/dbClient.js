@@ -23,6 +23,7 @@ exports = module.exports = function dbMethods (dbInstance) {
     },
     create: function (type, data, cb) {
       var id = createId();
+      // TODO: remove adding id
       data.id = id;
       dbInstance.put(type+'.'+id, data, dbMethods._options, cb);
     }
