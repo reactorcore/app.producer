@@ -10,4 +10,6 @@ angular.module('producer.soundboard', [])
     });
   };
 
+  $scope.getEvents();
+
 });
