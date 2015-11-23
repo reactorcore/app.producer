@@ -1,15 +1,16 @@
 <div id="main__content--container">
   <div class="right__nav--container">
     <ul>
-      <li class="right__nav--item" ng-repeat="event in events" ng-click="setMaster(event)">
+      <li class="right__nav--item" ng-repeat="event in events" ng-click="selectEvent(event)">
         {{event.title}}
       </li>
     </ul>
   </div>
 
   <div class="content__main">
-    <h1 class="content__title" ng-show="!showEvent">Create Event</h1>
+    <h1 class="content__title" ng-show="!showEvent">Trigger Events</h1>
     <div class="content__input--container">
+      <event-details>
       <button ng-show="!triggerEvent" ng-click="triggerEvent()" class="content__submit--left">Trigger</button>
     </div>
     <alert-message></alert-message>
