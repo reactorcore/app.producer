@@ -1,6 +1,6 @@
 angular.module('producer.soundboard', [])
 
-.controller('soundboardController', function ($scope, Events) {
+.controller('soundboardController', function ($scope, Soundboard, Events) {
   $scope.events = [];
 
   $scope.getEvents = function () {
@@ -10,8 +10,8 @@ angular.module('producer.soundboard', [])
     });
   };
 
-  $scope.selectEvent = function (section) {
-
+  $scope.selectEvent = function (selection) {
+    Soundboard.selectEvent(selection);
   };
 
   $scope.getEvents();
