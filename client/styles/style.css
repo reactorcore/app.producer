@@ -419,11 +419,18 @@ tags-input .autocomplete .suggestion-item em {
 }
 
 /* ALERTS */
+
 .alert {
   float: left;
+  display: flex;
+  justify-content: space-between;
+}
+
+.alert {
+  padding: 5px 10px;
   border: 2px solid;
-  width: 200px;
-  overflow: auto;
+  width: 300px;
+  overflow: scroll;
 }
 .alert-success {
   border-color: #b0e771;
@@ -433,9 +440,10 @@ tags-input .autocomplete .suggestion-item em {
   border-color: #e77175;
   background-color: #fae6e7;
 }
-.alert-message {
-
-}
 .alert-hide {
   fill: red;
+}
+
+.alert-hide:hover {
+  cursor: pointer;
 }
