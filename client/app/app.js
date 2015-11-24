@@ -7,7 +7,8 @@ angular.module('producer', [
   'ui.router',
   'ngTagsInput',
   'angular-cron',
-  'alertMessageDirective'
+  'alertMessageDirective',
+  'event-details'
 ])
 .config(function($stateProvider, $urlRouterProvider) {
   $stateProvider
