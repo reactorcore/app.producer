@@ -64,7 +64,7 @@ body {
 
 
 
-/*LEFT NAV*/
+/* LEFT NAV */
 
 #left__nav--container {
   position: absolute;
@@ -99,7 +99,7 @@ body {
 }
 
 
-/*RIGHT NAV*/
+/* RIGHT NAV */
 
 .right__nav--container {
   position: absolute;
@@ -124,7 +124,7 @@ body {
   text-align: center;
 }
 
-/*RIGHT NAV BUTTONS*/
+/* RIGHT NAV BUTTONS */
 .nav__button--container {
   overflow: hidden;
   position: absolute;
@@ -146,7 +146,7 @@ body {
   padding: 0;
 }
 
-/*MAIN CONTENT*/
+/* MAIN CONTENT */
 
 #main__content--container {
   margin-left: 200px;
@@ -224,7 +224,7 @@ body {
 }
 
 
-/*TAGS*/
+/* TAGS */
 
 tags-input .tags .tag-item button {
   background: transparent;
@@ -406,7 +406,7 @@ tags-input .autocomplete .suggestion-item em {
 }
 
 
-/*CRON INPUT*/
+/* CRON INPUT */
 .cron-col {
   width: 22%;
   display: inline-block;
@@ -416,4 +416,34 @@ tags-input .autocomplete .suggestion-item em {
 }
 .cron-row {
   padding: 2px 0;
+}
+
+/* ALERTS */
+
+.alert {
+  float: left;
+  display: flex;
+  justify-content: space-between;
+}
+
+.alert {
+  padding: 5px 10px;
+  border: 2px solid;
+  width: 300px;
+  overflow: scroll;
+}
+.alert-success {
+  border-color: #b0e771;
+  background-color: #f1fae6;
+}
+.alert-error {
+  border-color: #e77175;
+  background-color: #fae6e7;
+}
+.alert-hide {
+  fill: red;
+}
+
+.alert-hide:hover {
+  cursor: pointer;
 }

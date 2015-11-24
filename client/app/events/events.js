@@ -8,8 +8,8 @@ angular.module('producer.events', ['alertMessageDirective'])
   $scope.newEvent = {};
 
   $scope.submitEvent = function(){
-    Events.submitEvent($scope.newEvent).then(submitSuccess, submitError)
-  }
+    Events.submitEvent($scope.newEvent).then(submitSuccess, submitError);
+  };
 
   var submitSuccess = function(response) {
     Messages.setMessage('Your event was created!', 'success');
@@ -33,7 +33,7 @@ angular.module('producer.events', ['alertMessageDirective'])
 
   $scope.deleteEvent = function(){
     console.log($scope.event);
-    Events.deleteEvent($scope.event).then(deleteSuccess, deleteError)
+    Events.deleteEvent($scope.event).then(deleteSuccess, deleteError);
   };
 
   $scope.setMaster = function(section) {
@@ -52,7 +52,7 @@ angular.module('producer.events', ['alertMessageDirective'])
     $scope.newEvent.description = "";
     $scope.showEvent = false;
     Events.deleteEvent($scope.event).then(deleteSuccess, deleteError);
-  }
+  };
 
   var deleteSuccess = function(response) {
     Messages.setMessage('Event Deleted.', 'success');
@@ -60,7 +60,7 @@ angular.module('producer.events', ['alertMessageDirective'])
   };
 
   var deleteError = function(response) {
-    Messages.setMessage('Sorry, there was an error submitting your form. Please submit again.')
+    Messages.setMessage('Sorry, there was an error submitting your form. Please submit again.');
     console.log('error: ', response);
   };
 
