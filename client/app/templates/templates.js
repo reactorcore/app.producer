@@ -1,22 +1,21 @@
-angular.module('producer.templates', [])
+angular.module('producer.templates', ['alertMessageDirective'])
 
-.controller('templatesController', function ($scope, Template, Roles, Events) {
+.controller('templatesController', function ($scope, Template, Roles, Events, Messages) {
   $scope.template = {title: '', role: '', event: '', description: ''};
   $scope.roles = [];
   $scope.tags = [];
   var events;
 
   var submitSuccess = function(response) {
-    $scope.messages = 'Your form has been sent!';
-    setTimeout(function(){
-      $scope.messages = null;
-      $scope.$apply();
-    },3000);
+    Messages.setMessage('Your form has been sent!', 'success');
   };
 
   var submitError = function(response) {
-    $scope.messages = 'Sorry, there was an error submitting your form. Please submit again.';
-    console.log('error: ', response);
+    if ((400 <= response.status) && (response.status < 500)) {
+      Messages.setMessage('Sorry, there was an error submitting your form. Please submit again.', 'error');
+    } else {
+      Messages.setMessage(response.data, 'error');
+    }
   };
 
   // Submits template in correct format
@@ -62,7 +61,7 @@ angular.module('producer.templates', [])
     }
   };
 
-  // If events exists return filtered events/tags, 
+  // If events exists return filtered events/tags,
   // if not, load events/tags and return filtered
   $scope.filterTags = function($query) {
     return events ? eventsFilter($query) :
