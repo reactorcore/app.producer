@@ -3,6 +3,6 @@ angular.module('event-details', [])
     return {
       restrict: 'E',
       replace: true,
-      templateUrl: 'event-details.html'
+      templateUrl: 'app/directives/event-details.html'
     };
 });
