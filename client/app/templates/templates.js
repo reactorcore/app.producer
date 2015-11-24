@@ -4,6 +4,11 @@ angular.module('producer.templates', ['alertMessageDirective'])
   $scope.template = {title: '', role: '', event: '', description: ''};
   $scope.roles = [];
   $scope.tags = [];
+  $scope.selectedRole = null;
+  $scope.searchText = '';
+  $scope.searchTextChange = searchTextChange;
+  $scope.filteredSearches = [];
+  $scope.filterRolesBySearch = filterRolesBySearch;
   var events;
 
   var submitSuccess = function(response) {
@@ -71,20 +76,33 @@ angular.module('producer.templates', ['alertMessageDirective'])
   };
 
   // Set up autocomplete for Roles Input
-  $(function() {
-    $(".roles-input").autocomplete({
-      source: $scope.roles,
-      select: function(event, ui){
-        $scope.template.role = ui.item.value;
-      }
+  // $(function() {
+  //   $(".roles-input").autocomplete({
+  //     source: $scope.roles,
+  //     select: function(event, ui){
+  //       $scope.template.role = ui.item.value;
+  //     }
+  //   });
+  // })
+
+  function searchTextChange(searchText) {
+    $scope.searchText = searchText;
+  }
+
+  function filterRolesBySearch(searchText) {
+    return $scope.filteredSearches = $scope.roles.filter(function(role) {
+      return role.indexOf(searchText) >= 0;
     });
-  });
+  }
 
   // Fetch existing roles from Asana
   Roles.getRoles(function(roles){
+    console.log('roles: ', roles);
     roles.forEach(function(role){
       $scope.roles.push(role.name);
+      $scope.filteredSearches = $scope.roles;
     });
+    console.log('$scope.roles: ', $scope.roles);
   });
 
 });
