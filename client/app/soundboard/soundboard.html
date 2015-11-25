@@ -8,10 +8,10 @@
   </div>
 
   <div class="content__main">
-    <h1 class="content__title" ng-show="!showEvent">Trigger Events</h1>
+    <h1 class="content__title">Trigger Events</h1>
     <div class="content__input--container">
-      <event-details>
-      <button ng-show="!triggerEvent" ng-click="triggerEvent()" class="content__submit--left">Trigger</button>
+      <event-details></event-details>
+      <button ng-show="selectedEvent.isSelected" ng-click="triggerEvent()" class="content__submit--left">Trigger</button>
     </div>
     <alert-message></alert-message>
   </div>
