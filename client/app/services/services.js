@@ -104,4 +104,14 @@ angular.module('producer.services', [])
     }
 
   };
+})
+
+.factory('Soundboard', function () {
+
+  return {
+
+    triggerEvent: function (event) {
+      // TODO: make API call to Choreographer
+    }
+  };
 });
