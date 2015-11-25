@@ -12,12 +12,8 @@ angular.module('producer.soundboard', [])
   };
 
   $scope.selectEvent = function (selection) {
-    var selectedEvent = $scope.selectedEvent;
-    selectedEvent.isSelected = true;
-    selectedEvent.title = selection.title;
-    selectedEvent.cron = selection.cron;
-    selectedEvent.description = selection.description;
-
+    $scope.selectedEvent = selection;
+    $scope.selectedEvent.isSelected = true;
   };
 
   $scope.getEvents();
