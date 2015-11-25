@@ -22,9 +22,12 @@
         md-selected-item="selectedRole"
         md-item-text="role"
         placeholder="Search here for roles"
+        md-no-cache="true"
         md-min-length="0"
         md-delay="0">
-          <span md-highlight-text="searchText">{{role}}</span>
+          <md-item-template>
+            <span md-highlight-text="searchText">{{role}}</span>
+          </md-item-template>
       </md-autocomplete>
     </div>
     <div class="content__input--container">

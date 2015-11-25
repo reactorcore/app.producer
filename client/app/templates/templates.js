@@ -1,10 +1,10 @@
-angular.module('producer.templates', ['alertMessageDirective'])
+angular.module('producer.templates', ['alertMessageDirective', 'ngAria'])
 
 .controller('templatesController', function ($scope, Template, Roles, Events, Messages) {
   $scope.template = {title: '', role: '', event: '', description: ''};
   $scope.roles = [];
   $scope.tags = [];
-  $scope.selectedRole = null;
+  $scope.selectedRole = 'classPrez';
   $scope.searchText = '';
   $scope.searchTextChange = searchTextChange;
   $scope.filteredSearches = [];
