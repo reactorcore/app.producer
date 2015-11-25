@@ -436,7 +436,6 @@ tags-input .autocomplete .suggestion-item em {
   padding: 5px 10px;
   border: 2px solid;
   width: 300px;
-  overflow: scroll;
 }
 .alert-success {
   border-color: #b0e771;
