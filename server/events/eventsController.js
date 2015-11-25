@@ -66,10 +66,14 @@ module.exports = {
 
   getEventName: function(req, res, next, name){
     req.eventName = name;
-    next()
+    next();
   },
 
-  deleteEvent: function(req, res, next) { 
+  putEvent: function(req, res, next) {
+    // TODO: Implement API call to Choreographer
+  },
+
+  deleteEvent: function(req, res, next) {
     var eventName = req.eventName;
     request({
       method: 'DELETE',

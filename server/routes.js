@@ -14,6 +14,7 @@ module.exports = function (app) {
   app.get('/roles', rolesController.getRoles);
   app.get('/events', eventsController.getEventsData);
   app.post('/events', eventsController.createEvent);
+  app.put('/events/:eventName', eventsController.triggerEvent);
   app.delete('/events/:eventName', eventsController.deleteEvent);
   app.get('/procedures', proceduresController.getProcedures);
   app.post('/procedures', proceduresController.createProcedure);
