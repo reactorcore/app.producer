@@ -104,22 +104,4 @@ angular.module('producer.services', [])
     }
 
   };
-})
-
-.factory('Soundboard', function () {
-  return {
-    selectedEvent: {
-      isSelected: false,
-      title: '',
-      cron: '',
-      description: ''
-    },
-
-    selectEvent: function (event) {
-      this.isSelected = true;
-      this.title = event.title;
-      this.cron = event.cron;
-      this.description = event.description;
-    }
-  };
 });
