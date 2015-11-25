@@ -1,6 +1,6 @@
 angular.module('producer.soundboard', [])
 
-.controller('soundboardController', function ($scope, Events) {
+.controller('soundboardController', function ($scope, Events, Soundboard) {
   $scope.events = [];
   $scope.selectedEvent = {};
 
