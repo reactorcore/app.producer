@@ -1,7 +1,8 @@
 angular.module('producer.soundboard', [])
 
-.controller('soundboardController', function ($scope, Soundboard, Events) {
+.controller('soundboardController', function ($scope, Events) {
   $scope.events = [];
+  $scope.selectedEvent = {};
 
   $scope.getEvents = function () {
     Events.getEvents().then(function (resp) {
@@ -11,7 +12,12 @@ angular.module('producer.soundboard', [])
   };
 
   $scope.selectEvent = function (selection) {
-    Soundboard.selectEvent(selection);
+    var selectedEvent = $scope.selectedEvent;
+    selectedEvent.isSelected = true;
+    selectedEvent.title = selection.title;
+    selectedEvent.cron = selection.cron;
+    selectedEvent.description = selection.description;
+
   };
 
   $scope.getEvents();
