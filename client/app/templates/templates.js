@@ -1,4 +1,4 @@
-angular.module('producer.templates', ['alertMessageDirective', 'ngAria'])
+angular.module('producer.templates', ['alertMessageDirective', 'ngMaterial', 'ngAria', 'ngAnimate'])
 
 .controller('templatesController', function ($scope, Template, Roles, Events, Messages) {
   $scope.template = {title: '', role: '', event: '', description: ''};
