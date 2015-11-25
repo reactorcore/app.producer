@@ -106,12 +106,16 @@ angular.module('producer.services', [])
   };
 })
 
-.factory('Soundboard', function () {
+.factory('Soundboard', function ($http) {
 
   return {
 
     triggerEvent: function (event) {
-      // TODO: make API call to Choreographer
+      return $http({
+        method: 'PUT',
+        url: 'events/' + event.title,
+        data: event
+      });
     }
   };
 });

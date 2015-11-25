@@ -16,6 +16,12 @@ angular.module('producer.soundboard', [])
     $scope.selectedEvent.isSelected = true;
   };
 
+  $scope.triggerEvent = function () {
+    var event = $scope.selectedEvent;
+    event.trigger = true;
+    Soundboard.triggerEvent(event);
+  };
+
   $scope.getEvents();
 
 });
