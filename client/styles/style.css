@@ -223,6 +223,12 @@ body {
   margin-left: 30px;
 }
 
+.content__main--card {
+  padding: 20px 0;
+  text-align: center;
+  background-color: rgb(184, 215, 241);
+}
+
 
 /* TAGS */
 
