@@ -4,7 +4,7 @@ angular.module('producer.templates', ['alertMessageDirective', 'ngAria'])
   $scope.template = {title: '', role: '', event: '', description: ''};
   $scope.roles = [];
   $scope.tags = [];
-  $scope.selectedRole = 'classPrez';
+  $scope.selectedRole = 'sampleRole';
   $scope.searchText = '';
   $scope.searchTextChange = searchTextChange;
   $scope.filteredSearches = [];
