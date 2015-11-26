@@ -80,36 +80,25 @@ angular.module('producer.templates', ['alertMessageDirective', 'ngMaterial', 'ng
     });
   });
 
-  // Make form invalid if search text is invalid
+  // Set role to search text
   $scope.searchTextChange = function() {
-    $scope.searchText = $scope.searchText || '';
     $scope.template.role = $scope.searchText;
-    $scope.templateForm.$invalid = ($scope.roles.indexOf($scope.template.role) < 0);
   }
 
   // Filter roles by user input
   $scope.filterRolesBySearch = function() {
+    // If a user types and then deletes their search,
+    // md-autocomplete sets searchText to undefined,
+    // which breaks line 95, so we set it to an empty string here instead
     $scope.searchText = $scope.searchText || '';
     return $scope.filteredSearches = $scope.roles.filter(function(role) {
       return role.toLowerCase().indexOf($scope.searchText.toLowerCase()) >= 0;
     });
   }
 
-  // Make form invalid if selected role does not 
+  // Make form invalid if user input does not match existing role
   $scope.selectedRoleChange = function() {
     $scope.templateForm.$invalid = ($scope.roles.indexOf($scope.template.role) < 0);
-  }
-
-  $scope.roleValidation = function() {
-    if (!$scope.template.role) { return false; }
-
-    var found = false;
-    $scope.roles.forEach(function(role) {
-      if (role.toLowerCase() === $scope.template.role.toLowerCase()) {
-        found === true;
-      }
-    });
-    return found;
   }
 
 });

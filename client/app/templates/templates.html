@@ -16,16 +16,15 @@
       <md-autocomplete
         required
         md-items="role in filterRolesBySearch()"
-        md-selected-item-change="selectedRoleChange()"
-        md-search-text-change="searchTextChange()"
-        md-search-text="searchText"
-        md-selected-item="template.role"
         md-item-text="role"
+        md-selected-item="template.role"
+        md-selected-item-change="selectedRoleChange()"
+        md-search-text="searchText"
+        md-search-text-change="searchTextChange()"
         md-no-cache="true"
         md-min-length="0"
-        placeholder="Search here for roles"
         md-delay="0"
-        ng-pattern="roleValidation()"
+        placeholder="Search here for roles"
       >
         <md-item-template>
           <span md-highlight-text="searchText">{{role}}</span>
