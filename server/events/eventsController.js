@@ -71,7 +71,7 @@ module.exports = {
 
   putEvent: function(req, res, next) {
     // TODO: Implement API call to Choreographer
-    res.status(300);
+    res.status(204);
   },
 
   deleteEvent: function(req, res, next) {
