@@ -85,13 +85,14 @@ angular.module('producer.templates', ['alertMessageDirective', 'ngMaterial', 'ng
   });
 
   // Bind user input to $scope variable
-  var searchTextChange = function(searchText) {
+  function searchTextChange(searchText) {
     $scope.searchText = searchText;
     console.log('searchText changed to: ', searchText);
   }
 
   // Filter roles by user input
-  var filterRolesBySearch = function(searchText) {
+  function filterRolesBySearch(searchText) {
+    console.log('filtering roles');
     return $scope.filteredSearches = $scope.roles.filter(function(role) {
       return role.toLowerCase().indexOf(searchText.toLowerCase()) >= 0;
     });
