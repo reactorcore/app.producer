@@ -13,18 +13,19 @@
     </div>
     <div class="content__input--container">
       <label class="content__input--title">Role:</label>
-      <!-- <input class="content__input--field roles-input" id="template__role" ng-change="checkInput('role')" name="role" ng-model="template.role" required /> -->
       <md-autocomplete
-        md-items="role in filterRolesBySearch(searchText)"
-        md-selected-item-change="console.log(selectedRole)"
-        md-search-text-change="searchTextChange(searchText)"
+        required
+        md-items="role in filterRolesBySearch()"
+        md-selected-item-change="selectedRoleChange()"
+        md-search-text-change="searchTextChange()"
         md-search-text="searchText"
-        md-selected-item="selectedRole"
+        md-selected-item="template.role"
         md-item-text="role"
         md-no-cache="true"
         md-min-length="0"
         placeholder="Search here for roles"
         md-delay="0"
+        ng-pattern="roleValidation()"
       >
         <md-item-template>
           <span md-highlight-text="searchText">{{role}}</span>

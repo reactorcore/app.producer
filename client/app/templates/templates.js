@@ -1,14 +1,15 @@
 angular.module('producer.templates', ['alertMessageDirective', 'ngMaterial', 'ngAria', 'ngAnimate'])
 
 .controller('templatesController', function ($scope, Template, Roles, Events, Messages) {
-  $scope.template = {title: '', role: '', event: '', description: ''};
+  $scope.template = {title: '', role: null, event: '', description: ''};
   $scope.roles = [];
   $scope.tags = [];
-  $scope.selectedRole = null;
   $scope.searchText = '';
   $scope.searchTextChange = searchTextChange;
   $scope.filteredSearches = [];
   $scope.filterRolesBySearch = filterRolesBySearch;
+  $scope.selectedRoleChange = selectedRoleChange;
+  $scope.roleValidation = roleValidation;
   var events;
 
   var submitSuccess = function(response) {
@@ -84,18 +85,39 @@ angular.module('producer.templates', ['alertMessageDirective', 'ngMaterial', 'ng
     console.log('roles loaded: ', $scope.roles);
   });
 
-  // Bind user input to $scope variable
-  function searchTextChange(searchText) {
-    $scope.searchText = searchText;
-    console.log('searchText changed to: ', searchText);
+  // Make form invalid if search text is invalid
+  function searchTextChange() {
+    $scope.searchText = $scope.searchText || '';
+    $scope.template.role = $scope.searchText;
+    $scope.templateForm.$invalid = ($scope.roles.indexOf($scope.template.role) < 0);
+    console.log('invalid? ', $scope.templateForm.$invalid);
   }
 
   // Filter roles by user input
-  function filterRolesBySearch(searchText) {
-    console.log('filtering roles');
+  function filterRolesBySearch() {
+    $scope.searchText = $scope.searchText || '';
     return $scope.filteredSearches = $scope.roles.filter(function(role) {
-      return role.toLowerCase().indexOf(searchText.toLowerCase()) >= 0;
+      return role.toLowerCase().indexOf($scope.searchText.toLowerCase()) >= 0;
     });
+  }
+
+  function selectedRoleChange() {
+    console.log('selected role changed');
+    console.log('role is: ', $scope.template.role);
+    $scope.templateForm.$invalid = ($scope.roles.indexOf($scope.template.role) < 0);
+    console.log('invalid? ', $scope.templateForm.$invalid);
+  }
+
+  function roleValidation() {
+    if (!$scope.template.role) { return false; }
+
+    var found = false;
+    $scope.roles.forEach(function(role) {
+      if (role.toLowerCase() === $scope.template.role.toLowerCase()) {
+        found === true;
+      }
+    });
+    return found;
   }
 
 });
