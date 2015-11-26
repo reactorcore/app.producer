@@ -5,11 +5,7 @@ angular.module('producer.templates', ['alertMessageDirective', 'ngMaterial', 'ng
   $scope.roles = [];
   $scope.tags = [];
   $scope.searchText = '';
-  $scope.searchTextChange = searchTextChange;
   $scope.filteredSearches = [];
-  $scope.filterRolesBySearch = filterRolesBySearch;
-  $scope.selectedRoleChange = selectedRoleChange;
-  $scope.roleValidation = roleValidation;
   var events;
 
   var submitSuccess = function(response) {
@@ -82,33 +78,29 @@ angular.module('producer.templates', ['alertMessageDirective', 'ngMaterial', 'ng
       $scope.roles.push(role.name);
       $scope.filteredSearches = $scope.roles;
     });
-    console.log('roles loaded: ', $scope.roles);
   });
 
   // Make form invalid if search text is invalid
-  function searchTextChange() {
+  $scope.searchTextChange = function() {
     $scope.searchText = $scope.searchText || '';
     $scope.template.role = $scope.searchText;
     $scope.templateForm.$invalid = ($scope.roles.indexOf($scope.template.role) < 0);
-    console.log('invalid? ', $scope.templateForm.$invalid);
   }
 
   // Filter roles by user input
-  function filterRolesBySearch() {
+  $scope.filterRolesBySearch = function() {
     $scope.searchText = $scope.searchText || '';
     return $scope.filteredSearches = $scope.roles.filter(function(role) {
       return role.toLowerCase().indexOf($scope.searchText.toLowerCase()) >= 0;
     });
   }
 
-  function selectedRoleChange() {
-    console.log('selected role changed');
-    console.log('role is: ', $scope.template.role);
+  // Make form invalid if selected role does not 
+  $scope.selectedRoleChange = function() {
     $scope.templateForm.$invalid = ($scope.roles.indexOf($scope.template.role) < 0);
-    console.log('invalid? ', $scope.templateForm.$invalid);
   }
 
-  function roleValidation() {
+  $scope.roleValidation = function() {
     if (!$scope.template.role) { return false; }
 
     var found = false;
