@@ -4,7 +4,7 @@ angular.module('producer.templates', ['alertMessageDirective', 'ngMaterial', 'ng
   $scope.template = {title: '', role: '', event: '', description: ''};
   $scope.roles = [];
   $scope.tags = [];
-  $scope.selectedRole = 'sampleRole';
+  $scope.selectedRole = null;
   $scope.searchText = '';
   $scope.searchTextChange = searchTextChange;
   $scope.filteredSearches = [];
@@ -75,34 +75,24 @@ angular.module('producer.templates', ['alertMessageDirective', 'ngMaterial', 'ng
       });
   };
 
-  // Set up autocomplete for Roles Input
-  // $(function() {
-  //   $(".roles-input").autocomplete({
-  //     source: $scope.roles,
-  //     select: function(event, ui){
-  //       $scope.template.role = ui.item.value;
-  //     }
-  //   });
-  // })
-
-  function searchTextChange(searchText) {
-    $scope.searchText = searchText;
-  }
-
-  function filterRolesBySearch(searchText) {
-    return $scope.filteredSearches = $scope.roles.filter(function(role) {
-      return role.indexOf(searchText) >= 0;
-    });
-  }
-
   // Fetch existing roles from Asana
   Roles.getRoles(function(roles){
-    console.log('roles: ', roles);
     roles.forEach(function(role){
       $scope.roles.push(role.name);
       $scope.filteredSearches = $scope.roles;
     });
-    console.log('$scope.roles: ', $scope.roles);
   });
+
+  // Bind user input to $scope variable
+  var searchTextChange = function(searchText) {
+    $scope.searchText = searchText;
+  }
+
+  // Filter roles by user input
+  var filterRolesBySearch = function(searchText) {
+    return $scope.filteredSearches = $scope.roles.filter(function(role) {
+      return role.toLowerCase().indexOf(searchText.toLowerCase()) >= 0;
+    });
+  }
 
 });

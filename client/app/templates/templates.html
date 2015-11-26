@@ -17,17 +17,20 @@
       <md-autocomplete
         md-items="role in filterRolesBySearch(searchText)"
         md-selected-item-change="console.log(selectedRole)"
-        md-search-text-change="templatesController.searchTextChange(searchText)"
-        md-search-text="templatesController.searchText"
-        md-selected-item="templatesController.selectedRole"
+        md-search-text-change="searchTextChange(searchText)"
+        md-search-text="searchText"
+        md-selected-item="selectedRole"
         md-item-text="role"
         placeholder="Search here for roles"
         md-no-cache="true"
         md-min-length="0"
         md-delay="0">
           <md-item-template>
-            <span md-highlight-text="templatesController.searchText">{{role}}</span>
+            <span md-highlight-text="searchText">{{role}}</span>
           </md-item-template>
+          <md-not-found>
+            Role not found. Please choose an existing role.
+          </md-not-found>
       </md-autocomplete>
     </div>
     <div class="content__input--container">

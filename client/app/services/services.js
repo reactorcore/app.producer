@@ -78,7 +78,6 @@ angular.module('producer.services', [])
         url: 'roles',
       })
       .then(function(resp){
-        console.log("ROLES: ", resp.data);
         callback(resp.data.data);
       });
     }
