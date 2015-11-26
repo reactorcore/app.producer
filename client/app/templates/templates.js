@@ -81,11 +81,13 @@ angular.module('producer.templates', ['alertMessageDirective', 'ngMaterial', 'ng
       $scope.roles.push(role.name);
       $scope.filteredSearches = $scope.roles;
     });
+    console.log('roles loaded: ', $scope.roles);
   });
 
   // Bind user input to $scope variable
   var searchTextChange = function(searchText) {
     $scope.searchText = searchText;
+    console.log('searchText changed to: ', searchText);
   }
 
   // Filter roles by user input

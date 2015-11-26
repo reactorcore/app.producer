@@ -21,16 +21,17 @@
         md-search-text="searchText"
         md-selected-item="selectedRole"
         md-item-text="role"
-        placeholder="Search here for roles"
         md-no-cache="true"
         md-min-length="0"
-        md-delay="0">
-          <md-item-template>
-            <span md-highlight-text="searchText">{{role}}</span>
-          </md-item-template>
-          <md-not-found>
-            Role not found. Please choose an existing role.
-          </md-not-found>
+        placeholder="Search here for roles"
+        md-delay="0"
+      >
+        <md-item-template>
+          <span md-highlight-text="searchText">{{role}}</span>
+        </md-item-template>
+        <md-not-found>
+          Role not found. Please choose an existing role.
+        </md-not-found>
       </md-autocomplete>
     </div>
     <div class="content__input--container">
