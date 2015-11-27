@@ -1,11 +1,9 @@
-angular.module('producer.templates', ['alertMessageDirective', 'ngMaterial', 'ngAria', 'ngAnimate'])
+angular.module('producer.templates', ['alertMessageDirective', 'producerAutoDirective'])
 
 .controller('templatesController', function ($scope, Template, Roles, Events, Messages) {
   $scope.template = {title: '', role: null, event: '', description: ''};
-  $scope.roles = [];
   $scope.tags = [];
-  $scope.searchText = '';
-  $scope.filteredSearches = [];
+  $scope.roles = [];
   var events;
 
   var submitSuccess = function(response) {
@@ -76,29 +74,8 @@ angular.module('producer.templates', ['alertMessageDirective', 'ngMaterial', 'ng
   Roles.getRoles(function(roles){
     roles.forEach(function(role){
       $scope.roles.push(role.name);
-      $scope.filteredSearches = $scope.roles;
+      $scope.filteredRoles = $scope.roles;
     });
   });
-
-  // Set role to search text
-  $scope.searchTextChange = function() {
-    $scope.template.role = $scope.searchText;
-  }
-
-  // Filter roles by user input
-  $scope.filterRolesBySearch = function() {
-    // If a user types and then deletes their search,
-    // md-autocomplete sets searchText to undefined,
-    // which breaks line 95, so we set it to an empty string here instead
-    $scope.searchText = $scope.searchText || '';
-    return $scope.filteredSearches = $scope.roles.filter(function(role) {
-      return role.toLowerCase().indexOf($scope.searchText.toLowerCase()) >= 0;
-    });
-  }
-
-  // Make form invalid if user input does not match existing role
-  $scope.selectedRoleChange = function() {
-    $scope.templateForm.$invalid = ($scope.roles.indexOf($scope.template.role) < 0);
-  }
 
 });

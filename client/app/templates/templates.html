@@ -13,7 +13,8 @@
     </div>
     <div class="content__input--container">
       <label class="content__input--title">Role:</label>
-      <md-autocomplete
+      <producer-auto itemName="role" targetName="template.role" formName="templateForm"></producer-auto>
+      <!-- <md-autocomplete
         required
         md-items="role in filterRolesBySearch()"
         md-item-text="role"
@@ -32,7 +33,7 @@
         <md-not-found>
           Role not found. Please choose an existing role.
         </md-not-found>
-      </md-autocomplete>
+      </md-autocomplete> -->
     </div>
     <div class="content__input--container">
       <label class="content__input--title">Tags:</label>

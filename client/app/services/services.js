@@ -15,8 +15,6 @@ angular.module('producer.services', [])
   };
 })
 
-
-
 .factory('Events', function ($http) {
   return {
     getEvents: function() {
