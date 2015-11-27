@@ -7,14 +7,16 @@ var headers = {
   "Content-Type": "application/json"
 };
 
+//TODO: verify corect format of timezone
+var timezone = 'PST';
 
 module.exports = {
-  getEventsData: function(req, res, next) {
+  getEventsData: function (req, res, next) {
     request({
       method: 'GET',
       uri: process.env.CHOREOGRAPHER_URL + '/metronome/events',
       headers: headers
-    }, function(error, response, body) {
+    }, function (error, response, body) {
       var parsedData = JSON.parse(body);
       var text = parsedData;
 
@@ -32,7 +34,7 @@ module.exports = {
       text = abbreviations;
       // endhack
 
-      var events = parsedData.rhythms.map(function(rhythm) {
+      var events = parsedData.rhythms.map(function (rhythm) {
         return {
           "abbreviation": rhythm[0],
           "text": text[rhythm[0]] || rhythm[0],
@@ -45,7 +47,7 @@ module.exports = {
       res.send(events);
     });
   },
-  createEvent: function(req, res, next) {
+  createEvent: function (req, res, next) {
     var event = req.body;
     event.trigger = process.env.CHOREOGRAPHER_URL + '/signal/' + event.title;
     event.interval = event.cron;
@@ -54,7 +56,7 @@ module.exports = {
       uri: process.env.CHOREOGRAPHER_URL +  '/metronome/events/' + event.title,
       headers: headers,
       json: event
-    }, function(error, response, body) {
+    }, function (error, response, body) {
       if (error) {
         console.log("Error: ", error);
         res.send(400);
@@ -64,23 +66,35 @@ module.exports = {
     });
   },
 
-  getEventName: function(req, res, next, name){
+  getEventName: function (req, res, next, name){
     req.eventName = name;
     next();
   },
 
-  putEvent: function(req, res, next) {
-    // TODO: Implement API call to Choreographer
-    res.status(204);
+  postSignal: function (req, res, next) {
+    var eventName = req.eventName;
+    request({
+      method: 'POST',
+      uri: process.env.CHOREOGRAPHER_URL + '/signal/' + eventName,
+      headers: headers
+    }, function (error, response, body) {
+      if (error) {
+        console.log('putEvent error: ', error);
+        res.send(400);
+      } else {
+        res.send(200);
+      }
+    });
   },
 
-  deleteEvent: function(req, res, next) {
+  deleteEvent: function (req, res, next) {
     var eventName = req.eventName;
     request({
       method: 'DELETE',
       uri: process.env.CHOREOGRAPHER_URL +  '/metronome/events/' + eventName,
       headers: headers,
-    }, function(error, response, body) {
+      data: { timezone: timezone }
+    }, function (error, response, body) {
       if (error) {
         console.log("Error: ", error);
         res.send(400);
