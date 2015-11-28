@@ -4,6 +4,7 @@ angular.module('producer', [
   'producer.events',
   'producer.procedures',
   'producer.soundboard',
+  'producer.login',
   'ui.router',
   'ngTagsInput',
   'angular-cron',
