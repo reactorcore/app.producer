@@ -2,7 +2,6 @@ var bodyParser = require('body-parser');
 var session = require('express-session');
 var GitHubStrategy = require('passport-github').Strategy;
 var passport = require('passport');
-var util = require('util');
 var cookieParser = require('cookie-parser');
 
 
@@ -25,7 +24,7 @@ passport.use(new GitHubStrategy({
     clientID: process.env.GITHUB_CLIENT_ID,
     clientSecret: process.env.GITHUB_CLIENT_SECRET,
     // what should the callback URL be here?
-    callbackURL: 'http://api.staging.hackreactor.com/auth/github/callback',
+    callbackURL: 'http://127.0.0.1:8000/auth/github/callback',
     scope: ['read:org', 'user']
   },
   function(accessToken, refreshToken, profile, done) {
@@ -55,8 +54,6 @@ passport.use(new GitHubStrategy({
 ));
 
 exports = module.exports = function (app) {
-
-
 
   // Set up initial passport
   app.use(cookieParser());
