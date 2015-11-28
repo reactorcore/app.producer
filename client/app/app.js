@@ -13,6 +13,11 @@ angular.module('producer', [
 ])
 .config(function($stateProvider, $urlRouterProvider) {
   $stateProvider
+    .state('login', {
+      url: '/login',
+      templateUrl: 'app/login/login.html',
+      controller: 'loginController'
+    })
     .state('templates', {
       url: '/templates',
       templateUrl: 'app/templates/templates.html',
