@@ -446,7 +446,7 @@ tags-input .autocomplete .suggestion-item em {
   background-color: #fae6e7;
 }
 .alert-hide {
-  fill: red;
+  fill: #878787;
 }
 
 .alert-hide:hover {
