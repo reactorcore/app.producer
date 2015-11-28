@@ -48,8 +48,8 @@ angular.module('producer', [
   $urlRouterProvider.otherwise('/login');
 
 })
-.run(function ($rootScope, $location, Authentication) {
-  $rootScope.on('$stateChangeStart',
+.run(function ($rootScope, $location, $state, Authentication) {
+  $rootScope.$on('$stateChangeStart',
   function (event, toState, toParams, fromState, fromParams) {
     if (toState.authenticate && !Authentication.isAuthenticated()) {
       $state.transitionTo('login');
