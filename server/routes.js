@@ -14,12 +14,11 @@ module.exports = function (app) {
   // login with github route
   app.get('/auth/github', passport.authenticate('github'));
 
-  // github OAuth callback url
-  app.get('/auth/github/callback',
+
+   app.get('/auth/github/callback',
     passport.authenticate('github', { failureRedirect: '/login' }),
     function (req, res) {
-      res.cookie('session', 'true', {httpOnly: false});
-      res.redirect('/');
+      res.redirect('/templates');
   });
 
   app.get('/logout', function (req, res){
@@ -40,8 +39,8 @@ module.exports = function (app) {
   app.post('/procedures', verify, proceduresController.createProcedure);
   app.delete('/procedures/:procedureId', verify, proceduresController.deleteProcedure);
 
-  app.param('eventName', eventsController.getEventName);
-  // app.param('procedureName', proceduresController.getProcedureName);
+  app.param('eventName', verify, eventsController.getEventName);
+  // app.param('procedureName', verify, proceduresController.getProcedureName);
 
   function verify(req, res, next) {
     if (req.isAuthenticated() && req.user) {
