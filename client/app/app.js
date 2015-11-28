@@ -17,31 +17,43 @@ angular.module('producer', [
     .state('login', {
       url: '/login',
       templateUrl: 'app/login/login.html',
-      controller: 'loginController'
+      controller: 'loginController',
+      authenticate: false
     })
     .state('templates', {
       url: '/templates',
       templateUrl: 'app/templates/templates.html',
-      controller: 'templatesController'
+      controller: 'templatesController',
+      authenticate: true
     })
     .state('events', {
       url: '/events',
       templateUrl: 'app/events/events.html',
-      controller: 'eventsController'
+      controller: 'eventsController',
+      authenticate: true
     })
     .state('procedures', {
       url: '/procedures',
       templateUrl: 'app/procedures/procedures.html',
-      controller: "proceduresController"
+      controller: "proceduresController",
+      authenticate: true
     })
     .state('soundboard', {
       url: '/soundboard',
       templateUrl: 'app/soundboard/soundboard.html',
-      controller: 'soundboardController'
+      controller: 'soundboardController',
+      authenticate: true
     });
 
-  $urlRouterProvider.otherwise('/templates');
+  $urlRouterProvider.otherwise('/login');
 
 })
-.run(function ($rootScope, $location) {
+.run(function ($rootScope, $location, Authentication) {
+  $rootScope.on('$stateChangeStart',
+  function (event, toState, toParams, fromState, fromParams) {
+    if (toState.authenticate && !Authentication.isAuthenticated()) {
+      $state.transitionTo('login');
+      event.preventDefault();
+    }
+  });
 });
