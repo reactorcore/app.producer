@@ -1,4 +1,5 @@
 var express = require('express');
+var passport = require('passport');
 
 var templatesController = require('./templates/templatesController.js');
 var eventsController = require('./events/eventsController');
@@ -9,23 +10,21 @@ module.exports = function (app) {
   // could be abstracted out into router file
   app.use(express.Router());
   app.use(express.static(__dirname + '/../client'));
-  app.use(ensureAuthenticated);
 
+  app.get('/login', function (req, res) {
+    res.send(200);
+  })
 
   app.get('/auth/github', passport.authenticate('github'));
 
+
    app.get('/auth/github/callback',
     passport.authenticate('github', { failureRedirect: '/login' }),
-    function(req, res) {
-      res.redirect('/');
+    function (req, res) {
+      res.redirect('/templates');
   });
 
-
-  app.get('/', function (req, res, next) {});
-
-  app.get('/login', function () {});
-
-  app.get('/logout', function(req, res){
+  app.get('/logout', function (req, res){
     res.cookie('message', 'Logged out.');
     req.logout();
     res.redirect('/login');
@@ -44,7 +43,7 @@ module.exports = function (app) {
   app.param('eventName', eventsController.getEventName);
   // app.param('procedureName', proceduresController.getProcedureName);
 
-  function ensureAuthenticated(req, res, next) {
+  function verify(req, res, next) {
     if (req.isAuthenticated() && req.user && req.user.__authorized) {
      res.cookie('message', '');
      return next();
