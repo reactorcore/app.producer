@@ -223,6 +223,12 @@ body {
   margin-left: 30px;
 }
 
+.content__main--card {
+  padding: 20px 0;
+  text-align: center;
+  background-color: rgb(184, 215, 241);
+}
+
 
 /* TAGS */
 
@@ -430,7 +436,6 @@ tags-input .autocomplete .suggestion-item em {
   padding: 5px 10px;
   border: 2px solid;
   width: 300px;
-  overflow: scroll;
 }
 .alert-success {
   border-color: #b0e771;

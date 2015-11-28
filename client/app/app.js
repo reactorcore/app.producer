@@ -3,10 +3,12 @@ angular.module('producer', [
   'producer.templates',
   'producer.events',
   'producer.procedures',
+  'producer.soundboard',
   'ui.router',
   'ngTagsInput',
   'angular-cron',
-  'alertMessageDirective'
+  'alertMessageDirective',
+  'event-details'
 ])
 .config(function($stateProvider, $urlRouterProvider) {
   $stateProvider
@@ -25,6 +27,11 @@ angular.module('producer', [
       templateUrl: 'app/procedures/procedures.html',
       controller: "proceduresController"
     })
+    .state('soundboard', {
+      url: '/soundboard',
+      templateUrl: 'app/soundboard/soundboard.html',
+      controller: 'soundboardController'
+    });
 
   $urlRouterProvider.otherwise('/templates');
 

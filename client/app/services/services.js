@@ -2,7 +2,7 @@ angular.module('producer.services', [])
 
 .factory('Template', function ($http) {
   // This service is responsible for posting templates through the api
-  // If data ever needs to be retrieved from Asana, it will be done through this service 
+  // If data ever needs to be retrieved from Asana, it will be done through this service
   return {
     submitTemplate: function(template){
       return $http({
@@ -105,3 +105,17 @@ angular.module('producer.services', [])
 
   };
 })
+
+.factory('Soundboard', function ($http) {
+
+  return {
+
+    triggerEvent: function (event) {
+      return $http({
+        method: 'POST',
+        url: 'signal/' + event.title,
+        data: event
+      });
+    }
+  };
+});
