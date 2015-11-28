@@ -116,4 +116,13 @@ angular.module('producer.services', [])
       });
     }
   };
+})
+
+.factory('Authentication', function () {
+
+  return {
+    isAuthenticated: function () {
+
+    }
+  };
 });
