@@ -122,7 +122,7 @@ angular.module('producer.services', [])
 
   return {
     isAuthenticated: function () {
-
+      return true;
     }
   };
 });
