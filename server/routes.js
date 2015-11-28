@@ -9,6 +9,27 @@ module.exports = function (app) {
   // could be abstracted out into router file
   app.use(express.Router());
   app.use(express.static(__dirname + '/../client'));
+  app.use(ensureAuthenticated);
+
+
+  app.get('/auth/github', passport.authenticate('github'));
+
+   app.get('/auth/github/callback',
+    passport.authenticate('github', { failureRedirect: '/login' }),
+    function(req, res) {
+      res.redirect('/');
+  });
+
+
+  app.get('/', function (req, res, next) {});
+
+  app.get('/login', function () {});
+
+  app.get('/logout', function(req, res){
+    res.cookie('message', 'Logged out.');
+    req.logout();
+    res.redirect('/login');
+  });
 
   app.post('/templates', templatesController.postTemplate);
   app.get('/roles', rolesController.getRoles);
@@ -22,5 +43,18 @@ module.exports = function (app) {
 
   app.param('eventName', eventsController.getEventName);
   // app.param('procedureName', proceduresController.getProcedureName);
+
+  function ensureAuthenticated(req, res, next) {
+    if (req.isAuthenticated() && req.user && req.user.__authorized) {
+     res.cookie('message', '');
+     return next();
+   }
+    if (req.user && req.user.__error) {
+      res.cookie('message', req.user.__error);
+    } else {
+      res.cookie('message', '');
+    }
+    res.redirect('/login');
+  }
 
 };
