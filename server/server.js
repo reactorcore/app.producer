@@ -1,7 +1,6 @@
 var express   = require('express');
 var bootable  = require('app-boot');
 var app       = require('express')();
-
 var boot      = bootable(app);
 
 function config(app, next) {
@@ -27,6 +26,7 @@ function routes(app, next) {
 };
 
 boot.phase(config);
+boot.phase(auth);
 boot.phase(middleware);
 boot.phase(routes);
 

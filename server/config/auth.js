@@ -12,6 +12,7 @@ var cookieParser = require('cookie-parser');
 //   the user by ID when deserializing.  However, since this example does not
 //   have a database of user records, the complete GitHub profile is serialized
 //   and deserialized.
+
 passport.serializeUser(function(user, done) {
   done(null, user);
 });
@@ -23,33 +24,42 @@ passport.deserializeUser(function(obj, done) {
 passport.use(new GitHubStrategy({
     clientID: process.env.GITHUB_CLIENT_ID,
     clientSecret: process.env.GITHUB_CLIENT_SECRET,
-    // what should the callback URL be here?
     callbackURL: 'http://127.0.0.1:8000/auth/github/callback',
     scope: ['read:org', 'user']
   },
+
   function(accessToken, refreshToken, profile, done) {
-    require('request').get({
-      json: true,
-      url: 'https://api.github.com/user/teams',
-      headers: {
-                'Authorization': 'token ' + accessToken,
-                //this is definitely wrong
-                'User-Agent': 'Fulcrum'
-              }
-      },
-      function(err, res, body){
-        var authorized = false;
-        body.forEach(function(ea) {
-          if (ea.slug === TEAM_NAME && ea.organization.login === ORG_NAME) {
-            authorized = true;
-          }
-        });
-        profile.__authorized = authorized;
-        if (!authorized) {
-          profile.__error = 'No permission to access this content.';
-        }
-        done(null, profile);
-      });
+
+    // This code works in lieu of a user record in the db
+    // For the moment, let's make this work for any github user
+
+    // require('request').get({
+    //   json: true,
+    //   url: 'https://api.github.com/user/teams',
+    //   headers: {
+    //             'Authorization': 'token ' + accessToken,
+    //             //this is definitely wrong
+    //             // 'User-Agent': 'Fulcrum'
+    //           }
+    //   },
+    // function(err, res, body){
+    //   var authorized = false;
+    //   body.forEach(function(ea) {
+    //     if (ea.slug === TEAM_NAME && ea.organization.login === ORG_NAME) {
+    //       authorized = true;
+    //     }
+    //   });
+    //   profile.__authorized = authorized;
+    //   if (!authorized) {
+    //     profile.__error = 'No permission to access this content.';
+    //   }
+    //   done(null, profile);
+    // });
+
+    // This will just return the github user
+    process.nextTick(function () {
+      return done(null, profile);
+    });
   }
 ));
 

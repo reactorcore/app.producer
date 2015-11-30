@@ -11,17 +11,12 @@ module.exports = function (app) {
   app.use(express.Router());
   app.use(express.static(__dirname + '/../client'));
 
-  app.get('/login', function (req, res) {
-    res.send(200);
-  })
-
   app.get('/auth/github', passport.authenticate('github'));
 
-
-   app.get('/auth/github/callback',
+  app.get('/auth/github/callback',
     passport.authenticate('github', { failureRedirect: '/login' }),
     function (req, res) {
-      res.redirect('/templates');
+      res.redirect('/');
   });
 
   app.get('/logout', function (req, res){
@@ -44,7 +39,7 @@ module.exports = function (app) {
   // app.param('procedureName', proceduresController.getProcedureName);
 
   function verify(req, res, next) {
-    if (req.isAuthenticated() && req.user && req.user.__authorized) {
+    if (req.isAuthenticated() && req.user) {
      res.cookie('message', '');
      return next();
    }
