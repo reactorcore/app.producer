@@ -11,14 +11,14 @@ module.exports = function (app) {
   app.use(express.Router());
   app.use(express.static(__dirname + '/../client'));
 
+
   // login with github route
   app.get('/auth/github', passport.authenticate('github'));
 
-
-   app.get('/auth/github/callback',
+  app.get('/auth/github/callback',
     passport.authenticate('github', { failureRedirect: '/login' }),
     function (req, res) {
-      res.redirect('/templates');
+      res.redirect('/');
   });
 
   app.get('/logout', function (req, res){
@@ -26,6 +26,7 @@ module.exports = function (app) {
     req.logout();
     res.sendStatus(401);
   });
+
 
 
   // 'verify' is authentication middleware added to all protected routes
