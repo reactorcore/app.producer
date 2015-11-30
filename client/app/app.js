@@ -8,6 +8,7 @@ angular.module('producer', [
   'ui.router',
   'ngTagsInput',
   'angular-cron',
+  'ngCookies',
   'alertMessageDirective',
   'event-details',
   'producerAutocompleteDirective'
