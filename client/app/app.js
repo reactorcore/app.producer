@@ -20,6 +20,12 @@ angular.module('producer', [
       controller: 'loginController',
       authenticate: false
     })
+    .state('home', {
+      url: '/',
+      templateUrl: 'app/home/home.html',
+      controller: 'homeController',
+      authenticate: true
+    })
     .state('templates', {
       url: '/templates',
       templateUrl: 'app/templates/templates.html',
@@ -45,7 +51,7 @@ angular.module('producer', [
       authenticate: true
     });
 
-  $urlRouterProvider.otherwise('/login');
+  $urlRouterProvider.otherwise('/templates');
 
 })
 .run(function ($rootScope, $location, $state, Authentication) {
