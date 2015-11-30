@@ -11,8 +11,10 @@ module.exports = function (app) {
   app.use(express.Router());
   app.use(express.static(__dirname + '/../client'));
 
+  // login with github route
   app.get('/auth/github', passport.authenticate('github'));
 
+  // github OAuth callback url
   app.get('/auth/github/callback',
     passport.authenticate('github', { failureRedirect: '/login' }),
     function (req, res) {
@@ -24,6 +26,7 @@ module.exports = function (app) {
     req.logout();
     res.redirect('/login');
   });
+
 
   app.post('/templates', templatesController.postTemplate);
   app.get('/roles', rolesController.getRoles);
@@ -37,6 +40,7 @@ module.exports = function (app) {
 
   app.param('eventName', eventsController.getEventName);
   // app.param('procedureName', proceduresController.getProcedureName);
+
 
   function verify(req, res, next) {
     if (req.isAuthenticated() && req.user) {

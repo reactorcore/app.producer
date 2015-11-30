@@ -4,7 +4,6 @@ var GitHubStrategy = require('passport-github').Strategy;
 var passport = require('passport');
 var cookieParser = require('cookie-parser');
 
-
 // Passport session setup.
 //   To support persistent login sessions, Passport needs to be able to
 //   serialize users into and deserialize users out of the session.  Typically,
@@ -30,42 +29,34 @@ passport.use(new GitHubStrategy({
 
   function(accessToken, refreshToken, profile, done) {
 
-    // This code works in lieu of a user record in the db
-    // For the moment, let's make this work for any github user
-
-    // require('request').get({
-    //   json: true,
-    //   url: 'https://api.github.com/user/teams',
-    //   headers: {
-    //             'Authorization': 'token ' + accessToken,
-    //             //this is definitely wrong
-    //             // 'User-Agent': 'Fulcrum'
-    //           }
-    //   },
-    // function(err, res, body){
-    //   var authorized = false;
-    //   body.forEach(function(ea) {
-    //     if (ea.slug === TEAM_NAME && ea.organization.login === ORG_NAME) {
-    //       authorized = true;
-    //     }
-    //   });
-    //   profile.__authorized = authorized;
-    //   if (!authorized) {
-    //     profile.__error = 'No permission to access this content.';
-    //   }
-    //   done(null, profile);
-    // });
-
-    // This will just return the github user
-    process.nextTick(function () {
-      return done(null, profile);
+    require('request').get({
+      json: true,
+      url: 'https://api.github.com/user/teams',
+      headers: {
+                'Authorization': 'token ' + accessToken,
+                // this needs to be changed
+                'User-Agent': 'mdboop'
+              }
+      },
+    function(err, res, body){
+      var authorized = false;
+      body.forEach(function(ea) {
+        if (ea.slug === process.env.TEAM_NAME && ea.organization.login === process.env.ORG_NAME) {
+          authorized = true;
+        }
+      });
+      profile.__authorized = authorized;
+      if (!authorized) {
+        profile.__error = 'No permission to access this content.';
+      }
+      done(null, profile);
     });
   }
 ));
 
 exports = module.exports = function (app) {
 
-  // Set up initial passport
+  // initializes passport middleware
   app.use(cookieParser());
   app.use(session({ secret: 'nsa nsa nsa usa usa' }));
   app.use(passport.initialize());
