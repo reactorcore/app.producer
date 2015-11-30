@@ -15,6 +15,7 @@ module.exports = function (app) {
   // login with github route
   app.get('/auth/github', passport.authenticate('github'));
 
+  // github OAuth callback url
   app.get('/auth/github/callback',
     passport.authenticate('github', { failureRedirect: '/login' }),
     function (req, res) {
