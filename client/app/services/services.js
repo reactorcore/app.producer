@@ -118,11 +118,18 @@ angular.module('producer.services', [])
   };
 })
 
-.factory('Authentication', function () {
+.factory('Authentication', function ($http, $cookies) {
 
   return {
+
     isAuthenticated: function () {
-      return true;
+
+      // The real authentication is handled in the server
+      // and through http-only cookies.
+      // The purpose here is  to provide basic control so
+      // the user doesn't see empty views when not logged in
+
+      return $cookies.get('session') === "true" ? true : false;
     }
   };
 });
