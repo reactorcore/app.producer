@@ -13,27 +13,7 @@
     </div>
     <div class="content__input--container">
       <label class="content__input--title">Role:</label>
-      <producer-auto itemName="role" targetName="template.role" formName="templateForm"></producer-auto>
-      <!-- <md-autocomplete
-        required
-        md-items="role in filterRolesBySearch()"
-        md-item-text="role"
-        md-selected-item="template.role"
-        md-selected-item-change="selectedRoleChange()"
-        md-search-text="searchText"
-        md-search-text-change="searchTextChange()"
-        md-no-cache="true"
-        md-min-length="0"
-        md-delay="0"
-        placeholder="Search here for roles"
-      >
-        <md-item-template>
-          <span md-highlight-text="searchText">{{role}}</span>
-        </md-item-template>
-        <md-not-found>
-          Role not found. Please choose an existing role.
-        </md-not-found>
-      </md-autocomplete> -->
+      <producer-auto item-name="role" collection="roles" target="template.role" form="templateForm"></producer-auto>
     </div>
     <div class="content__input--container">
       <label class="content__input--title">Tags:</label>
