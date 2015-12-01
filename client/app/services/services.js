@@ -118,7 +118,7 @@ angular.module('producer.services', [])
   };
 })
 
-.factory('Authentication', function ($http, $cookies) {
+.factory('Auth', function ($http, $cookies) {
 
   return {
 
@@ -128,6 +128,9 @@ angular.module('producer.services', [])
       // and through http-only cookies.
       // The purpose here is  to provide basic control so
       // the user doesn't see empty views when not logged in
+
+      //TODO: refactor to just use document.cookie instead of
+      // bringing in an entire module
 
       return $cookies.get('session') === "true" ? true : false;
     }

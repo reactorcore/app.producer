@@ -55,10 +55,10 @@ angular.module('producer', [
   $urlRouterProvider.otherwise('/templates');
 
 })
-.run(function ($rootScope, $location, $state, Authentication) {
+.run(function ($rootScope, $location, $state, Auth) {
   $rootScope.$on('$stateChangeStart',
   function (event, toState, toParams, fromState, fromParams) {
-    if (toState.authenticate && !Authentication.isAuthenticated()) {
+    if (toState.authenticate && !Auth.isAuthenticated()) {
       $state.transitionTo('login');
       event.preventDefault();
     }

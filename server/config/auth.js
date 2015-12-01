@@ -35,6 +35,7 @@ passport.use(new GitHubStrategy({
       headers: {
                 'Authorization': 'token ' + accessToken,
                 // this needs to be changed
+                // should this be 'Hack Reactor'?
                 'User-Agent': 'mdboop'
               }
       },
