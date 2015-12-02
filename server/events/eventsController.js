@@ -71,7 +71,7 @@ module.exports = {
     next();
   },
 
-  postSignal: function (req, res, next) {
+  postSoundboard: function (req, res, next) {
     var eventName = req.eventName;
     request({
       method: 'POST',
@@ -79,7 +79,7 @@ module.exports = {
       headers: headers
     }, function (error, response, body) {
       if (error) {
-        console.log('putEvent error: ', error);
+        console.log('postSoundboard error: ', error);
         res.send(400);
       } else {
         res.send(200);
@@ -91,8 +91,16 @@ module.exports = {
     var eventName = req.eventName;
     request({
       method: 'GET',
-      uri: process.env.CHOREOGRAPHER_URL + '/templatesFor/' + eventName
-    })
+      uri: process.env.CHOREOGRAPHER_URL + '/templatesFor/' + eventName,
+      headers: headers
+    }, function (error, response, body) {
+      if(error) {
+        console.log('get Soundboard events error: ', error);
+        res.send(400);
+      } else {
+        res.status(200).send(body);
+      }
+    });
   },
 
   deleteEvent: function (req, res, next) {

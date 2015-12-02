@@ -37,7 +37,7 @@ module.exports = function (app) {
   app.get('/events', verify, eventsController.getEventsData);
   app.post('/events', verify, eventsController.createEvent);
   app.delete('/events/:eventName', verify, eventsController.deleteEvent);
-  app.post('/soundboard/:eventName', verify, eventsController.postSignal);
+  app.post('/soundboard/:eventName', verify, eventsController.postSoundboard);
   app.get('/soundboard/:eventName', verify, eventsController.getTemplatesFor);
   app.get('/procedures', verify, proceduresController.getProcedures);
   app.post('/procedures', verify, proceduresController.createProcedure);
