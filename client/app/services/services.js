@@ -114,6 +114,13 @@ angular.module('producer.services', [])
         url: 'soundboard/' + event.title,
         data: event
       });
+    },
+
+    getTemplate: function (event) {
+      return $http({
+        method: 'GET',
+        url: 'soundboard/' + event.title,
+      });
     }
   };
 })
