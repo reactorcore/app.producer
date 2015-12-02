@@ -1,17 +1,21 @@
-// Example of how to use this directive
-// <prd-autocomplete itemName="role" collection="roles" target="template.role" form="templateForm"></prd-autocomplete>
+// This directive takes three attributes:
+// itemName: a string describing the thing being selected
+// collection: the collection to display as options to select (must be a property on parent $scope)
+// target: the property on the parent $scope to bind the selected item to
 
-angular.module('producerAutoDirective', ['ngMaterial', 'ngAria', 'ngAnimate'])
-  .directive('producerAuto', function() {
+// Example use:
+// <prd-autocomplete itemName="role" collection="roles" target="template.role"></prd-autocomplete>
+
+angular.module('producerAutocompleteDirective', ['ngMaterial', 'ngAria', 'ngAnimate'])
+  .directive('producerAutocomplete', function() {
     return {
 
       restrict: 'E',
+
       scope: {
-        // Set arguments passed in as attributes to the local scope
         itemName: '@',
         target: '=',
         collection: '=',
-        form: '=',
       },
 
       controller: function($scope) {
@@ -36,27 +40,26 @@ angular.module('producerAutoDirective', ['ngMaterial', 'ngAria', 'ngAnimate'])
       },
 
       template:
-          ['<md-autocomplete ',
-            'required ',
-            'md-items="item in filterBySearch()" ',
-            'md-item-text="item" ',
-            'md-selected-item="target"',
-            'md-selected-item-change="updateTarget()" ',
-            'md-search-text="searchText" ',
-            'md-search-text-change="searchTextChange" ', //???
-            'md-no-cache="true" ',
-            'md-min-length="0" ',
-            'md-delay="0" ',
-            'placeholder="Search here for {{ itemName }}s" ',
-          '> ',
-            '<md-item-template> ',
-              '<span md-highlight-text="searchText">{{ item }}</span> ',
-            '</md-item-template> ',
-            '<md-not-found> ',
-              '{{ itemName }} not found. Please choose an existing {{ itemName }}. ',
-            '</md-not-found> ',
-          '</md-autocomplete>'
-        ].join('')
+        '<md-autocomplete ' +
+          'required ' +
+          'md-items="item in filterBySearch()" ' +
+          'md-item-text="item" ' +
+          'md-selected-item="target"' +
+          'md-selected-item-change="updateTarget()" ' +
+          'md-search-text="searchText" ' +
+          'md-search-text-change="searchTextChange" ' +
+          'md-no-cache="true" ' +
+          'md-min-length="0" ' +
+          'md-delay="0" ' +
+          'placeholder="Search here for {{ itemName }}s" ' +
+        '> ' +
+          '<md-item-template> ' +
+            '<span md-highlight-text="searchText">{{ item }}</span> ' +
+          '</md-item-template> ' +
+          '<md-not-found> ' +
+            '{{ itemName }} not found. Please choose an existing {{ itemName }}. ' +
+          '</md-not-found> ' +
+        '</md-autocomplete>'
 
     }
   });

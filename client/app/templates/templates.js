@@ -1,4 +1,4 @@
-angular.module('producer.templates', ['alertMessageDirective', 'producerAutoDirective'])
+angular.module('producer.templates', ['alertMessageDirective', 'producerAutocompleteDirective'])
 
 .controller('templatesController', function ($scope, Template, Roles, Events, Messages) {
   $scope.template = {title: '', role: null, event: '', description: ''};

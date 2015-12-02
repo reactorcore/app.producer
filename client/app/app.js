@@ -9,7 +9,7 @@ angular.module('producer', [
   'angular-cron',
   'alertMessageDirective',
   'event-details',
-  'producerAutoDirective'
+  'producerAutocompleteDirective'
 ])
 .config(function($stateProvider, $urlRouterProvider) {
   $stateProvider
