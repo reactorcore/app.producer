@@ -8,7 +8,6 @@ var headers = {
 };
 
 //TODO: verify corect format of timezone
-var TIMEZONE = 'PST';
 
 module.exports = {
   getEventsData: function (req, res, next) {
@@ -72,6 +71,8 @@ module.exports = {
   },
 
   postSoundboard: function (req, res, next) {
+    // This is the format for timezone:
+    // var timezone = 'America/Los Angeles';
     var eventName = req.eventName;
     request({
       method: 'POST',
@@ -87,7 +88,7 @@ module.exports = {
     });
   },
 
-  getTemplatesFor: function (req, res, next) {
+  getSoundboardTemplate: function (req, res, next) {
     var eventName = req.eventName;
     request({
       method: 'GET',
