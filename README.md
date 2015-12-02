@@ -76,6 +76,11 @@ dependencies
 * [morgan](https://www.npmjs.com/package/morgan)
 * [q](https://www.npmjs.com/package/q)
 * [request](https://www.npmjs.com/package/request)
+* [aws-sdk](https://www.npmjs.com/package/aws-sdk)
+* [levelup](https://www.npmjs.com/package/levelup)
+* [leveldown](https://www.npmjs.com/package/leveldown)
+* [s3](https://www.npmjs.com/package/s3)
+* [node-uuid](https://www.npmjs.com/package/node-uuid)
 
 dev-dependencies
 * [bower](http://bower.io/)
