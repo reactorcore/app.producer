@@ -7,8 +7,6 @@ var headers = {
   "Content-Type": "application/json"
 };
 
-//TODO: verify corect format of timezone
-
 module.exports = {
   getEventsData: function (req, res, next) {
     request({
@@ -68,40 +66,6 @@ module.exports = {
   getEventName: function (req, res, next, name){
     req.eventName = name;
     next();
-  },
-
-  postSoundboard: function (req, res, next) {
-    // This is the format for timezone:
-    // var timezone = 'America/Los Angeles';
-    var eventName = req.eventName;
-    request({
-      method: 'POST',
-      uri: process.env.CHOREOGRAPHER_URL + '/signal/' + eventName,
-      headers: headers
-    }, function (error, response, body) {
-      if (error) {
-        console.log('postSoundboard error: ', error);
-        res.send(400);
-      } else {
-        res.send(200);
-      }
-    });
-  },
-
-  getSoundboardTemplate: function (req, res, next) {
-    var eventName = req.eventName;
-    request({
-      method: 'GET',
-      uri: process.env.CHOREOGRAPHER_URL + '/templatesFor/' + eventName,
-      headers: headers
-    }, function (error, response, body) {
-      if(error) {
-        console.log('get Soundboard events error: ', error);
-        res.send(400);
-      } else {
-        res.status(200).send(body);
-      }
-    });
   },
 
   deleteEvent: function (req, res, next) {

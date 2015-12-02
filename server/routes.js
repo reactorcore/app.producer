@@ -5,6 +5,7 @@ var templatesController = require('./templates/templatesController.js');
 var eventsController = require('./events/eventsController');
 var rolesController = require('./roles/rolesController.js');
 var proceduresController = require('./procedures/proceduresController.js');
+var soundboardController = require('./soundboard/soundboardController.js');
 
 module.exports = function (app) {
   // could be abstracted out into router file
@@ -37,8 +38,8 @@ module.exports = function (app) {
   app.get('/events', verify, eventsController.getEventsData);
   app.post('/events', verify, eventsController.createEvent);
   app.delete('/events/:eventName', verify, eventsController.deleteEvent);
-  app.post('/soundboard/:eventName', verify, eventsController.postSoundboard);
-  app.get('/soundboard/:eventName', verify, eventsController.getSoundboardTemplate);
+  app.post('/soundboard/:eventName', verify, soundboardController.postSoundboard);
+  app.get('/soundboard/:eventName', verify, soundboardController.getSoundboardTemplate);
   app.get('/procedures', verify, proceduresController.getProcedures);
   app.post('/procedures', verify, proceduresController.createProcedure);
   app.delete('/procedures/:procedureId', verify, proceduresController.deleteProcedure);
