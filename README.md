@@ -29,7 +29,7 @@ Staging: http://api.staging.hackreactor.com/producer/v0/
 
 ## Tech Stack
 
-Node/Express + AngularJS
+Node/Express + AngularJS + LevelDB
 
 ## How to run this code
 * `npm start`
