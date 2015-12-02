@@ -111,7 +111,7 @@ angular.module('producer.services', [])
     triggerEvent: function (event) {
       return $http({
         method: 'POST',
-        url: 'signal/' + event.title,
+        url: 'soundboard/' + event.title,
         data: event
       });
     }

@@ -31,12 +31,14 @@ module.exports = function (app) {
 
 
   // 'verify' is authentication middleware added to all protected routes
+
   app.post('/templates', verify, templatesController.postTemplate);
   app.get('/roles', verify, rolesController.getRoles);
   app.get('/events', verify, eventsController.getEventsData);
   app.post('/events', verify, eventsController.createEvent);
-  app.post('/signal/:eventName', verify, eventsController.postSignal);
   app.delete('/events/:eventName', verify, eventsController.deleteEvent);
+  app.post('/soundboard/:eventName', verify, eventsController.postSignal);
+  app.get('/soundboard/:eventName', verify, eventsController.getTemplatesFor);
   app.get('/procedures', verify, proceduresController.getProcedures);
   app.post('/procedures', verify, proceduresController.createProcedure);
   app.delete('/procedures/:procedureId', verify, proceduresController.deleteProcedure);

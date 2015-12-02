@@ -87,6 +87,14 @@ module.exports = {
     });
   },
 
+  getTemplatesFor: function (req, res, next) {
+    var eventName = req.eventName;
+    request({
+      method: 'GET',
+      uri: process.env.CHOREOGRAPHER_URL + '/templatesFor/' + eventName
+    })
+  },
+
   deleteEvent: function (req, res, next) {
     var eventName = req.eventName;
     request({
