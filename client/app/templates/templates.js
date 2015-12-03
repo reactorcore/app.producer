@@ -21,7 +21,7 @@ angular.module('producer.templates', ['alertMessageDirective', 'producerAutocomp
   // Submits template in correct format
   $scope.submitTemplate = function() {
     $scope.template.event = $scope.tags.reduce(function(eventList, currEvent) {
-      return eventList+= currEvent.abbreviation;
+      return eventList+= currEvent.eventKey;
     }, '');
     Template.submitTemplate($scope.template).then(submitSuccess, submitError);
   };
