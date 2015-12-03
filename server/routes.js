@@ -29,19 +29,19 @@ module.exports = function (app) {
   });
 
 
-  app.post('/templates', templatesController.postTemplate);
-  app.get('/roles', rolesController.getRoles);
-  app.get('/events', eventsController.getEventsData);
-  app.post('/events', eventsController.createEvent);
-  app.post('/signal/:eventName', eventsController.postSignal);
-  app.delete('/events/:eventName', eventsController.deleteEvent);
-  app.get('/procedures', proceduresController.getProcedures);
-  app.post('/procedures', proceduresController.createProcedure);
-  app.delete('/procedures/:procedureId', proceduresController.deleteProcedure);
+  // 'verify' is authentication middleware added to all protected routes
+  app.post('/templates', verify, templatesController.postTemplate);
+  app.get('/roles', verify, rolesController.getRoles);
+  app.get('/events', verify, eventsController.getEventsData);
+  app.post('/events', verify, eventsController.createEvent);
+  app.post('/signal/:eventName', verify, eventsController.postSignal);
+  app.delete('/events/:eventName', verify, eventsController.deleteEvent);
+  app.get('/procedures', verify, proceduresController.getProcedures);
+  app.post('/procedures', verify, proceduresController.createProcedure);
+  app.delete('/procedures/:procedureId', verify, proceduresController.deleteProcedure);
 
   app.param('eventName', eventsController.getEventName);
   // app.param('procedureName', proceduresController.getProcedureName);
-
 
   function verify(req, res, next) {
     if (req.isAuthenticated() && req.user) {
