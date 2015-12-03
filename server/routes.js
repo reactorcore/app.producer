@@ -41,8 +41,8 @@ module.exports = function (app) {
   app.post('/procedures', verify, proceduresController.createProcedure);
   app.delete('/procedures/:procedureId', verify, proceduresController.deleteProcedure);
 
-  app.param('eventName', verify, eventsController.getEventName);
-  // app.param('procedureName', verify, proceduresController.getProcedureName);
+  app.param('eventName', eventsController.getEventName);
+  // app.param('procedureName', proceduresController.getProcedureName);
 
   function verify(req, res, next) {
     if (req.isAuthenticated() && req.user) {
