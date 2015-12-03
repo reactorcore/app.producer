@@ -4,6 +4,6 @@ angular.module('event-details', [])
       restrict: 'E',
       replace: true,
       scope: false,
-      templateUrl: 'app/directives/event-details.html'
+      templateUrl: 'app/directives/event-details.html',
     };
 });
