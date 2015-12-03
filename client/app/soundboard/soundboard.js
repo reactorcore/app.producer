@@ -3,6 +3,7 @@ angular.module('producer.soundboard', ['alertMessageDirective'])
 .controller('soundboardController', function ($scope, Events, Soundboard, Messages) {
   $scope.events = [];
   $scope.selectedEvent = {};
+  $scope.templates = [];
 
   $scope.getEvents = function () {
     Events.getEvents().then(function (res) {
@@ -39,7 +40,7 @@ angular.module('producer.soundboard', ['alertMessageDirective'])
 
   $scope.getTemplate = function (event) {
     Soundboard.getTemplate(event).then(function (res) {
-      console.log(res);
+      $scope.templates = Soundboard.formatTemplateData(res.data);
     }).catch(function (error) {
       console.log(error);
     });
