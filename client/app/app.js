@@ -21,12 +21,6 @@ angular.module('producer', [
       controller: 'loginController',
       authenticate: false
     })
-    .state('home', {
-      url: '/',
-      templateUrl: 'app/home/home.html',
-      controller: 'homeController',
-      authenticate: true
-    })
     .state('templates', {
       url: '/templates',
       templateUrl: 'app/templates/templates.html',
@@ -53,6 +47,11 @@ angular.module('producer', [
     });
 
   $urlRouterProvider.otherwise('/templates');
+
+  // Include our custom interceptor to the http Provider
+  // This catches status codes from the server, and if 401,
+  // will redirect to the login page.
+  $httpProvider.interceptors.push('RedirectInterceptor');
 
 })
 .run(function ($rootScope, $location, $state, Auth) {

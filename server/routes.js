@@ -25,7 +25,7 @@ module.exports = function (app) {
   app.get('/logout', function (req, res){
     res.cookie('message', 'Logged out.');
     req.logout();
-    res.redirect('/login');
+    res.sendStatus(401);
   });
 
 
@@ -53,7 +53,7 @@ module.exports = function (app) {
     } else {
       res.cookie('message', '');
     }
-    res.redirect('/login');
+    res.sendStatus(401);
   }
 
 };

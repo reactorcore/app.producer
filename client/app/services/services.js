@@ -118,6 +118,17 @@ angular.module('producer.services', [])
   };
 })
 
+.factory('RedirectInterceptor', function ($location) {
+  return {
+    response: function (response) {
+      if(response.status === 401) {
+        $location.replace('login');
+      }
+      return response;
+    }
+  };
+})
+
 .factory('Auth', function ($http, $cookies) {
 
   return {
