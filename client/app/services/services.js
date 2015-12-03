@@ -111,7 +111,7 @@ angular.module('producer.services', [])
     triggerEvent: function (event) {
       return $http({
         method: 'POST',
-        url: 'soundboard/' + event.title,
+        url: 'soundboard/' + event.eventKey,
         data: event
       });
     },
@@ -119,8 +119,39 @@ angular.module('producer.services', [])
     getTemplate: function (event) {
       return $http({
         method: 'GET',
-        url: 'soundboard/' + event.title,
+        url: 'soundboard/' + event.eventKey,
       });
+    },
+
+    formatTemplateData: function (templates) {
+      // TODO: decide exactly what information we need from the template for Soundboard.
+      // there is a lot of info here, but what is most relevant?
+      return _.map(templates, function (template) {
+        return _.pick(template,
+          'name',
+          'notes',
+          'assignee',
+          'assignments',
+          'assignee_status',
+          'workspace',
+          'created_at',
+          'subtasks',
+          'followers',
+          'follow_ups',
+          'tags');
+      });
+    }
+  };
+})
+
+.factory('RedirectInterceptor', function ($location) {
+  return {
+    response: function (response) {
+      if(response.status === 401) {
+        $location.replace('login');
+      } else {
+        return response;
+      }
     }
   };
 })
@@ -149,6 +180,7 @@ angular.module('producer.services', [])
 
       //TODO: refactor to just use document.cookie instead of
       // bringing in an entire module
+      // var sessionCookie = document.cookie.split(';').split(':')[1];
 
       return $cookies.get('session') === "true" ? true : false;
     }
