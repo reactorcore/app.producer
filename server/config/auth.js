@@ -34,8 +34,6 @@ passport.use(new GitHubStrategy({
       url: 'https://api.github.com/user/teams',
       headers: {
                 'Authorization': 'token ' + accessToken,
-                // this needs to be changed
-                // should this be 'Hack Reactor'?
                 'User-Agent': process.env.USER_AGENT
               }
       },
