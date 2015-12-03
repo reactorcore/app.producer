@@ -33,7 +33,7 @@ module.exports = {
 
       var events = parsedData.rhythms.map(function (rhythm) {
         return {
-          "abbreviation": rhythm[0],
+          "eventKey": rhythm[0],
           "text": text[rhythm[0]] || rhythm[0],
           "title": text[rhythm[0]] || rhythm[0],
           "url": rhythm[1],
