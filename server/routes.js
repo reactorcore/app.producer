@@ -26,6 +26,7 @@ module.exports = function (app) {
   app.get('/logout', function (req, res){
     res.cookie('message', 'Logged out.');
     req.logout();
+    //Do not redirect here, client will handle redirection
     res.sendStatus(401);
   });
 
@@ -49,7 +50,7 @@ module.exports = function (app) {
 
   function verify(req, res, next) {
     if (req.isAuthenticated() && req.user) {
-     res.cookie('session', 'true', {httpOnly: false});
+     res.cookie('session', 'true', { httpOnly: false });
      return next();
    }
     if (req.user && req.user.__error) {
@@ -57,6 +58,7 @@ module.exports = function (app) {
     } else {
       res.cookie('message', '');
     }
+    //Do not redirect here, client will handle redirection to login page;
     res.sendStatus(401);
   }
 
