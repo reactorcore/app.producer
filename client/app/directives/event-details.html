@@ -3,9 +3,9 @@
   <p class="content__input--title">{{selectedEvent.cron}}</p>
   <p class="content__input--title">{{selectedEvent.description}}</p>
   <div ng-repeat="template in templates">
-    <li>{{template.name}}</li>
-    <li>{{template.assignee || 'not yet assigned' }}</li>
-    <li>{{template.assignee_status}}</li>
-    <li>{{template.notes}}</li>
+    <p class="content__input--title">{{template.name}}</p>
+    <p class="content__input--title">{{template.assignee || 'not yet assigned' }}</p>
+    <p class="content__input--title">{{template.assignee_status}}</p>
+    <p class="content__input--title">{{template.notes}}</p>
   </div>
 </div>
