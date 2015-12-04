@@ -5,6 +5,7 @@ angular.module('producer.services', [])
   // If data ever needs to be retrieved from Asana, it will be done through this service
   return {
     submitTemplate: function(template){
+      console.log('template is: ', template);
       return $http({
         method: 'POST',
         url: 'templates',
@@ -13,8 +14,6 @@ angular.module('producer.services', [])
     }
   };
 })
-
-
 
 .factory('Events', function ($http) {
   return {
@@ -78,7 +77,6 @@ angular.module('producer.services', [])
         url: 'roles',
       })
       .then(function(resp){
-        console.log("ROLES: ", resp.data);
         callback(resp.data.data);
       });
     }

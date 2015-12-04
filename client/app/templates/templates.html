@@ -13,7 +13,7 @@
     </div>
     <div class="content__input--container">
       <label class="content__input--title">Role:</label>
-      <input class="content__input--field roles-input" id="template__role" ng-change="checkInput('role')" name="role" ng-model="template.role" required />
+      <producer-autocomplete item-name="role" collection="roles" target="template.role"></producer-auto>
     </div>
     <div class="content__input--container">
       <label class="content__input--title">Tags:</label>

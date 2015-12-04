@@ -1,9 +1,9 @@
-angular.module('producer.templates', ['alertMessageDirective'])
+angular.module('producer.templates', ['alertMessageDirective', 'producerAutocompleteDirective'])
 
 .controller('templatesController', function ($scope, Template, Roles, Events, Messages) {
-  $scope.template = {title: '', role: '', event: '', description: ''};
-  $scope.roles = [];
+  $scope.template = {title: '', role: null, event: '', description: ''};
   $scope.tags = [];
+  $scope.roles = [];
   var events;
 
   var submitSuccess = function(response) {
@@ -70,20 +70,11 @@ angular.module('producer.templates', ['alertMessageDirective'])
       });
   };
 
-  // Set up autocomplete for Roles Input
-  $(function() {
-    $(".roles-input").autocomplete({
-      source: $scope.roles,
-      select: function(event, ui){
-        $scope.template.role = ui.item.value;
-      }
-    });
-  });
-
   // Fetch existing roles from Asana
   Roles.getRoles(function(roles){
     roles.forEach(function(role){
       $scope.roles.push(role.name);
+      $scope.filteredRoles = $scope.roles;
     });
   });
 

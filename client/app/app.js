@@ -8,7 +8,8 @@ angular.module('producer', [
   'ngTagsInput',
   'angular-cron',
   'alertMessageDirective',
-  'event-details'
+  'event-details',
+  'producerAutocompleteDirective'
 ])
 .config(function($stateProvider, $urlRouterProvider) {
   $stateProvider
