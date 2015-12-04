@@ -136,18 +136,6 @@ angular.module('producer.services', [])
     response: function (response) {
       if(response.status === 401) {
         $location.replace('login');
-      } else {
-        return response;
-      }
-    }
-  };
-})
-
-.factory('RedirectInterceptor', function ($location) {
-  return {
-    response: function (response) {
-      if(response.status === 401) {
-        $location.replace('login');
       }
       return response;
     }
