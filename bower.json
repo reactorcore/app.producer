@@ -18,10 +18,7 @@
     "jquery-ui": "~1.11.4",
     "angular-cron-jobs": "~1.4.1",
     "angular-material-icons": "~0.6.0",
-    "angular-material": "~0.11.4"
-  },
-  "resolutions": {
-    "angular": "1.4.8",
+    "angular-material": "~0.11.4",
     "angular-cookies": "~1.4.8"
   },
   "resolutions": {
