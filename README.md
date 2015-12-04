@@ -54,9 +54,23 @@ These should be inside of the .env file:
 * **CHOREOGRAPHER_URL**=http://api.staging.hackreactor.com/choreographer/v0
 * **PORT**=8000
 
+For local development, a Github Application will need to be registered. Follow these steps and add these additional variables to your .env file:
+
+1. In github, go to Settings > Applications > Developer Applications > Register a new app
+2. Get the client id and the client secret that are generated
+3. add this as the callback url http://127.0.0.1:8000/auth/github/callback
+4. add the following to your .env file
+
+GITHUB_CLIENT_ID= // client id
+GITHUB_CLIENT_SECRET= // client secret
+TEAM_NAME=w-producer
+ORG_NAME=hackreactor-labs
+GITHUB_CALLBACK_URL=http://127.0.0.1:8000/auth/github/callback
+USER_AGENT= // username
+
 For local development, a personal Asana account is needed. Once you have created an account, complete the following:
-* go to your profile settings and click the 'Apps' tab 
-* create an API key and Personal Access Token 
+* go to your profile settings and click the 'Apps' tab
+* create an API key and Personal Access Token
 * create a new project; PROJECT_ID can be found in the url of the project: https://app.asana.com/0/{PROJECT_ID}/....
 * create a new project to store a list of roles: ROLES_ID can be found in the url of the roles project: https://app.asana.com/0/{ROLES_ID}/....
 * WORKSPACE_ID can be found here: https://app.asana.com/api/1.0/workspaces (be sure you are logged into your account)
