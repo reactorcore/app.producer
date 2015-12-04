@@ -1,5 +1,3 @@
-// var winston = require('winston');
-// var logger = require('../logging/winstonSetup')(winston);
 var fs = require('fs');
 var path = require('path');
 var s3 = require('s3');
@@ -15,7 +13,6 @@ var persist = {
   watchDir: function(dirPath) {
     var realPath = dirPath + '/' + (process.env.NODE_ENV || 'development')
     console.log(realPath)
-    // logger.info("Watching directory " + realPath + " for changes.");
     fs.watch(realPath, function (e, filename) {
       if (e === 'change') {
         console.log('changed:', filename);
@@ -35,7 +32,6 @@ var persist = {
       },
     };
 
-    // logger.info("Updating and uploading with params = " + JSON.stringify(params));
     console.log("Updating and uploading with params = " + JSON.stringify(params));
 
     var uploader = client.uploadFile(params);
@@ -61,19 +57,16 @@ var persist = {
       },
     };
 
-    // logger.info("Retrieving directory with params = " + JSON.stringify(params));
     console.log("Retrieving directory with params = " + JSON.stringify(params));
     
     var downloader = client.downloadDir(params);
     downloader.on('error', function(err) {
       console.error('unable to download:', err.stack);
-      logger.error('unable to download:', err.stack);
       done(err);
       done = function noop (){};
     });
     downloader.on('end', function() {
       console.log('done downloading');
-      logger.info('done downloading');
       done();
     });
   }

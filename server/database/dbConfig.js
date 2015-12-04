@@ -1,25 +1,10 @@
-//dbConfig.js
-// Embedded database directory for levelDB
-// var winston = require('winston');
-// var logger = require('../logging/winstonSetup')(winston);
 var path = require('path');
-var db = '';
+var env = process.env.NODE_ENV || 'development';
 
-if (process.env.NODE_ENV === 'production') {
-  db = './data/production';
-} else if (process.env.NODE_ENV === 'staging') {
-  db = './data/staging';
-} else {
-  db = './data/development'
-}
+var dbPath = path.join(__dirname, './data/', env);
+console.log("Using database: ", dbPath);
 
-// logger.info("Using database: " + path.join(__dirname, db));
-console.log("Using database: " + path.join(__dirname, db));
-
-module.exports = {
-  database: path.join(__dirname, db),
-  options: {
-    valueEncoding: 'json'
-  }
-}
+module.exports = exports = {
+  database: dbPath
+};
 

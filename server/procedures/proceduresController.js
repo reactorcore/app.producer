@@ -1,43 +1,78 @@
-var Procedure = require('./../database/models/procedure.js').Procedure;
+var Procedure = require('./../database/models/procedure.js');
+var db = require('./../database');
+
+// NOTE: leveldb put + delete callbacks do not accept a second param for data
 
 module.exports = {
-  getProcedures: function(req, res, next) {
-    var procedureDBModel = new Procedure();
-
-    procedureDBModel.getAllAsync()
-    .then(function(procedures) {
-      res.status(200);
-      res.send(procedures);
-    })
-    .catch(function(err) {
-      console.error(new Error(err).stack);
-      res.sendStatus(500);
+  getProcedures: function(req, res) {
+    db.readAll('procedure', function (err, data) {
+      if (err) {
+        console.log('Error in getProcedures ', err);
+      } else {
+        res.status(200);
+        res.send(data);
+      }
     });
   },
 
-  createProcedure: function(req, res, next) {
+  createProcedure: function (req, res) {
     var procedureData = req.body;
     var procedureDBModel = new Procedure(procedureData);
 
-    procedureDBModel.save()
-    .then(function(newID) {
-      procedureData.ID = newID;
-      res.status(201);
-      res.send(procedureData);
-    })
-    .catch(function(err) {
-      console.error(new Error(err).stack);
-      res.sendStatus(500);
+    // TODO: remove data param in callback--second arg does not exist in leveldb put method
+    db.create('procedure', procedureDBModel, function (err, data) {
+      if (err) {
+        console.log('Error in createProcedure ', err);
+      } else {
+        res.status(201);
+        res.send(data);
+      }
     });
   },
 
-  getProcedureName: function(req, res, next, name){
-    req.procedureName = name;
-    next()
+  updateProcedure: function (req, res) {
+    // TODO: remove id from model instance
+    var procedureId = req.body.id;
+    var procedureData = req.body;
+
+    var procedureDBModel = new Procedure(procedureData);
+
+    // TODO: remove data param in callback--second arg does not exist in leveldb put method
+    db.update('procedure', procedureId, procedureDBModel, function (err, data) {
+      if (err) {
+        console.log('Error in updateProcedure ', err);
+      } else {
+        res.status(201);
+        res.send(data);
+      }
+    });
   },
 
-  deleteProcedure: function(req, res, next) { 
-    var procedureName = req.procedureName;
+  getProcedure: function (req, res){
+    // TODO: remove id from model instance
+    var procedureId = req.body.id;
+
+    db.read('procedure', procedureId, function (err, data) {
+      if (err) {
+        console.log('Error in getProcedure ', err);
+      } else {
+        res.status(201);
+        res.send(data);        
+      }
+    });
+  },
+
+  deleteProcedure: function (req, res) { 
+    var procedureId = req.body.id;
+
+    // TODO: remove data param in callback--second arg does not exist in leveldb put method
+    db.destroy('procedure', procedureId, function (err) {
+      if (err) {
+        console.log('Error in deleteProcedure ', err);
+      } else {
+        res.status(201);
+      }
+    });
 
   }
 };
