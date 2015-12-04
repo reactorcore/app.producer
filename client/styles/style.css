@@ -207,7 +207,7 @@ a:visited {
 .content__submit--left,
 .content__submit--right {
   display: block;
-  margin: 30px auto;
+  margin: 30px 20px;
   width: 200px;
   height: 50px;
   background-color: rgba(000, 113, 206, 0.2);
@@ -220,14 +220,9 @@ a:visited {
   cursor: pointer;
 }
 
-.content__submit--left {
-  float: left;
-  margin-left: 5px;
-}
-
-.content__submit--right {
-  float: left;
-  margin-left: 30px;
+.content__submit--container {
+  display: flex;
+  justify-content: center;
 }
 
 .content__main--card {
@@ -235,7 +230,6 @@ a:visited {
   text-align: center;
   background-color: rgb(184, 215, 241);
 }
-
 
 /* TAGS */
 
