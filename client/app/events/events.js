@@ -51,7 +51,6 @@ angular.module('producer.events', ['alertMessageDirective'])
     $scope.newEvent.cron = "";
     $scope.newEvent.description = "";
     $scope.showEvent = false;
-    Events.deleteEvent($scope.event).then(deleteSuccess, deleteError);
   };
 
   var deleteSuccess = function(response) {

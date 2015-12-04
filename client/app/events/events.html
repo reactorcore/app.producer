@@ -25,11 +25,11 @@
       <cron-select output="newEvent.cron"></cron-select>
     </div>
     <div class="content__input--container">
-      <label class="content__input--title">Procedure:</label>
+      <label class="content__input--title">Description:</label>
       <textarea class="content__input--field content__input--procedure" ng-model="newEvent.description"></textarea>
     </div>
     <div class="content__input--container">
-      <button ng-show="!showEvent" ng-click="submitEvent()" class="content__submit--left">Submit</button>
+      <button ng-show="!showEvent" ng-click="submitEvent()" class="content__input--submit">Submit</button>
       <button ng-show="showEvent" ng-click="deleteEvent()" class="content__submit--left">Delete</button>
       <button ng-show="showEvent" ng-click="" class="content__submit--right">Resubmit</button>
     </div>
