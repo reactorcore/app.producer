@@ -13,7 +13,7 @@ angular.module('producer', [
   'event-details',
   'producerAutocompleteDirective'
 ])
-.config(function($stateProvider, $urlRouterProvider) {
+.config(function($stateProvider, $urlRouterProvider, $httpProvider) {
   $stateProvider
     .state('login', {
       url: '/login',
