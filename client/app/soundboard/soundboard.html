@@ -9,10 +9,19 @@
 
   <div class="content__main">
     <h1 class="content__title">Soundboard</h1>
-    <event-details></event-details>
-    <div class="content__input--container">
-      <button ng-show="selectedEvent.isSelected" ng-click="triggerEvent()" class="content__input--submit">Trigger</button>
+    <div class="content__input--container content__main--card" ng-show="selectedEvent.isSelected">
+      <p class="content__input--title">{{selectedEvent.title}}</p>
+      <p class="content__input--title">{{selectedEvent.cron}}</p>
+      <p class="content__input--title">{{selectedEvent.description}}</p>
     </div>
+    <div class="content__input--container">
+    <div>
+      <button ng-show="selectedEvent.isSelected" ng-click="triggerEvent()" class="content__submit--left">Trigger</button>
+    </div>
+    </div>
+      <div class="content__input--container content__main--card" ng-repeat="template in templates">
+        <p class="content__input--title">{{template}}</p>
+      </div>
     <alert-message></alert-message>
   </div>
 </div>

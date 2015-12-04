@@ -124,21 +124,8 @@ angular.module('producer.services', [])
     },
 
     formatTemplateData: function (templates) {
-      // TODO: decide exactly what information we need from the template for Soundboard.
-      // there is a lot of info here, but what is most relevant?
       return _.map(templates, function (template) {
-        return _.pick(template,
-          'name',
-          'notes',
-          'assignee',
-          'assignments',
-          'assignee_status',
-          'workspace',
-          'created_at',
-          'subtasks',
-          'followers',
-          'follow_ups',
-          'tags');
+        return template.name;
       });
     }
   };
