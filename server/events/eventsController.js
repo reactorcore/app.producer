@@ -8,7 +8,7 @@ var headers = {
 };
 
 //TODO: verify corect format of timezone
-var timezone = 'PST';
+var TIMEZONE = 'PST';
 
 module.exports = {
   getEventsData: function (req, res, next) {

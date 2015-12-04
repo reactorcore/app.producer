@@ -116,4 +116,34 @@ angular.module('producer.services', [])
       });
     }
   };
+})
+
+.factory('RedirectInterceptor', function ($location) {
+  return {
+    response: function (response) {
+      if(response.status === 401) {
+        $location.replace('login');
+      }
+      return response;
+    }
+  };
+})
+
+.factory('Auth', function ($http, $cookies) {
+
+  return {
+
+    isAuthenticated: function () {
+
+      // The real authentication is handled in the server
+      // and through http-only cookies.
+      // The purpose here is  to provide basic control so
+      // the user doesn't see empty views when not logged in
+
+      //TODO: refactor to just use document.cookie instead of
+      // bringing in an entire module
+
+      return $cookies.get('session') === "true" ? true : false;
+    }
+  };
 });

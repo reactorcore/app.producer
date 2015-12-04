@@ -62,7 +62,14 @@ body {
   min-height: 650px;
 }
 
+a {
+  text-decoration: none;
+  color: #FFF;
+}
 
+a:visited {
+  color: #FFF;
+}
 
 /* LEFT NAV */
 
