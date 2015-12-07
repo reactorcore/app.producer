@@ -21,11 +21,19 @@
       <button ng-show="selectedEvent.isSelected" ng-click="triggerEvent()" class="content__submit--left">Trigger</button>
     </div>
     </div>
-      <div class="content__main--card content__list--container">
-        <div ng-hide="selectedEvent.isSelected" class="content__input--title content__input--container">
-          Select an event before triggering task assignment.
+      <div class="content__main--card">
+        <div class="content__input--container">
+          <p ng-hide="selectedEvent.isSelected" class="content__input--title">
+            Select an event before triggering task assignment.
+          </p>
+          <p ng-show="selectedEvent.isSelected" class="content__input--title">
+            Procedures affected by {{selectedEvent.title}}
+          </p>
         </div>
-        <div class="content__input--container" ng-repeat="template in templates">
+      </div>
+      <div class="content__main--card content__list--container">
+        <div ng-show="selectedEvent.isSelected" class="content__input--title">
+        <div class="content__input--container" ng-repeat="template in templates track by $index">
           <p class="content__main--body-text">{{template}}</p>
       </div>
     <alert-message></alert-message>
