@@ -9,18 +9,24 @@
 
   <div class="content__main">
     <h1 class="content__title">Soundboard</h1>
-    <div class="content__input--container content__main--card" ng-show="selectedEvent.isSelected">
-      <p class="content__input--title">{{selectedEvent.title}}</p>
-      <p class="content__input--title">{{selectedEvent.cron}}</p>
-      <p class="content__input--title">{{selectedEvent.description}}</p>
+    <div class="content__main--card" ng-show="selectedEvent.isSelected">
+      <div class="content__input--container">
+        <p class="content__input--title">{{selectedEvent.title}}</p>
+        <p class="content__input--title">{{selectedEvent.cron}}</p>
+        <p class="content__input--title">{{selectedEvent.description}}</p>
+      </div>
     </div>
     <div class="content__input--container">
     <div class="content__submit--container">
       <button ng-show="selectedEvent.isSelected" ng-click="triggerEvent()" class="content__submit--left">Trigger</button>
     </div>
     </div>
-      <div class="content__input--container content__main--card" ng-repeat="template in templates">
-        <p class="content__input--title">{{template}}</p>
+      <div class="content__main--card content__list--container">
+        <div ng-hide="selectedEvent.isSelected" class="content__input--title content__input--container">
+          Select an event before triggering task assignment.
+        </div>
+        <div class="content__input--container" ng-repeat="template in templates">
+          <p class="content__main--body-text">{{template}}</p>
       </div>
     <alert-message></alert-message>
   </div>

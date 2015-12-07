@@ -187,6 +187,19 @@ a:visited {
   margin-left: 225px;
 }
 
+.content__main--body-text {
+  font-weight: 200;
+  font-size: 1rem;
+  padding: 5px 5px;
+}
+
+.content__list--container {
+  display: flex;
+  flex-direction: column;
+  overflow: scroll;
+  height: 359px;
+}
+
 .content__input--field {
   width: 100%;
   height: 30px;
