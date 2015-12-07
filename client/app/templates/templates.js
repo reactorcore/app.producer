@@ -1,10 +1,10 @@
-angular.module('producer.templates', ['alertMessageDirective', 'producerAutocompleteDirective'])
+angular.module('producer.templates', ['ui.select','ngSanitize','alertMessageDirective', 'producerAutocompleteDirective'])
 
 .controller('templatesController', function ($scope, Template, Roles, Events, Messages) {
   $scope.template = {title: '', role: null, event: '', description: ''};
   $scope.tags = [];
   $scope.roles = [];
-  var events;
+  $scope.events = [];
 
   var submitSuccess = function(response) {
     Messages.setMessage('Your form has been sent!', 'success');
@@ -24,19 +24,22 @@ angular.module('producer.templates', ['alertMessageDirective', 'producerAutocomp
       return eventList+= currEvent.eventKey;
     }, '');
     Template.submitTemplate($scope.template).then(submitSuccess, submitError);
+    console.log($scope.tags.selected);
   };
 
   // Loads events/tags off $scope
   var loadTags = function() {
     return Events.getEvents()
       .then(function(eventsObj) {
-        events = eventsObj.data;
+        $scope.events = eventsObj.data;
       });
   };
 
+  loadTags();
+
   // Return filtered events/tags per query
   var eventsFilter = function($query) {
-    return events.filter(function(event) {
+    return $scope.events.filter(function(event) {
       return event.text.toLowerCase().indexOf($query.toLowerCase()) !== -1;
     });
   };
@@ -64,7 +67,7 @@ angular.module('producer.templates', ['alertMessageDirective', 'producerAutocomp
   // If events exists return filtered events/tags,
   // if not, load events/tags and return filtered
   $scope.filterTags = function($query) {
-    return events ? eventsFilter($query) :
+    return $scope.events ? eventsFilter($query) :
       loadTags().then(function() {
         return eventsFilter($query);
       });

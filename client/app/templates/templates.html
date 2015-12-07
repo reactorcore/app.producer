@@ -17,9 +17,24 @@
     </div>
     <div class="content__input--container">
       <label class="content__input--title">Tags:</label>
-      <tags-input name="tags" id="template__tags" ng-keyup="checkInput('tags')"  ng-model="tags" add-on-paste="true" add-from-autocomplete-only="true" min-length="1" required>
+
+      <ui-select id='template__tags' class="content__input--field" multiple ng-model="tags.selected"  ng-disabled="disabled">
+        <ui-select-match allow-clear="true" placeholder="Add event tags">{{$item.title}}</ui-select-match>
+        <ui-select-choices position="down" repeat="event in (events | filter: $select.search) track by event.title">
+          <div ng-bind-html="event.title | highlight: $select.search"></div>
+        </ui-select-choices>
+      </ui-select>
+
+
+
+
+    <!--   <tags-input name="tags" id="template__tags" ng-keyup="checkInput('tags')"  ng-model="tags" add-on-paste="true" add-from-autocomplete-only="true" min-length="1" required>
         <auto-complete source="filterTags($query)" min-length="1"></auto-complete>
-      </tags-input>
+      </tags-input> -->
+
+
+
+
     </div>
     <div class="content__input--container">
       <label class="content__input--title">Procedure:</label>
