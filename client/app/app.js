@@ -10,7 +10,6 @@ angular.module('producer', [
   'angular-cron',
   'ngCookies',
   'alertMessageDirective',
-  'event-details',
   'producerAutocompleteDirective'
 ])
 .config(function($stateProvider, $urlRouterProvider, $httpProvider) {
