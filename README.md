@@ -61,12 +61,12 @@ For local development, a Github Application will need to be registered. Follow t
 3. add this as the callback url http://127.0.0.1:8000/auth/github/callback
 4. add the following to your .env file
 
-GITHUB_CLIENT_ID= // client id
-GITHUB_CLIENT_SECRET= // client secret
-TEAM_NAME=w-producer
-ORG_NAME=hackreactor-labs
-GITHUB_CALLBACK_URL=http://127.0.0.1:8000/auth/github/callback
-USER_AGENT= // username
+* **GITHUB_CLIENT_ID=**YOUR_CLIENT_ID
+* **GITHUB_CLIENT_SECRET=**YOUR_CLIENT_SECRET
+* **TEAM_NAME=**w-producer
+* **ORG_NAME=**hackreactor-labs
+* **GITHUB_CALLBACK_URL=**http://127.0.0.1:8000/auth/github/callback
+* **USER_AGENT=**YOUR_USERNAME
 
 For local development, a personal Asana account is needed. Once you have created an account, complete the following:
 * go to your profile settings and click the 'Apps' tab
