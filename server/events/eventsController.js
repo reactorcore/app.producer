@@ -7,9 +7,6 @@ var headers = {
   "Content-Type": "application/json"
 };
 
-//TODO: verify corect format of timezone
-var TIMEZONE = 'PST';
-
 module.exports = {
   getEventsData: function (req, res, next) {
     request({
@@ -36,7 +33,7 @@ module.exports = {
 
       var events = parsedData.rhythms.map(function (rhythm) {
         return {
-          "abbreviation": rhythm[0],
+          "eventKey": rhythm[0],
           "text": text[rhythm[0]] || rhythm[0],
           "title": text[rhythm[0]] || rhythm[0],
           "url": rhythm[1],
@@ -69,22 +66,6 @@ module.exports = {
   getEventName: function (req, res, next, name){
     req.eventName = name;
     next();
-  },
-
-  postSignal: function (req, res, next) {
-    var eventName = req.eventName;
-    request({
-      method: 'POST',
-      uri: process.env.CHOREOGRAPHER_URL + '/signal/' + eventName,
-      headers: headers
-    }, function (error, response, body) {
-      if (error) {
-        console.log('putEvent error: ', error);
-        res.send(400);
-      } else {
-        res.send(200);
-      }
-    });
   },
 
   deleteEvent: function (req, res, next) {

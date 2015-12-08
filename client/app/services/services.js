@@ -111,8 +111,21 @@ angular.module('producer.services', [])
     triggerEvent: function (event) {
       return $http({
         method: 'POST',
-        url: 'signal/' + event.title,
+        url: 'soundboard/' + event.eventKey,
         data: event
+      });
+    },
+
+    getTemplate: function (event) {
+      return $http({
+        method: 'GET',
+        url: 'soundboard/' + event.eventKey,
+      });
+    },
+
+    formatTemplateData: function (templates) {
+      return _.map(templates, function (template) {
+        return template.name;
       });
     }
   };
@@ -142,6 +155,7 @@ angular.module('producer.services', [])
 
       //TODO: refactor to just use document.cookie instead of
       // bringing in an entire module
+      // var sessionCookie = document.cookie.split(';').split(':')[1];
 
       return $cookies.get('session') === "true" ? true : false;
     }

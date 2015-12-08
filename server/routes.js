@@ -5,11 +5,13 @@ var templatesController = require('./templates/templatesController.js');
 var eventsController = require('./events/eventsController');
 var rolesController = require('./roles/rolesController.js');
 var proceduresController = require('./procedures/proceduresController.js');
+var soundboardController = require('./soundboard/soundboardController.js');
 
 module.exports = function (app) {
   // could be abstracted out into router file
   app.use(express.Router());
   app.use(express.static(__dirname + '/../client'));
+
 
   // login with github route
   app.get('/auth/github', passport.authenticate('github'));
@@ -18,24 +20,27 @@ module.exports = function (app) {
   app.get('/auth/github/callback',
     passport.authenticate('github', { failureRedirect: '/login' }),
     function (req, res) {
-      res.cookie('session', 'true', {httpOnly: false});
       res.redirect('/');
   });
 
   app.get('/logout', function (req, res){
     res.cookie('message', 'Logged out.');
     req.logout();
+    //Do not redirect here, client will handle redirection
     res.sendStatus(401);
   });
 
 
+
   // 'verify' is authentication middleware added to all protected routes
+
   app.post('/templates', verify, templatesController.postTemplate);
   app.get('/roles', verify, rolesController.getRoles);
   app.get('/events', verify, eventsController.getEventsData);
   app.post('/events', verify, eventsController.createEvent);
-  app.post('/signal/:eventName', verify, eventsController.postSignal);
   app.delete('/events/:eventName', verify, eventsController.deleteEvent);
+  app.post('/soundboard/:eventName', verify, soundboardController.postSoundboard);
+  app.get('/soundboard/:eventName', verify, soundboardController.getSoundboardTemplate);
   app.get('/procedures', verify, proceduresController.getProcedures);
   app.post('/procedures', verify, proceduresController.createProcedure);
   app.delete('/procedures/:procedureId', verify, proceduresController.deleteProcedure);
@@ -45,7 +50,7 @@ module.exports = function (app) {
 
   function verify(req, res, next) {
     if (req.isAuthenticated() && req.user) {
-     res.cookie('session', 'true', {httpOnly: false});
+     res.cookie('session', 'true', { httpOnly: false });
      return next();
    }
     if (req.user && req.user.__error) {
@@ -53,6 +58,7 @@ module.exports = function (app) {
     } else {
       res.cookie('message', '');
     }
+    //Do not redirect here, client will handle redirection to login page;
     res.sendStatus(401);
   }
 
