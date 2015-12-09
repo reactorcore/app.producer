@@ -45,7 +45,7 @@ angular.module('autoSelectDirective', ['ui.select', 'ngSanitize'])
       link: function($scope, elem){
         // no errors thrown if numbers filtered
         $scope.input = $scope.input.map(function(i) {
-          return typeof i !== 'string' || typeof i !== 'object' ? i.toString() : i;
+          return typeof i !== 'string' && typeof i !== 'object' ? i.toString() : i;
         });
         //events include focusin click keyup(for return key)
         //example for potential further styling
