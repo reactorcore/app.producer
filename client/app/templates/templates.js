@@ -6,32 +6,6 @@ angular.module('producer.templates', ['ui.select','ngSanitize','alertMessageDire
   $scope.roles = [];
   $scope.events = [];
 
-<<<<<<< HEAD
-  var submitSuccess = function(response) {
-    Messages.setMessage('Your form has been sent!', 'success');
-  };
-
-  var submitError = function(response) {
-    if ((400 <= response.status) && (response.status < 500)) {
-      Messages.setMessage('Sorry, there was an error submitting your form. Please submit again.', 'error');
-    } else {
-      Messages.setMessage(response.data, 'error');
-    }
-  };
-
-  // Submits template in correct format
-  $scope.submitTemplate = function() {
-    $scope.template.event = $scope.tags.reduce(function(eventList, currEvent) {
-<<<<<<< HEAD
-      return eventList+= currEvent.eventKey;
-=======
-      return eventList+= currEvent.abbreviation;
->>>>>>> directive functional, custom styling has been moved to the styles.css page
-    }, '');
-    $scope.template.role = $scope.template.role[0].name;
-    Template.submitTemplate($scope.template).then(submitSuccess, submitError);
-    console.log($scope.tags.selected);
-=======
   // Loads roles
   var loadRoles = function() {
     return Roles.getRoles()
@@ -40,7 +14,6 @@ angular.module('producer.templates', ['ui.select','ngSanitize','alertMessageDire
         // blank roles with ids keep appearing...
         $scope.roles = roles.filter(function(r){return r.name !== ''});
       });
->>>>>>> directive tested, works for arrays, objects
   };
   loadRoles();
 

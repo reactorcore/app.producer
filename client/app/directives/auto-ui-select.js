@@ -5,8 +5,8 @@ angular.module('autoSelectDirective', ['ui.select', 'ngSanitize'])
       restrict: 'E',
 
       scope: {
-        input: '=',
-        output: '=',
+        choices: '=',
+        selected: '=',
         filterKey: '@',
         placeholder: '@',
         trackKey: '@'
@@ -15,7 +15,7 @@ angular.module('autoSelectDirective', ['ui.select', 'ngSanitize'])
       controller:function($scope){
         $scope.temp = {selected:[]};
         $scope.update = function(){
-          $scope.output = $scope.temp.selected;
+          $scope.selected = $scope.temp.selected;
         };
       },
 
@@ -34,17 +34,17 @@ angular.module('autoSelectDirective', ['ui.select', 'ngSanitize'])
           '<ui-select-choices '+
             'class="red" '+
             'position="down" '+
-            'repeat="item in (input | filter: $select.search) '+
-            // 'track by item[trackKey] || $index'+
+            'repeat="choice in (choices | filter: $select.search) '+
+            // 'track by choice[trackKey] || $index'+
             '">'+
 
-            '<div ng-bind-html="item[filterKey] || item | highlight: $select.search"></div>'+
+            '<div ng-bind-html="choice[filterKey] || choice | highlight: $select.search"></div>'+
           '</ui-select-choices>'+
         '</ui-select>',
 
       link: function($scope, elem){
         // no errors thrown if numbers filtered
-        $scope.input = $scope.input.map(function(i) {
+        $scope.choices = $scope.choices.map(function(i) {
           return typeof i !== 'string' && typeof i !== 'object' ? i.toString() : i;
         });
         //events include focusin click keyup(for return key)
