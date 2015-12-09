@@ -1,4 +1,4 @@
-angular.module('producer.templates', ['ui.select','ngSanitize','alertMessageDirective', 'producerAutocompleteDirective'])
+angular.module('producer.templates', ['ui.select','ngSanitize','alertMessageDirective'])
 
 .controller('templatesController', function ($scope, Template, Roles, Events, Messages) {
   $scope.template = {title: '', role: null, event: '', description: ''};
@@ -21,8 +21,13 @@ angular.module('producer.templates', ['ui.select','ngSanitize','alertMessageDire
   // Submits template in correct format
   $scope.submitTemplate = function() {
     $scope.template.event = $scope.tags.reduce(function(eventList, currEvent) {
+<<<<<<< HEAD
       return eventList+= currEvent.eventKey;
+=======
+      return eventList+= currEvent.abbreviation;
+>>>>>>> directive functional, custom styling has been moved to the styles.css page
     }, '');
+    $scope.template.role = $scope.template.role[0].name;
     Template.submitTemplate($scope.template).then(submitSuccess, submitError);
     console.log($scope.tags.selected);
   };
@@ -34,15 +39,7 @@ angular.module('producer.templates', ['ui.select','ngSanitize','alertMessageDire
         $scope.events = eventsObj.data;
       });
   };
-
   loadTags();
-
-  // Return filtered events/tags per query
-  var eventsFilter = function($query) {
-    return $scope.events.filter(function(event) {
-      return event.text.toLowerCase().indexOf($query.toLowerCase()) !== -1;
-    });
-  };
 
   // Change style border
   $scope.checkInput = function(name) {
@@ -64,21 +61,12 @@ angular.module('producer.templates', ['ui.select','ngSanitize','alertMessageDire
     }
   };
 
-  // If events exists return filtered events/tags,
-  // if not, load events/tags and return filtered
-  $scope.filterTags = function($query) {
-    return $scope.events ? eventsFilter($query) :
-      loadTags().then(function() {
-        return eventsFilter($query);
+  var loadRoles = function() {
+    return Roles.getRoles()
+      .then(function(roles){
+        $scope.roles = roles.filter(function(r){return r.name!==''});
       });
   };
-
-  // Fetch existing roles from Asana
-  Roles.getRoles(function(roles){
-    roles.forEach(function(role){
-      $scope.roles.push(role.name);
-      $scope.filteredRoles = $scope.roles;
-    });
-  });
+  loadRoles();
 
 });

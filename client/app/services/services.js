@@ -72,12 +72,12 @@ angular.module('producer.services', [])
 .factory('Roles', function ($http) {
   return {
     getRoles: function(callback){
-      $http({
+      return $http({
         method: 'Get',
         url: 'roles',
       })
       .then(function(resp){
-        callback(resp.data.data);
+        return resp.data.data;
       });
     }
   };

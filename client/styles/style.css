@@ -23,6 +23,7 @@ article, aside, details, figcaption, figure,
 footer, header, hgroup, menu, nav, section {
   display: block;
 }
+
 body {
   line-height: 1;
 }
@@ -69,6 +70,44 @@ a {
 
 a:visited {
   color: #FFF;
+}
+
+/* UI-SELECT */
+
+/* access to dropdown row unfocused unhovered background */
+.ui-select-bootstrap .ui-select-choices-row>a {
+  background: white;
+}
+/* Affects the dropdown hovered choice elements 
+set to important to override "active" choice*/
+.ui-select-bootstrap .ui-select-choices-row>a:hover, .ui-select-bootstrap .ui-select-choices-row>a:focus {
+  background: lightgrey !important;
+}
+/* "active" choice (can add using arrows) currently set to hide*/
+.ui-select-bootstrap .ui-select-choices-row.active>a {
+  background-color: white;
+  color: #333;
+}
+/* dropdown menu container*/
+.ui-select-bootstrap > .ui-select-choices {
+  /*max-height: 300px*/
+}
+/* access to the sweet buttons!!! */
+.ui-select-multiple.ui-select-bootstrap .ui-select-match-item {
+  background : #CCE2F5;
+  border-radius : 5px;
+  padding-right : 10px;
+  border: 3px solid #4195DB;
+  margin-left : 3px;
+}
+/* selected tag-button X  */ 
+.ui-select-multiple.ui-select-bootstrap .ui-select-match .close {
+  font-size: 1.3em;
+  cursor: pointer;
+}
+/* button margin to center button contents*/
+.ui-select-multiple .ui-select-match-item.dropping-after:after {
+  margin: 0 2px 0 10px;
 }
 
 /* LEFT NAV */
