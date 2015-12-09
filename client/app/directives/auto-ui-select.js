@@ -32,7 +32,6 @@ angular.module('autoSelectDirective', ['ui.select', 'ngSanitize'])
           '<ui-select-match on-change="change()" placeholder="{{placeholder}}">{{$item[filterKey] || $item}}</ui-select-match>'+
           
           '<ui-select-choices '+
-            'class="red" '+
             'position="down" '+
             'repeat="choice in (choices | filter: $select.search) '+
             // 'track by choice[trackKey] || $index'+
