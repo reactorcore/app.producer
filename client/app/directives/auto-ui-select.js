@@ -35,13 +35,18 @@ angular.module('autoSelectDirective', ['ui.select', 'ngSanitize'])
             'class="red" '+
             'position="down" '+
             'repeat="item in (input | filter: $select.search) '+
-            'track by item[trackKey] || $index">'+
+            // 'track by item[trackKey] || $index'+
+            '">'+
 
             '<div ng-bind-html="item[filterKey] || item | highlight: $select.search"></div>'+
           '</ui-select-choices>'+
         '</ui-select>',
 
       link: function($scope, elem){
+        // no errors thrown if numbers filtered
+        $scope.input = $scope.input.map(function(i) {
+          return typeof i !== 'string' || typeof i !== 'object' ? i.toString() : i;
+        });
         //events include focusin click keyup(for return key)
         //example for potential further styling
         // elem.on('click keyup', function(e){
@@ -53,7 +58,10 @@ angular.module('autoSelectDirective', ['ui.select', 'ngSanitize'])
     }
   });
 
-
+// track by throws error unless mod to ui-select
+// replace ~line 1281 in select.js with
+// if(matches && matches.length>0 && result[matches[1]] == value[matches[1]]){
+// Now track by line ~38 can be uncommented above
 
 
 
