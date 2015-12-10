@@ -20,6 +20,7 @@ module.exports = function (app) {
   app.get('/auth/github/callback',
     passport.authenticate('github', { failureRedirect: '/login' }),
     function (req, res) {
+      res.cookie('session', 'true', { httpOnly: false });
       res.redirect('/');
   });
 
@@ -50,7 +51,6 @@ module.exports = function (app) {
 
   function verify(req, res, next) {
     if (req.isAuthenticated() && req.user) {
-     res.cookie('session', 'true', { httpOnly: false });
      return next();
    }
     if (req.user && req.user.__error) {
