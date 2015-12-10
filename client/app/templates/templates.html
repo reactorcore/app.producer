@@ -6,28 +6,34 @@
 
   <form name="templateForm" class="content__main" ng-submit="submitTemplate()" novalidate>
     <h1 class="content__title">Create Template</h1>
+
     <div class="content__input--container">
       <label class="content__input--title">Title:</label>
-      <input class="content__input--field" id="template__title" ng-change="checkInput('title')" name="title" ng-model="template.title" required autofocus/>
-
+      <input class="content__input--field" id="template__title" autocomplete="off" ng-change="checkInput('title')" name="title" ng-model="template.title" required autofocus/>
     </div>
+
     <div class="content__input--container">
       <label class="content__input--title">Role:</label>
-      <producer-autocomplete item-name="role" collection="roles" target="template.role"></producer-auto>
+      <auto-ui-select choices="roles" selected="template.role"
+        placeholder="enter roles" filter-key="name"></auto-ui-select>
     </div>
+
     <div class="content__input--container">
       <label class="content__input--title">Tags:</label>
-      <tags-input name="tags" id="template__tags" ng-keyup="checkInput('tags')"  ng-model="tags" add-on-paste="true" add-from-autocomplete-only="true" min-length="1" required>
-        <auto-complete source="filterTags($query)" min-length="1"></auto-complete>
-      </tags-input>
+      <auto-ui-select choices="events" selected="tags" 
+        placeholder="enter event tags" 
+        filter-key="title"></auto-ui-select>
     </div>
+
     <div class="content__input--container">
       <label class="content__input--title">Procedure:</label>
       <textarea class="content__input--field content__input--procedure" ng-model="template.description"></textarea>
     </div>
+
     <div class="content__input--container content__submit--container">
       <button ng-disabled="templateForm.$invalid" class="content__input--submit">Submit</button>
     </div>
+
   </form>
   <alert-message></alert-message>
 </div>

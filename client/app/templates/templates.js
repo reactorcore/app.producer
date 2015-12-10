@@ -1,11 +1,55 @@
-angular.module('producer.templates', ['alertMessageDirective', 'producerAutocompleteDirective'])
+angular.module('producer.templates', ['ui.select','ngSanitize','alertMessageDirective'])
 
 .controller('templatesController', function ($scope, Template, Roles, Events, Messages) {
   $scope.template = {title: '', role: null, event: '', description: ''};
   $scope.tags = [];
   $scope.roles = [];
-  var events;
+  $scope.events = [];
 
+  // Loads roles
+  var loadRoles = function() {
+    return Roles.getRoles()
+      .then(function(roles){
+        // $scope.roles = roles;
+        // blank roles with ids keep appearing...
+        $scope.roles = roles.filter(function(r){return r.name !== ''});
+      });
+  };
+  loadRoles();
+
+  // Loads events/tags
+  var loadTags = function() {
+    return Events.getEvents()
+      .then(function(eventsObj) {
+        $scope.events = eventsObj.data;
+      });
+  };
+  loadTags();
+
+  // Change style border
+  $scope.checkInput = function(name) {
+    var el = document.getElementById('template__' + name);
+    var red = "4px solid red"
+    var blue = "4px solid rgba(000, 113, 206, 0.2)"
+    if(name === 'tags') {
+      var el = document.getElementById('template__tags').childNodes[0].childNodes[0];
+      el.style.border = !$scope.tags ? red : blue;
+    } else {
+      el.style.border = !$scope.template[name] ? red : blue;
+    }
+  };
+
+  // Submits template in correct format
+  $scope.submitTemplate = function() {
+    $scope.template.event = $scope.tags.reduce(function(eventList, currEvent) {
+      return eventList+= currEvent.abbreviation;
+    }, '');
+    //temporarily sends first role: autocomplete/$scope.template.role can handle multiple
+    $scope.template.role = $scope.template.role[0].name;
+    Template.submitTemplate($scope.template).then(submitSuccess, submitError);
+    console.log($scope.tags.selected);
+  };
+  
   var submitSuccess = function(response) {
     Messages.setMessage('Your form has been sent!', 'success');
   };
@@ -17,65 +61,4 @@ angular.module('producer.templates', ['alertMessageDirective', 'producerAutocomp
       Messages.setMessage(response.data, 'error');
     }
   };
-
-  // Submits template in correct format
-  $scope.submitTemplate = function() {
-    $scope.template.event = $scope.tags.reduce(function(eventList, currEvent) {
-      return eventList+= currEvent.eventKey;
-    }, '');
-    Template.submitTemplate($scope.template).then(submitSuccess, submitError);
-  };
-
-  // Loads events/tags off $scope
-  var loadTags = function() {
-    return Events.getEvents()
-      .then(function(eventsObj) {
-        events = eventsObj.data;
-      });
-  };
-
-  // Return filtered events/tags per query
-  var eventsFilter = function($query) {
-    return events.filter(function(event) {
-      return event.text.toLowerCase().indexOf($query.toLowerCase()) !== -1;
-    });
-  };
-
-  // Change style border
-  $scope.checkInput = function(name) {
-    var el = document.getElementById('template__' + name);
-
-    if(name === 'tags') {
-      var el = document.getElementById('template__tags').childNodes[0].childNodes[0];
-      if(!$scope.tags) {
-        el.style.border = "4px solid red";
-      } else {
-        el.style.border = "4px solid rgba(000, 113, 206, 0.2)";
-      }
-    } else {
-      if(!$scope.template[name]) {
-        el.style.border = "4px solid red";
-      } else {
-        el.style.border = "4px solid rgba(000, 113, 206, 0.2)";
-      }
-    }
-  };
-
-  // If events exists return filtered events/tags,
-  // if not, load events/tags and return filtered
-  $scope.filterTags = function($query) {
-    return events ? eventsFilter($query) :
-      loadTags().then(function() {
-        return eventsFilter($query);
-      });
-  };
-
-  // Fetch existing roles from Asana
-  Roles.getRoles(function(roles){
-    roles.forEach(function(role){
-      $scope.roles.push(role.name);
-      $scope.filteredRoles = $scope.roles;
-    });
-  });
-
 });

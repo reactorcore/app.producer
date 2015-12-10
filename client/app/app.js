@@ -6,11 +6,10 @@ angular.module('producer', [
   'producer.soundboard',
   'producer.login',
   'ui.router',
-  'ngTagsInput',
   'angular-cron',
   'ngCookies',
   'alertMessageDirective',
-  'producerAutocompleteDirective'
+  'autoSelectDirective'
 ])
 .config(function($stateProvider, $urlRouterProvider, $httpProvider) {
   $stateProvider
