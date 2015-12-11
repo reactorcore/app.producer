@@ -9,12 +9,16 @@ angular.module('autoSelect', ['ui.select', 'ngSanitize'])
         selected: '=',
         filterKey: '@',
         placeholder: '@',
-        trackKey: '@'
+        trackKey: '@',
+        selectMax: '@'
       },
 
       controller:function($scope){
         $scope.temp = {selected:[]};
         $scope.update = function(){
+          if($scope.selectMax && $scope.temp.selected.length > +$scope.selectMax){
+            $scope.temp.selected.splice(+$scope.selectMax-1, 1);
+          }
           $scope.selected = $scope.temp.selected;
         };
       },
