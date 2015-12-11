@@ -110,6 +110,7 @@ set to important to override "active" choice*/
 .ui-select-multiple .ui-select-match-item.dropping-after:after {
   margin: 0 2px 0 10px;
 }
+<<<<<<< HEAD
 /* TITLES */
 
 h1.content__title {
@@ -142,6 +143,11 @@ h3.content__title {
 
 .nav__login:hover {
   background-color: rgb(34, 131, 212);
+=======
+/* magical css prop that makes dropdown load @ top of list */
+.ui-select-choices-group {
+  position: relative;
+>>>>>>> (fix) auto-complete loads dropdown at first list item
 }
 
 /* LEFT NAV */

@@ -29,7 +29,11 @@ angular.module('autoSelect', ['ui.select', 'ngSanitize'])
           'ng-model="temp.selected" '+
           'ng-disabled="disabled">'+
 
-          '<ui-select-match on-change="change()" placeholder="{{placeholder}}">{{$item[filterKey] || $item}}</ui-select-match>'+
+          '<ui-select-match on-change="change()" '+
+            'class="dropdown__top" '+
+            'placeholder="{{placeholder}}">'+
+              '{{$item[filterKey] || $item}}'+
+          '</ui-select-match>'+
           
           '<ui-select-choices '+
             'position="down" '+
