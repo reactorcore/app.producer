@@ -99,7 +99,7 @@ set to important to override "active" choice*/
   border-radius : 5px;
   padding-right : 10px;
   border: 3px solid #4195DB;
-  margin : 0 3px 0;
+  margin : 3px 3px 3px 0;
   cursor: pointer;
 }
 /* magical css prop that makes dropdown load @ top of list */
@@ -154,6 +154,7 @@ h3.content__title {
 
 /*input field width (not the div with the box around it)*/
 #template__tags>div{
+  cursor: text;
   /*display: flex;
   flex-wrap: wrap;*/
 }

@@ -1,12 +1,12 @@
 angular.module('autoSelect', ['ui.select', 'ngSanitize'])
   .service('Utils', function(){
-    this.removeX = function(nodes){
+    this.removeX = function(nodes) {
       nodes = nodes || document.querySelectorAll('.close')
       for(var i = 0; i < nodes.length; i++){
         nodes[i].remove();
       }
     };
-    this.addClickHandler = function(handler,nodes){
+    this.addTagClickHandler = function(handler, nodes) {
       nodes = nodes || document.querySelectorAll('.btn');
       for(var i = 0; i < nodes.length; i++){
         if(!nodes[i].handled){
@@ -31,23 +31,26 @@ angular.module('autoSelect', ['ui.select', 'ngSanitize'])
         selectMax: '@'
       },
 
-      controller:function($scope){
+      controller:function($scope) {
         $scope.temp = {selected:[]};
-        $scope.update = function(){
+        $scope.update = function() {
 
+          // remove Xs from buttons
           Utils.removeX();
 
-          Utils.addClickHandler(function(e){
-            $scope.temp.selected = $scope.temp.selected.filter(function(tag){
+          // removes click target tag from selected tags
+          Utils.addTagClickHandler(function(e) {
+            $scope.temp.selected = $scope.temp.selected.filter(function(tag) {
               return tag[$scope.filterKey] !== e.target.innerText;
             });
             $scope.$apply();
           });
 
+          // replaces last selected element if limit exceeds selectMax
           if($scope.selectMax && $scope.temp.selected.length > +$scope.selectMax){
             $scope.temp.selected.splice(+$scope.selectMax-1, 1);
           }
-
+          // set outward facing output array = to inner opperated array
           $scope.selected = $scope.temp.selected;
         };
       },
@@ -56,13 +59,13 @@ angular.module('autoSelect', ['ui.select', 'ngSanitize'])
         '<ui-select ' +
           'on-select="update()" '+
           'on-remove="update()" '+
-          'ng-click="focusChild(this)"'+
           'id="template__tags" '+
+          'ng-click="focusChild(this)"'+
           'class="content__input--field" '+
           'multiple '+
           'ng-model="temp.selected" '+
           'ng-disabled="disabled">'+
-
+          // '<div class="ui-select-choices-row"></div>' +
           '<ui-select-match '+
             'class="dropdown__top" '+
             'placeholder="{{placeholder}}">'+
@@ -84,19 +87,23 @@ angular.module('autoSelect', ['ui.select', 'ngSanitize'])
         $scope.choices = $scope.choices.map(function(i) {
           return typeof i !== 'string' && typeof i !== 'object' ? i.toString() : i;
         });
-
-        elem.on('click', function(){
-          this.children[0].children[0].children[1].focus();
+        // workaround for AWFUL bug
+        setTimeout(function(){
+          var container = elem.querySelectorAll('.ui-select-choices');
+          for(var i = 0; i < 2; i++){
+            var div = document.createElement('div');
+            div.className = 'ui-select-choices-row';
+            container[0].children[0].appendChild(div);
+          }
+        });
+        
+        // focuses & activates child on parent click
+        elem.on('mouseup', function(e) {
+          var child = this.children[0].children[0].children[1];
+          child.focus();
+          angular.element(child).trigger('click');
         });
 
-
-        //events include focusin click keyup(for return key)
-        //example for potential further styling
-        // elem.on('click keyup', function(e){
-        //   if(e.type==='click'||e.type==='keyup'&&e.keyCode===13){
-        //     angular.element(document.querySelectorAll('.ui-select-match-item')).addClass('ui-select-button');
-        //   }
-        // });
       }
     }
   }]);
