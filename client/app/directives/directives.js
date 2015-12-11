@@ -1,0 +1,1 @@
+angular.module('producer.directives', ['autoSelectDirective', 'alertMessageDirective']);
