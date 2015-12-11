@@ -90,7 +90,7 @@ set to important to override "active" choice*/
   color: #333;
 }
 /* dropdown menu container*/
-.ui-select-bootstrap > .ui-select-choices {
+.ui-select-choices {
   /*max-height: 300px*/
 }
 /* access to the sweet buttons!!! */
@@ -99,18 +99,25 @@ set to important to override "active" choice*/
   border-radius : 5px;
   padding-right : 10px;
   border: 3px solid #4195DB;
-  margin-left : 3px;
-}
-/* selected tag-button X  */
-.ui-select-multiple.ui-select-bootstrap .ui-select-match .close {
-  font-size: 1.3em;
+  margin : 0 3px 0;
   cursor: pointer;
 }
-/* button margin to center button contents*/
-.ui-select-multiple .ui-select-match-item.dropping-after:after {
-  margin: 0 2px 0 10px;
+/* magical css prop that makes dropdown load @ top of list */
+.ui-select-choices-group {
+  position: relative;
 }
-<<<<<<< HEAD
+
+/* removed due to spacing error when multiples added */
+/* selected tag-button X  */ 
+/*.ui-select-multiple.ui-select-bootstrap .ui-select-match .close {
+  font-size: 1.3em;
+  cursor: pointer;
+}*/
+/* button text => padding separates buttons a bit*/
+span.ng-binding {
+  padding: 0 0 0 8px;
+}
+
 /* TITLES */
 
 h1.content__title {
@@ -143,13 +150,22 @@ h3.content__title {
 
 .nav__login:hover {
   background-color: rgb(34, 131, 212);
-=======
-/* magical css prop that makes dropdown load @ top of list */
-.ui-select-choices-group {
-  position: relative;
->>>>>>> (fix) auto-complete loads dropdown at first list item
 }
 
+/*input field width (not the div with the box around it)*/
+#template__tags>div{
+  /*display: flex;
+  flex-wrap: wrap;*/
+}
+/* set inner text field very small to 
+keep text input and tags on same line. 
+Directive link func allows us to focus
+on input without clicking on it directly.
+Keep important */
+input.ui-select-search {
+  width: 116px !important;
+  /*line-height: 2em !important;*/
+}
 /* LEFT NAV */
 
 #left__nav--container {
