@@ -1,4 +1,4 @@
-angular.module('producer.login', [])
+angular.module('producer.login', ['nav-bar'])
 
 .controller('loginController', function ($scope) {
 
