@@ -121,6 +121,28 @@ h3.content__title {
   font-size: 1.5em;
 }
 
+/* AUTH */
+
+.nav__login {
+  display: block;
+  margin: 20px 0;
+  padding: 10px 15px;
+  height: 50px;
+  background-color: rgb(65, 149, 219);
+  font-size: 1.5rem;
+  font-weight: 200;
+  letter-spacing: 1px;
+  color: #FFF;
+  border: none;
+  outline: none;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.nav__login:hover {
+  background-color: rgb(34, 131, 212);
+}
+
 /* LEFT NAV */
 
 #left__nav--container {
