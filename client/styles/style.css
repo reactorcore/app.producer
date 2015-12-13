@@ -108,7 +108,7 @@ set to important to override "active" choice*/
 /* button margin to center button contents*/
 .ui-select-multiple .ui-select-match-item.dropping-after:after {
   margin: 0 2px 0 10px;
-
+}
 /* TITLES */
 
 h1.content__title {
@@ -153,6 +153,11 @@ h3.content__title {
 
 .left__nav--link {
   border-top: 1px solid rgba(000, 113, 206, 0.5);
+}
+
+.left__nav--logout {
+  bottom: 0;
+  position: absolute;
 }
 
 
