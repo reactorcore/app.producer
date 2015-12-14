@@ -72,6 +72,7 @@ a:visited {
   color: #FFF;
 }
 
+
 /* UI-SELECT */
 
 /* access to dropdown row unfocused unhovered background */
@@ -161,7 +162,7 @@ h3.content__title {
   color: rgba(000, 113, 206, 1);
 }
 
-#left__nav--container a {
+#left__nav--container > a {
   display: block;
   text-decoration: none;
   color: #FFF;
@@ -229,6 +230,8 @@ h3.content__title {
   margin: 0;
   padding: 0;
 }
+
+
 
 /* MAIN CONTENT */
 
