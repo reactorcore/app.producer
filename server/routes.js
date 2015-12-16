@@ -25,10 +25,10 @@ module.exports = function (app) {
   });
 
   app.get('/logout', function (req, res){
-    res.cookie('message', 'Logged out.');
+    res.cookie('session', '');
     req.logout();
     //Do not redirect here, client will handle redirection
-    res.sendStatus(401);
+    res.redirect('/');
   });
 
 
@@ -56,7 +56,7 @@ module.exports = function (app) {
     if (req.user && req.user.__error) {
       res.cookie('message', req.user.__error);
     } else {
-      res.cookie('message', '');
+      res.cookie('session', '');
     }
     //Do not redirect here, client will handle redirection to login page;
     res.sendStatus(401);

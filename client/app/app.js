@@ -8,7 +8,7 @@ angular.module('producer', [
   'producer.directives',
   'ui.router',
   'angular-cron',
-  'ngCookies',
+  'ngCookies'
 ])
 .config(function($stateProvider, $urlRouterProvider, $httpProvider) {
   $stateProvider
