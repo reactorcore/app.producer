@@ -1,4 +1,4 @@
-angular.module('nav-bar', [])
+angular.module('navBar', [])
   .directive('navBar', function () {
     return {
       restrict: 'E',
