@@ -1,4 +1,4 @@
-angular.module('producer.soundboard', ['alertMessageDirective'])
+angular.module('producer.soundboard', ['alertMessage'])
 
 .controller('soundboardController', function ($scope, Events, Soundboard, Messages) {
   $scope.events = [];

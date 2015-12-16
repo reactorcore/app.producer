@@ -1,4 +1,4 @@
-angular.module('producer.events', ['alertMessageDirective'])
+angular.module('producer.events', ['alertMessage'])
 
 .controller('eventsController', function ($scope, Events, Messages) {
   $scope.events = [];

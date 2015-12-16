@@ -1,4 +1,4 @@
-angular.module('producer.procedures', ['alertMessageDirective'])
+angular.module('producer.procedures', ['alertMessage'])
 
 .controller('proceduresController', function ($scope, Procedures, Messages) {
   $scope.procedures = [];

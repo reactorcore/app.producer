@@ -1,4 +1,4 @@
-angular.module('producer.templates', ['ui.select','ngSanitize','alertMessageDirective'])
+angular.module('producer.templates', ['ui.select','ngSanitize','alertMessage'])
 
 .controller('templatesController', function ($scope, Template, Roles, Events, Messages) {
   $scope.template = {title: '', role: null, event: '', description: ''};
@@ -49,7 +49,7 @@ angular.module('producer.templates', ['ui.select','ngSanitize','alertMessageDire
     Template.submitTemplate($scope.template).then(submitSuccess, submitError);
     console.log($scope.tags.selected);
   };
-  
+
   var submitSuccess = function(response) {
     Messages.setMessage('Your form has been sent!', 'success');
   };
