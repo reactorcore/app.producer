@@ -75,6 +75,9 @@ a:visited {
 
 /* UI-SELECT */
 
+.force-focus {
+  outline: 2px solid rgba(000, 113, 206, 0.4);
+}
 /* access to dropdown row unfocused unhovered background */
 .ui-select-bootstrap .ui-select-choices-row>a {
   background: white;

@@ -33,26 +33,7 @@ angular.module('autoSelect', ['ui.select', 'ngSanitize'])
 
       controller:function($scope) {
         $scope.temp = {selected:[]};
-        $scope.update = function() {
-
-          // remove Xs from buttons
-          Utils.removeX();
-
-          // removes click target tag from selected tags
-          Utils.addTagClickHandler(function(e) {
-            $scope.temp.selected = $scope.temp.selected.filter(function(tag) {
-              return tag[$scope.filterKey] !== e.target.innerText;
-            });
-            $scope.$apply();
-          });
-
-          // replaces last selected element if limit exceeds selectMax
-          if($scope.selectMax && $scope.temp.selected.length > +$scope.selectMax){
-            $scope.temp.selected.splice(+$scope.selectMax-1, 1);
-          }
-          // set outward facing output array = to inner opperated array
-          $scope.selected = $scope.temp.selected;
-        };
+   
       },
 
       template: 
@@ -82,11 +63,31 @@ angular.module('autoSelect', ['ui.select', 'ngSanitize'])
           '</ui-select-choices>'+
         '</ui-select>',
 
-      link: function($scope, elem){
+      link: function($scope, elem, attrs){
+
+         $scope.update = function() {
+          // remove Xs from buttons
+          Utils.removeX();
+          // removes click target tag from selected tags
+          Utils.addTagClickHandler(function(e) {
+            $scope.temp.selected = $scope.temp.selected.filter(function(tag) {
+              return tag[$scope.filterKey] !== e.target.innerText;
+            });
+            $scope.$apply();
+          });
+          // replaces last selected element if limit exceeds selectMax
+          if($scope.selectMax && $scope.temp.selected.length > +$scope.selectMax){
+            $scope.temp.selected.splice(+$scope.selectMax-1, 1);
+          }
+          // set outward facing output array = to inner opperated array
+          $scope.selected = $scope.temp.selected;
+        };
+ 
         // no errors thrown if numbers filtered
         $scope.choices = $scope.choices.map(function(i) {
           return typeof i !== 'string' && typeof i !== 'object' ? i.toString() : i;
         });
+
         // workaround for AWFUL bug
         setTimeout(function(){
           var container = elem.querySelectorAll('.ui-select-choices');
