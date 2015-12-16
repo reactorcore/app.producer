@@ -27,7 +27,6 @@ module.exports = function (app) {
   app.get('/logout', function (req, res){
     res.cookie('session', '');
     req.logout();
-    //Do not redirect here, client will handle redirection
     res.redirect('/');
   });
 
