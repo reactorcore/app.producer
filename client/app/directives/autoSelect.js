@@ -1,4 +1,4 @@
-angular.module('autoSelectDirective', ['ui.select', 'ngSanitize'])
+angular.module('autoSelect', ['ui.select', 'ngSanitize'])
   .directive('autoSelect', function(){
     return {
 

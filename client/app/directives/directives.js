@@ -1,1 +1,1 @@
-angular.module('producer.directives', ['autoSelectDirective', 'alertMessageDirective']);
+angular.module('producer.directives', ['autoSelect', 'alertMessage']);
