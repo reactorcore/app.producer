@@ -5,11 +5,10 @@ angular.module('producer', [
   'producer.procedures',
   'producer.soundboard',
   'producer.login',
+  'producer.directives',
   'ui.router',
   'angular-cron',
   'ngCookies',
-  'alertMessageDirective',
-  'autoSelectDirective'
 ])
 .config(function($stateProvider, $urlRouterProvider, $httpProvider) {
   $stateProvider

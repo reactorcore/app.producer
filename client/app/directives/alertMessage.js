@@ -1,4 +1,4 @@
-angular.module('alertMessageDirective', ['ngMdIcons'])
+angular.module('alertMessage', ['ngMdIcons'])
   .directive('alertMessage', function () {
     return {
       restrict: 'E',

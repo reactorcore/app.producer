@@ -1,5 +1,5 @@
-angular.module('autoSelectDirective', ['ui.select', 'ngSanitize'])
-  .directive('autoUiSelect', function(){
+angular.module('autoSelect', ['ui.select', 'ngSanitize'])
+  .directive('autoSelect', function(){
     return {
 
       restrict: 'E',
