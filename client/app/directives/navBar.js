@@ -4,9 +4,6 @@ angular.module('navBar', [])
       restrict: 'E',
       replace: true,
       scope: true,
-      templateUrl: '/app/directives/nav-bar.html',
-      controller: function ($scope, Auth) {
-        $scope.authenticated = Auth.isAuthenticated();
-      }
+      templateUrl: '/app/directives/nav-bar.html'
     };
 });
