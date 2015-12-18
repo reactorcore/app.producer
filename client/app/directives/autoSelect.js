@@ -1,22 +1,5 @@
 angular.module('autoSelect', ['ui.select', 'ngSanitize'])
-  .service('Utils', function(){
-    this.removeX = function(nodes) {
-      nodes = nodes || document.querySelectorAll('.close')
-      for(var i = 0; i < nodes.length; i++){
-        nodes[i].remove();
-      }
-    };
-    this.addTagClickHandler = function(handler, nodes) {
-      nodes = nodes || document.querySelectorAll('.btn');
-      for(var i = 0; i < nodes.length; i++){
-        if(!nodes[i].handled){
-          nodes[i].addEventListener('click', handler);
-          nodes[i].handled = true;
-        } 
-      }
-    };
-  })
-  .directive('autoSelect', ['Utils', function(Utils){
+  .directive('autoSelect', [function(){
 
     return {
 
@@ -33,7 +16,6 @@ angular.module('autoSelect', ['ui.select', 'ngSanitize'])
 
       controller:function($scope) {
         $scope.temp = {selected:[]};
-   
       },
 
       template: 
@@ -46,9 +28,8 @@ angular.module('autoSelect', ['ui.select', 'ngSanitize'])
           'multiple '+
           'ng-model="temp.selected" '+
           'ng-disabled="disabled">'+
-          // '<div class="ui-select-choices-row"></div>' +
           '<ui-select-match '+
-            'class="dropdown__top" '+
+            'class="custom-ui-select-dropdown__top" '+
             'placeholder="{{placeholder}}">'+
               '{{$item[filterKey] || $item}}'+
           '</ui-select-match>'+
@@ -64,20 +45,31 @@ angular.module('autoSelect', ['ui.select', 'ngSanitize'])
         '</ui-select>',
 
       link: function($scope, elem, attrs){
+        // add listeners to add and remove focus styling for select box
+        var child = null;
+        setTimeout(function() {
+          child = elem[0].children[0].children[0].children[1];
+          child.onfocus = function(){
+            elem[0].children[0].classList.add('custom-ui-select-force-focus');
+          };
+          child.onblur = function() {
+            angular.element(elem[0].children[0]).removeClass('custom-ui-select-force-focus');
+          };
+        });
 
-         $scope.update = function() {
-          // remove Xs from buttons
-          Utils.removeX();
-          // removes click target tag from selected tags
-          Utils.addTagClickHandler(function(e) {
-            $scope.temp.selected = $scope.temp.selected.filter(function(tag) {
-              return tag[$scope.filterKey] !== e.target.innerText;
-            });
-            $scope.$apply();
-          });
+        // focuses & activates child on parent click
+        elem.on('mouseup', function(e) {
+          child.focus();
+          child.dispatchEvent(new Event('click'));
+        });
+
+        $scope.update = function() {
           // replaces last selected element if limit exceeds selectMax
           if($scope.selectMax && $scope.temp.selected.length > +$scope.selectMax){
-            $scope.temp.selected.splice(+$scope.selectMax-1, 1);
+            //emit syntehsized click on X element to remove from line
+            //ul where divs are located has class 'custom-ui-select-dropdown__top'
+            elem[0].children[0].children[0].children[0].children[$scope.selectMax-1]
+              .children[0].children[0].dispatchEvent(new Event('click'));
           }
           // set outward facing output array = to inner opperated array
           $scope.selected = $scope.temp.selected;
@@ -88,21 +80,16 @@ angular.module('autoSelect', ['ui.select', 'ngSanitize'])
           return typeof i !== 'string' && typeof i !== 'object' ? i.toString() : i;
         });
 
-        // workaround for AWFUL bug
-        setTimeout(function(){
+        // workaround for very bug. 
+        // Bug occurs when we force child focus from parent
+        // has to do with a validation function in ui-select
+        setTimeout(function() {
           var container = elem.querySelectorAll('.ui-select-choices');
           for(var i = 0; i < 2; i++){
             var div = document.createElement('div');
             div.className = 'ui-select-choices-row';
             container[0].children[0].appendChild(div);
           }
-        });
-        
-        // focuses & activates child on parent click
-        elem.on('mouseup', function(e) {
-          var child = this.children[0].children[0].children[1];
-          child.focus();
-          angular.element(child).trigger('click');
         });
 
       }
