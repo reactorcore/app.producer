@@ -44,7 +44,7 @@ angular.module('autoSelect', ['ui.select', 'ngSanitize'])
         '</ui-select>',
 
       link: function($scope, elem, attrs) {
-        // add listeners to add and remove focus styling for select box
+        // add listeners to add and remove focus styling for auto-select box
         var childTextArea = null;
         setTimeout(function() {
           childTextArea = elem[0].children[0].children[0].children[1];
@@ -57,7 +57,7 @@ angular.module('autoSelect', ['ui.select', 'ngSanitize'])
           };
         });
 
-        // focuses & activates child on parent click
+        // focuses & activates childTextArea on parent click
         elem.on('mouseup', function(e) {
           childTextArea.focus();
           childTextArea.dispatchEvent(new Event('click'));
@@ -84,7 +84,7 @@ angular.module('autoSelect', ['ui.select', 'ngSanitize'])
           return typeof i === 'string' || typeof i === 'object' ? i : i.toString();
         });
 
-        // workaround for very bug. 
+        // workaround for mean bug. 
         // Bug occurs when we force child focus from parent
         // has to do with a validation function in ui-select
         setTimeout(function() {
@@ -103,7 +103,7 @@ angular.module('autoSelect', ['ui.select', 'ngSanitize'])
 // track by throws error unless mod to ui-select
 // replace ~line 1281 in select.js with
 // if(matches && matches.length>0 && result[matches[1]] == value[matches[1]]){
-// Now track by line ~38 can be uncommented above
+// Now track by line ~39 can be uncommented above
 
 
 
