@@ -137,8 +137,8 @@ Directive link func allows us to focus
 on input without clicking on it directly.
 Keep important */
 input.ui-select-search {
-  width: 116px !important;
-  margin: 0 0 0 4px;
+  width: 120px !important;
+  padding: 0 0 0 4px;
   /*line-height: 2em !important;*/
 }
 /*input field width (not the div with the box around it)*/
@@ -326,7 +326,8 @@ h3.content__title {
 }
 
 .content__input--field:focus {
-  outline: 2px solid rgba(000, 113, 206, 0.4);
+  border: 4px solid rgba(000, 113, 206, 0.6) !important;
+  outline: 0;
 }
 
 .content__input--procedure {

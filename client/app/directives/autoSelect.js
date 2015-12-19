@@ -1,6 +1,5 @@
 angular.module('autoSelect', ['ui.select', 'ngSanitize'])
-  .directive('autoSelect', [function(){
-
+  .directive('autoSelect', [function() {
     return {
 
       restrict: 'E',
@@ -44,51 +43,56 @@ angular.module('autoSelect', ['ui.select', 'ngSanitize'])
           '</ui-select-choices>'+
         '</ui-select>',
 
-      link: function($scope, elem, attrs){
+      link: function($scope, elem, attrs) {
         // add listeners to add and remove focus styling for select box
-        var child = null;
+        var childTextArea = null;
         setTimeout(function() {
-          child = elem[0].children[0].children[0].children[1];
-          child.onfocus = function(){
+          childTextArea = elem[0].children[0].children[0].children[1];
+
+          childTextArea.onfocus = function() {
             elem[0].children[0].classList.add('custom-ui-select-force-focus');
           };
-          child.onblur = function() {
+          childTextArea.onblur = function() {
             angular.element(elem[0].children[0]).removeClass('custom-ui-select-force-focus');
           };
         });
 
         // focuses & activates child on parent click
         elem.on('mouseup', function(e) {
-          child.focus();
-          child.dispatchEvent(new Event('click'));
+          childTextArea.focus();
+          childTextArea.dispatchEvent(new Event('click'));
         });
+        
+        // keep input width at minimum necessesary
+        // ^^ auto-select to one line  in ui when possible
+        $scope.placeholder.length > 16 ? console.log("TO FIX: please enlarge width in class 'input.ui-select-search' to fit your placeholder value"):null;
 
         $scope.update = function() {
           // replaces last selected element if limit exceeds selectMax
-          if($scope.selectMax && $scope.temp.selected.length > +$scope.selectMax){
+          if($scope.selectMax && $scope.temp.selected.length > +$scope.selectMax) {
             //emit syntehsized click on X element to remove from line
             //ul where divs are located has class 'custom-ui-select-dropdown__top'
             elem[0].children[0].children[0].children[0].children[$scope.selectMax-1]
               .children[0].children[0].dispatchEvent(new Event('click'));
           }
-          // set outward facing output array = to inner opperated array
+          // set public output array = to private opperation array
           $scope.selected = $scope.temp.selected;
         };
  
         // no errors thrown if numbers filtered
         $scope.choices = $scope.choices.map(function(i) {
-          return typeof i !== 'string' && typeof i !== 'object' ? i.toString() : i;
+          return typeof i === 'string' || typeof i === 'object' ? i : i.toString();
         });
 
         // workaround for very bug. 
         // Bug occurs when we force child focus from parent
         // has to do with a validation function in ui-select
         setTimeout(function() {
-          var container = elem.querySelectorAll('.ui-select-choices');
+          var choicesContainer = elem.querySelectorAll('.ui-select-choices');
           for(var i = 0; i < 2; i++){
             var div = document.createElement('div');
             div.className = 'ui-select-choices-row';
-            container[0].children[0].appendChild(div);
+            choicesContainer[0].children[0].appendChild(div);
           }
         });
 
