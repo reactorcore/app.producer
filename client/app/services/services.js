@@ -131,6 +131,14 @@ angular.module('producer.services', [])
   };
 })
 
+.factory('Hilighter', function () {
+  return {
+    higlight: function (item, target) {
+      return item === target ? 'active-item' : '';
+    }
+  };
+})
+
 .factory('RedirectInterceptor', function ($q, $location) {
   return {
     responseError: function (rejection) {
