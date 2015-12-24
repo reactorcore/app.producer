@@ -1,11 +1,15 @@
 angular.module('producer.events', ['alertMessage'])
 
-.controller('eventsController', function ($scope, Events, Messages) {
+.controller('eventsController', function ($scope, Events, Messages, Hilighter) {
   $scope.events = [];
   $scope.showEvent = false;
 
   $scope.event = {};
   $scope.newEvent = {};
+
+  $scope.getClass = function (event) {
+    return Hilighter.higlight(event, $scope.event.title);
+  };
 
   $scope.submitEvent = function(){
     Events.submitEvent($scope.newEvent).then(submitSuccess, submitError);
@@ -47,6 +51,7 @@ angular.module('producer.events', ['alertMessage'])
   };
 
   $scope.createNewEvent = function() {
+    $scope.event = {};
     $scope.newEvent.title = "";
     $scope.newEvent.cron = "";
     $scope.newEvent.description = "";
