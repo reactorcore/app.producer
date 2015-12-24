@@ -149,9 +149,11 @@ h3.content__title {
 #left__nav--container {
   position: absolute;
   height: 100%;
-  min-height: 650px;
+  min-height: 100vh;
   width: 200px;
   background-color: rgba(000, 113, 206, 0.5);
+  z-index: 1;
+  box-shadow: 0.5px 0 3px #30597B;
 }
 
 #left__nav--container h1 {
@@ -189,11 +191,13 @@ h3.content__title {
 .right__nav--container {
   position: absolute;
   height: 100%;
-  min-height: 650px;
+  min-height: 100vh;
   width: 200px;
   right: 0;
   top: 0;
   background-color: rgba(000, 113, 206, 0.5);
+/*  z-index: 1;
+  box-shadow: -0.5px 0 3px #30597B;*/
 }
 
 .right__nav--container li {
@@ -267,6 +271,14 @@ h3.content__title {
   margin-left: 225px;
 }
 
+.content__display--container {
+  width: calc(100% - 250px);
+  margin-left: 225px;
+  display: flex;
+  justify-content: space-between;
+
+}
+
 .content__main--body-text {
   font-weight: 200;
   font-size: 1rem;
@@ -276,8 +288,9 @@ h3.content__title {
 .content__list--container {
   display: flex;
   flex-direction: column;
-  overflow: scroll;
-  height: 279px;
+  overflow-y: scroll;
+  height: 234px;
+  background-color: rgb(220, 239, 255) !important;
 }
 
 .content__input--field {
@@ -545,4 +558,29 @@ tags-input .autocomplete .suggestion-item em {
 
 .alert-hide:hover {
   cursor: pointer;
+}
+
+::-webkit-scrollbar {
+  width: 10px;
+} /* this targets the default scrollbar (compulsory) */
+
+::-webkit-scrollbar-track {
+  background-color: rgb(111, 158, 196);
+} /* the new scrollbar will have a flat appearance with the set background color */
+
+::-webkit-scrollbar-thumb {
+  background-color: rgb(78, 121, 159);
+} /* this will style the thumb, ignoring the track */
+
+/*body {
+  scrollbar-face-color: rgb(63, 147, 218);
+}
+*/
+
+nav > .active-nav {
+  background-color: rgb(33, 131, 213) !important;
+}
+
+.active-item {
+  background-color: rgb(33, 131, 213) !important;
 }
