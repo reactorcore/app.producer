@@ -8,7 +8,7 @@ angular.module('producer.events', ['alertMessage'])
   $scope.newEvent = {};
 
   $scope.getClass = function (event) {
-    return Hilighter.higlight(event, $scope.event.title);
+    return Hilighter.hilight(event, $scope.event.title);
   };
 
   $scope.submitEvent = function(){

@@ -6,7 +6,7 @@ angular.module('producer.soundboard', ['alertMessage'])
   $scope.templates = [];
 
   $scope.getClass = function (event) {
-    return Hilighter.higlight(event, $scope.selectedEvent.title);
+    return Hilighter.hilight(event, $scope.selectedEvent.title);
   };
 
   $scope.getEvents = function () {

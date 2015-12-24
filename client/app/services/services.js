@@ -133,7 +133,7 @@ angular.module('producer.services', [])
 
 .factory('Hilighter', function () {
   return {
-    higlight: function (item, target) {
+    hilight: function (item, target) {
       return item === target ? 'active-item' : '';
     }
   };
