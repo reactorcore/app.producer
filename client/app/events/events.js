@@ -42,7 +42,6 @@ angular.module('producer.events', ['alertMessage'])
 
   $scope.setMaster = function(section) {
     $scope.selected = section;
-    console.log($scope.selected);
     $scope.newEvent.title = $scope.selected.title;
     $scope.newEvent.cron = $scope.selected.cron;
     $scope.newEvent.description = $scope.selected.description;
