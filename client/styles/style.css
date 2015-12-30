@@ -122,7 +122,7 @@ set to important to override "active" choice*/
 }
 
 /* removed due to spacing error when multiples added */
-/* selected tag-button X  */ 
+/* selected tag-button X  */
 .ui-select-multiple.ui-select-bootstrap .ui-select-match .close {
   font-size: 1.3em;
   cursor: pointer;
@@ -131,8 +131,8 @@ set to important to override "active" choice*/
 span.ng-binding {
   padding: 0 0 0 3px;
 }
-/* set inner text field very small to 
-keep text input and tags on same line. 
+/* set inner text field very small to
+keep text input and tags on same line.
 Directive link func allows us to focus
 on input without clicking on it directly.
 Keep important */
@@ -327,8 +327,14 @@ h3.content__title {
   display: flex;
   flex-direction: column;
   overflow-y: scroll;
-  height: 234px;
+  height: 338px;
   background-color: rgb(220, 239, 255) !important;
+}
+
+.content__message--container {
+  display: flex;
+  justify-content: center;
+  width: calc(100% - 200px);
 }
 
 .content__input--field {
@@ -368,12 +374,6 @@ h3.content__title {
 .content__submit--container {
   display: flex;
   justify-content: center;
-}
-
-.content__message--container {
-  display: flex;
-  justify-content: center;
-  width: calc(100% - 200px);
 }
 
 .content__main--card {
@@ -579,23 +579,25 @@ tags-input .autocomplete .suggestion-item em {
 /* ALERTS */
 
 .alert {
+  float: left;
   display: flex;
   justify-content: space-between;
-  padding: 5px 10px;
-  width: 300px;
-  margin: 0 calc(50% - 50px);
 }
 
+.alert {
+  padding: 5px 10px;
+  border: 2px solid;
+  width: 300px;
+}
 .alert-success {
-  border: 2px solid #b0e771;
+  border-color: #b0e771;
   background-color: #f1fae6;
 }
 .alert-error {
-  border: 2px solid #e77175;
+  border-color: #e77175;
   background-color: #fae6e7;
 }
 .alert-hide {
-  color: #e77175;
   fill: #878787;
 }
 
@@ -626,4 +628,11 @@ nav > .active-nav {
 
 .active-item {
   background-color: rgb(33, 131, 213) !important;
+}
+
+button:disabled {
+  background-color: rgb(219, 227, 234);
+  border: none;
+  outline: none;
+  color: #BDC4CA;
 }
