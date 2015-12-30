@@ -1,6 +1,8 @@
 angular.module('producer.procedures', ['alertMessage'])
 
 .controller('proceduresController', function ($scope, Procedures, Messages, Hilighter) {
+  Messages.clearMessage();
+>>>>>>> Clear messages upon navigation
   $scope.procedures = [];
   $scope.showProcedure = false;
 

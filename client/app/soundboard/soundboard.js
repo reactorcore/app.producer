@@ -1,6 +1,8 @@
 angular.module('producer.soundboard', ['alertMessage'])
 
 .controller('soundboardController', function ($scope, Events, Soundboard, Messages, Hilighter) {
+  Messages.clearMessage();
+>>>>>>> Clear messages upon navigation
   $scope.events = [];
   $scope.selectedEvent = {};
   $scope.templates = [];
