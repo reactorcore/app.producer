@@ -1,5 +1,5 @@
 angular.module('autoSelect', ['ui.select', 'ngSanitize'])
-  .directive('autoSelect', function(){
+  .directive('autoSelect', [function() {
     return {
 
       restrict: 'E',
@@ -9,14 +9,12 @@ angular.module('autoSelect', ['ui.select', 'ngSanitize'])
         selected: '=',
         filterKey: '@',
         placeholder: '@',
-        trackKey: '@'
+        trackKey: '@',
+        selectMax: '@'
       },
 
-      controller:function($scope){
+      controller:function($scope) {
         $scope.temp = {selected:[]};
-        $scope.update = function(){
-          $scope.selected = $scope.temp.selected;
-        };
       },
 
       template: 
@@ -24,12 +22,16 @@ angular.module('autoSelect', ['ui.select', 'ngSanitize'])
           'on-select="update()" '+
           'on-remove="update()" '+
           'id="template__tags" '+
+          'ng-click="focusChild(this)"'+
           'class="content__input--field" '+
           'multiple '+
           'ng-model="temp.selected" '+
           'ng-disabled="disabled">'+
-
-          '<ui-select-match on-change="change()" placeholder="{{placeholder}}">{{$item[filterKey] || $item}}</ui-select-match>'+
+          '<ui-select-match '+
+            'class="custom-ui-select-dropdown__top" '+
+            'placeholder="{{placeholder}}">'+
+              '{{$item[filterKey] || $item}}'+
+          '</ui-select-match>'+
           
           '<ui-select-choices '+
             'position="down" '+
@@ -41,26 +43,67 @@ angular.module('autoSelect', ['ui.select', 'ngSanitize'])
           '</ui-select-choices>'+
         '</ui-select>',
 
-      link: function($scope, elem){
+      link: function($scope, elem, attrs) {
+        // add listeners to add and remove focus styling for auto-select box
+        var childTextArea = null;
+        setTimeout(function() {
+          childTextArea = elem[0].children[0].children[0].children[1];
+
+          childTextArea.onfocus = function() {
+            elem[0].children[0].classList.add('custom-ui-select-force-focus');
+          };
+          childTextArea.onblur = function() {
+            angular.element(elem[0].children[0]).removeClass('custom-ui-select-force-focus');
+          };
+        });
+
+        // focuses & activates childTextArea on parent click
+        elem.on('mouseup', function(e) {
+          childTextArea.focus();
+          childTextArea.dispatchEvent(new Event('click'));
+        });
+        
+        // keep input width at minimum necessesary
+        // ^^ auto-select to one line  in ui when possible
+        $scope.placeholder.length > 16 ? console.log("TO FIX: please enlarge width in class 'input.ui-select-search' to fit your placeholder value"):null;
+
+        $scope.update = function() {
+          // replaces last selected element if limit exceeds selectMax
+          if($scope.selectMax && $scope.temp.selected.length > +$scope.selectMax) {
+            //emit syntehsized click on X element to remove from line
+            //ul where divs are located has class 'custom-ui-select-dropdown__top'
+            elem[0].children[0].children[0].children[0].children[$scope.selectMax-1]
+              .children[0].children[0].dispatchEvent(new Event('click'));
+          }
+          // set public output array = to private opperation array
+          $scope.selected = $scope.temp.selected;
+        };
+ 
         // no errors thrown if numbers filtered
         $scope.choices = $scope.choices.map(function(i) {
-          return typeof i !== 'string' && typeof i !== 'object' ? i.toString() : i;
+          return typeof i === 'string' || typeof i === 'object' ? i : i.toString();
         });
-        //events include focusin click keyup(for return key)
-        //example for potential further styling
-        // elem.on('click keyup', function(e){
-        //   if(e.type==='click'||e.type==='keyup'&&e.keyCode===13){
-        //     angular.element(document.querySelectorAll('.ui-select-match-item')).addClass('ui-select-button');
-        //   }
-        // });
+
+        // workaround for mean bug. 
+        // Bug occurs when we force child focus from parent
+        // has to do with a validation function in ui-select
+        setTimeout(function() {
+          var choicesContainer = elem.querySelectorAll('.ui-select-choices');
+          for(var i = 0; i < 2; i++){
+            var div = document.createElement('div');
+            div.className = 'ui-select-choices-row';
+            choicesContainer[0].children[0].appendChild(div);
+          }
+        });
+
       }
     }
-  });
+  }]);
 
 // track by throws error unless mod to ui-select
 // replace ~line 1281 in select.js with
 // if(matches && matches.length>0 && result[matches[1]] == value[matches[1]]){
-// Now track by line ~38 can be uncommented above
+// Now track by line ~39 can be uncommented above
 
 
 
