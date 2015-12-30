@@ -331,6 +331,12 @@ h3.content__title {
   background-color: rgb(220, 239, 255) !important;
 }
 
+.content__message--container {
+  display: flex;
+  justify-content: center;
+  width: calc(100% - 200px);
+}
+
 .content__input--field {
   width: 100%;
   height: 30px;
