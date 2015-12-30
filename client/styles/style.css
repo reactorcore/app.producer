@@ -327,7 +327,7 @@ h3.content__title {
   display: flex;
   flex-direction: column;
   overflow-y: scroll;
-  height: 234px;
+  height: 338px;
   background-color: rgb(220, 239, 255) !important;
 }
 
@@ -622,4 +622,11 @@ nav > .active-nav {
 
 .active-item {
   background-color: rgb(33, 131, 213) !important;
+}
+
+button:disabled {
+  background-color: rgb(219, 227, 234);
+  border: none;
+  outline: none;
+  color: #BDC4CA;
 }
