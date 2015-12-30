@@ -1,9 +1,13 @@
 angular.module('producer.soundboard', ['alertMessage'])
 
-.controller('soundboardController', function ($scope, Events, Soundboard, Messages) {
+.controller('soundboardController', function ($scope, Events, Soundboard, Messages, Hilighter) {
   $scope.events = [];
   $scope.selectedEvent = {};
   $scope.templates = [];
+
+  $scope.getClass = function (event) {
+    return Hilighter.hilight(event, $scope.selectedEvent.title);
+  };
 
   $scope.getEvents = function () {
     Events.getEvents().then(function (res) {

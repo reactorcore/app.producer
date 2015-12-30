@@ -1,15 +1,22 @@
 angular.module('producer.procedures', ['alertMessage'])
 
-.controller('proceduresController', function ($scope, Procedures, Messages) {
+.controller('proceduresController', function ($scope, Procedures, Messages, Hilighter) {
   $scope.procedures = [];
   $scope.showProcedure = false;
 
   $scope.procedure = {};
   $scope.newProcedure = {};
 
+  $scope.getClass = function (procedure) {
+    if(procedure === undefined || $scope.selected === undefined) {
+      return '';
+    }
+    return Hilighter.hilight(procedure.title, $scope.selected.title);
+  };
+
   $scope.submitProcedure = function(){
-    Procedures.submitProcedure($scope.newProcedure).then(submitSuccess, submitError)
-  }
+    Procedures.submitProcedure($scope.newProcedure).then(submitSuccess, submitError);
+  };
 
   var submitSuccess = function(response) {
     Messages.setMessage('Your procedure was created!', 'success');
@@ -25,11 +32,11 @@ angular.module('producer.procedures', ['alertMessage'])
     Procedures.getProcedures().then(function(resp){
       $scope.procedures = resp.data;
     });
-  }
+  };
 
   $scope.deleteProcedure = function(){
-    Procedures.deleteProcedure($scope.procedure).then(deleteSuccess, deleteError)
-  }
+    Procedures.deleteProcedure($scope.procedure).then(deleteSuccess, deleteError);
+  };
 
   $scope.setMaster = function(section) {
     $scope.selected = section;
@@ -43,7 +50,7 @@ angular.module('producer.procedures', ['alertMessage'])
     $scope.newProcedure.title = "";
     $scope.newProcedure.text = "";
     $scope.showProcedure = false;
-  }
+  };
 
   var deleteSuccess = function(response) {
     Messages.setMessage('Procedure Deleted', 'success');
