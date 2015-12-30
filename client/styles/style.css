@@ -331,6 +331,12 @@ h3.content__title {
   justify-content: center;
 }
 
+.content__message--container {
+  display: flex;
+  justify-content: center;
+  width: calc(100% - 200px);
+}
+
 .content__main--card {
   padding: 20px 0;
   text-align: center;
@@ -534,25 +540,23 @@ tags-input .autocomplete .suggestion-item em {
 /* ALERTS */
 
 .alert {
-  float: left;
   display: flex;
   justify-content: space-between;
+  padding: 5px 10px;
+  width: 300px;
+  margin: 0 calc(50% - 50px);
 }
 
-.alert {
-  padding: 5px 10px;
-  border: 2px solid;
-  width: 300px;
-}
 .alert-success {
-  border-color: #b0e771;
+  border: 2px solid #b0e771;
   background-color: #f1fae6;
 }
 .alert-error {
-  border-color: #e77175;
+  border: 2px solid #e77175;
   background-color: #fae6e7;
 }
 .alert-hide {
+  color: #e77175;
   fill: #878787;
 }
 
