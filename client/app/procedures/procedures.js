@@ -1,6 +1,8 @@
 angular.module('producer.procedures', ['alertMessage'])
 
 .controller('proceduresController', function ($scope, Procedures, Messages, Hilighter) {
+  //TODO: hacky way to not carry over message
+  Messages.clearMessage();
   $scope.procedures = [];
   $scope.showProcedure = false;
 

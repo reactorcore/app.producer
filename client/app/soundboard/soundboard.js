@@ -1,6 +1,8 @@
 angular.module('producer.soundboard', ['alertMessage'])
 
 .controller('soundboardController', function ($scope, Events, Soundboard, Messages, Hilighter) {
+  //TODO: hacky way to not carry over message
+  Messages.clearMessage();
   $scope.events = [];
   $scope.selectedEvent = {};
   $scope.templates = [];

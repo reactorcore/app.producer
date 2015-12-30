@@ -1,6 +1,8 @@
 angular.module('producer.templates', ['ui.select','ngSanitize','alertMessage'])
 
 .controller('templatesController', function ($scope, Template, Roles, Events, Messages) {
+  //TODO: hacky way to not carry over message
+  Messages.clearMessage();
   $scope.template = {title: '', role: null, event: '', description: ''};
   $scope.tags = [];
   $scope.roles = [];
