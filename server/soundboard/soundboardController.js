@@ -31,7 +31,7 @@ module.exports =  {
     var eventName = req.eventName;
     request({
       method: 'GET',
-      uri: process.env.CHOREOGRAPHER_URL + '/templatesFor/' + eventName,
+      uri: process.env.CHOREOGRAPHER_URL +  '/events/' + eventName + '/templates',
       headers: headers
     }, function (error, response, body) {
       if(error) {
