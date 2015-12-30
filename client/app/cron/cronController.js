@@ -1,13 +1,11 @@
 angular.module('producer.cron', [])
 
 .controller('cronController', function($scope, Cron) {
-// Seconds: 0-59
 // Minutes: 0-59
 // Hours: 0-23
 // Day of Month: 1-31
 // Months: 0-11
 // Day of Week: 0-6
-  $scope.secondValue = [0, 5, 10, 15, 20, 25, 30, 35, 40, 45, 50, 55];
   $scope.minuteValue = [0, 5, 10, 15, 20, 25, 30, 35, 40, 45, 50, 55];
   $scope.hourValue = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23];
   $scope.dayOfWeekValue = [0, 1, 2, 3, 4, 5, 6];
@@ -15,10 +13,6 @@ angular.module('producer.cron', [])
   $scope.monthValue = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11];
 
   $scope.frequency = [
-    {
-      value : 1,
-      label : 'Second'  
-    },
     {
       value : 2,
       label : 'Minute'  
@@ -50,7 +44,7 @@ angular.module('producer.cron', [])
       if (newValue && newValue.base) {
         // set newValue.base to the integer value
         newValue.base = parseInt(newValue.base);
-        newValue.secondValue = $scope.secondValue[0];
+        newValue.secondValue = 0;
         console.log(newValue.base);
       }
       if(newValue && newValue.base && newValue.base >= 2) {

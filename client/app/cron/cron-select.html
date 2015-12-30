@@ -47,14 +47,6 @@
       <select ng-show="myFrequency.base >= 2" class="cron-select minute-value" ng-model="myFrequency.minuteValue" ng-options="value for value in minuteValue"></select>
     </div>
   </div>
-  <div class="cron-row" ng-show="myFrequency.base >= 1">
-    <div class="cron-col">
-      <span ng-show="myFrequency.base >= 1">Seconds: </span>
-    </div>
-    <div class="cron-col">
-      <select ng-show="myFrequency.base >= 1" ng-model="myFrequency.secondValue" ng-options="value for value in secondValue"></select>
-    </div>
-  </div>
 </div>
 
 
