@@ -582,6 +582,7 @@ tags-input .autocomplete .suggestion-item em {
   float: left;
   display: flex;
   justify-content: space-between;
+  margin: 0 calc(50% - 50px);
 }
 
 .alert {
