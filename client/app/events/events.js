@@ -1,8 +1,8 @@
 angular.module('producer.events', ['alertMessage'])
 
 .controller('eventsController', function ($scope, Events, Messages, Hilighter) {
+  //TODO: hacky way to not carry over message
   Messages.clearMessage();
->>>>>>> Clear messages upon navigation
   $scope.events = [];
   $scope.showEvent = false;
 
