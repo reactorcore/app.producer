@@ -21,13 +21,21 @@ module.exports = function (app) {
     passport.authenticate('github', { failureRedirect: '/login' }),
     function (req, res) {
       res.cookie('session', 'true', { httpOnly: false });
-      res.redirect('/');
+      if(process.env.NODE_ENV === 'staging') {
+        res.redirect('/producer/v0/');
+      } else {
+        res.redirect('/');
+      }
   });
 
   app.get('/logout', function (req, res){
     res.cookie('session', '');
     req.logout();
-    res.redirect('/');
+    if(process.env.NODE_ENV === 'staging') {
+      res.redirect('/producer/v0/');
+    } else {
+      res.redirect('/');
+    }
   });
 
 
