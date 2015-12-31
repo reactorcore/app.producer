@@ -51,14 +51,6 @@ angular.module("cron-select.html", []).run(["$templateCache", function($template
     "        <select ng-show=\"myFrequency.base >= 2\" class=\"cron-select minute-value\" ng-model=\"myFrequency.minuteValue\" ng-options=\"value for value in minuteValue\"></select>\n"+
     "      </div>\n"+
     "    </div>\n"+
-    "    <div class=\"cron-row\" ng-show=\"myFrequency.base >= 1\">\n"+
-    "      <div class=\"cron-col\">\n"+
-    "        <span ng-show=\"myFrequency.base >= 1\">Seconds: </span>\n"+
-    "      </div>\n"+
-    "      <div class=\"cron-col\">\n"+
-    "        <select ng-show=\"myFrequency.base >= 1\" ng-model=\"myFrequency.secondValue\" ng-options=\"value for value in secondValue\"></select>\n"+
-    "      </div>\n"+
-    "    </div>\n"+
     "  </div>\n"+
     "");
 }]);
@@ -93,10 +85,6 @@ angular.module('angular-cron').directive('cronSelect', ['cronService', function(
     var initChanged = false;
 
     $scope.frequency = [
-      {
-        value : 1,
-        label : 'Second'  
-      },
       {
         value : 2,
         label : 'Minute'  
@@ -151,7 +139,6 @@ angular.module('angular-cron').directive('cronSelect', ['cronService', function(
       }
     }
 
-    $scope.secondValue = [0, 5, 10, 15, 20, 25, 30, 35, 40, 45, 50, 55];
     $scope.minuteValue = [0, 5, 10, 15, 20, 25, 30, 35, 40, 45, 50, 55];
     $scope.hourValue = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23];
     $scope.dayOfWeekValue = [0, 1, 2, 3, 4, 5, 6];
@@ -162,7 +149,7 @@ angular.module('angular-cron').directive('cronSelect', ['cronService', function(
       if (newValue && (!oldValue || newValue.base !== oldValue.base) && !initChanged) {
         if (newValue && newValue.base) {
           newValue.base = parseInt(newValue.base);
-          newValue.secondValue = $scope.secondValue[0];
+          newValue.secondValue = 0;
         }
         if(newValue && newValue.base && newValue.base >= 2) {
           newValue.minuteValue = $scope.minuteValue[0];
