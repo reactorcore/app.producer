@@ -139,8 +139,7 @@ module.exports = {
     request({
       method: 'DELETE',
       uri: process.env.CHOREOGRAPHER_URL +  '/metronome/events/' + eventName,
-      headers: headers,
-      data: { timezone: timezone }
+      headers: headers
     }, function (error, response, body) {
       if (error) {
         console.log("Error: ", error);
