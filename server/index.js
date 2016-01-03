@@ -1,5 +1,4 @@
 var server = require('./server.js');
-var shell = require('child_process');
 
 server.phase(function listen (app, next) {
   console.log("I'm in the server phase!");
