@@ -55,6 +55,7 @@ module.exports = {
     db.read('procedure', procedureId, function (err, data) {
       if (err) {
         console.log('Error in getProcedure ', err);
+        res.status(500);
       } else {
         res.status(201);
         res.send(data);        
@@ -63,14 +64,16 @@ module.exports = {
   },
 
   deleteProcedure: function (req, res) { 
-    var procedureId = req.body.id;
+    var procedureId = req.params.procedureId;
+    console.log('procedureId: ', procedureId);
 
-    // TODO: remove data param in callback--second arg does not exist in leveldb put method
     db.destroy('procedure', procedureId, function (err) {
       if (err) {
         console.log('Error in deleteProcedure ', err);
+        res.status(500);
       } else {
         res.status(201);
+        res.send();
       }
     });
 

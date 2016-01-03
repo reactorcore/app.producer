@@ -41,8 +41,8 @@ angular.module('producer.procedures', ['alertMessage'])
   };
 
   $scope.getProcedures = function(){
-    Procedures.getProcedures().then(function(resp){
-      $scope.procedures = resp.data;
+    Procedures.getProcedures().then(function(response){
+      $scope.procedures = response.data;
     });
   };
 
@@ -60,12 +60,16 @@ angular.module('producer.procedures', ['alertMessage'])
 
   var deleteSuccess = function(response) {
     Messages.setMessage('Procedure Deleted', 'success');
+    $scope.newProcedure = {};
+    $scope.procedure = {};
+    $scope.showProcedure = false;
     $scope.getProcedures();
   };
 
   var deleteError = function(response) {
     Messages.setMessage('Sorry, there was an error submitting your form. Please submit again.', 'error');
     console.log('error: ', response);
+    $scope.getProcedures();
   };
 
   $scope.getProcedures();
