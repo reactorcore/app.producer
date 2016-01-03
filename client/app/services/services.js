@@ -157,4 +157,16 @@ angular.module('producer.services', [])
       return $cookies.get('session') === "true" ? true : false;
     }
   };
-});
+})
+
+.factory('Commit', function ($http){
+  return {
+    getHash: function() {
+      return $http({
+        method: 'GET',
+        // cache: true,
+        url: 'commit'
+      });
+    }
+  }
+})

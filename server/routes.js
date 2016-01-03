@@ -55,7 +55,7 @@ module.exports = function (app) {
   app.post('/procedures', verify, proceduresController.createProcedure);
   app.delete('/procedures/:procedureId', verify, proceduresController.deleteProcedure);
 
-  app.get('/commit', verify, helpers.getCommitHash);
+  app.get('/commit', helpers.getCommitHash);
 
   app.param('eventName', eventsController.getEventName);
   // app.param('procedureName', proceduresController.getProcedureName);
