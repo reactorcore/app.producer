@@ -54,9 +54,6 @@ module.exports = function (app) {
 
   app.get('/commit', helpers.getCommitHash);
 
-  app.param('eventName', eventsController.getEventName);
-  // app.param('procedureName', proceduresController.getProcedureName);
-
   function verify(req, res, next) {
     if (req.isAuthenticated() && req.user) {
      return next();
