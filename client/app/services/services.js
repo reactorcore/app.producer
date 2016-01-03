@@ -60,10 +60,18 @@ angular.module('producer.services', [])
       });
     },
 
+    updateProcedure: function(procedure) {
+      return $http({
+        method: 'PUT',
+        url: 'procedures/' + procedure.id,
+        data: procedure
+      });
+    },
+
     deleteProcedure: function(procedure) {
       return $http({
         method: 'DELETE',
-        url: 'procedures/' + procedure.title,
+        url: 'procedures/' + procedure.id,
       });
     }
   };

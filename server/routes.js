@@ -52,6 +52,7 @@ module.exports = function (app) {
   app.get('/soundboard/:eventName', verify, soundboardController.getSoundboardTemplate);
   app.get('/procedures', verify, proceduresController.getProcedures);
   app.post('/procedures', verify, proceduresController.createProcedure);
+  app.put('/procedures/:procedureId', verify, proceduresController.updateProcedure);
   app.delete('/procedures/:procedureId', verify, proceduresController.deleteProcedure);
 
   app.param('eventName', eventsController.getEventName);

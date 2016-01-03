@@ -2,30 +2,36 @@
 <div id="main__content--container">
   <div class="right__nav--container">
     <ul>
-      <li class="right__nav--item" ng-class="getClass(procedure)" ng-repeat="procedure in procedures" ng-click="setMaster(procedure)">
-        {{procedure.title}}
+      <li class="right__nav--item" ng-class="getClass(procedure)" ng-repeat="procedure in procedures" ng-model="procedure" ng-click="setMaster(procedure)">
+        {{procedure.originalTitle}}
       </li>
     </ul>
     <div class="nav__button--container">
-      <div ng-click="createNewEvent()" class="nav__button">Create New Procedure</div>
+      <div ng-click="createNewProcedure()" class="nav__button">Create New Procedure</div>
     </div>
   </div>
 
   <div class="content__main">
-    <h1 class="content__title">Create Procedure</h1>
+    <h1 class="content__title">{{procedure.originalTitle || 'Create Procedure'}}</h1>
 
     <div class="content__input--container">
       <label class="content__input--title">Title:</label>
-      <input class="content__input--field" ng-model="newProcedure.title" autofocus></input>
+      <input class="content__input--field" ng-model="procedure.title" autofocus></input>
     </div>
     <div class="content__input--container">
       <label class="content__input--title">Procedure:</label>
-      <textarea class="content__input--field content__input--procedure" ng-model="newProcedure.text"></textarea>
+      <textarea class="content__input--field content__input--procedure" ng-model="procedure.text"></textarea>
     </div>
     <div class="content__input--container content__submit--container">
       <button ng-show="!showProcedure" ng-click="submitProcedure()" class="content__submit--left">Submit</button>
-      <button ng-show="showProcedure" ng-click="deleteProcedure()" class="content__submit--left">Delete</button>
-      <button ng-show="showProcedure" ng-click="" class="content__submit--right">Resubmit</button>
+      <button ng-show="showProcedure"
+              ng-click="deleteProcedure()"
+              ng-class="confirm"
+              class="content__submit--left"
+      >
+        {{confirm ? 'Sure?' : 'Delete'}}
+      </button>
+      <button ng-show="showProcedure" ng-click="updateProcedure()" class="content__submit--right">Resubmit</button>
     </div>
     <alert-message></alert-message>
   </div>

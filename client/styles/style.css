@@ -371,6 +371,13 @@ h3.content__title {
   cursor: pointer;
 }
 
+.content__delete--confirm {
+  border: 2px solid #FFBABD;
+  background-color: #fae6e7;
+  outline: 4px solid #fae6e7;
+  color: #ff9ca0;
+}
+
 .content__submit--container {
   display: flex;
   justify-content: center;
