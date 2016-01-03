@@ -24,7 +24,13 @@
     </div>
     <div class="content__input--container content__submit--container">
       <button ng-show="!showProcedure" ng-click="submitProcedure()" class="content__submit--left">Submit</button>
-      <button ng-show="showProcedure" ng-click="deleteProcedure()" class="content__submit--left">Delete</button>
+      <button ng-show="showProcedure"
+              ng-click="deleteProcedure()"
+              ng-class="confirm"
+              class="content__submit--left"
+      >
+        {{confirm ? 'Sure?' : 'Delete'}}
+      </button>
       <button ng-show="showProcedure" ng-click="" class="content__submit--right">Resubmit</button>
     </div>
     <alert-message></alert-message>

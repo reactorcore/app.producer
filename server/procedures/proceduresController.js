@@ -65,7 +65,6 @@ module.exports = {
 
   deleteProcedure: function (req, res) { 
     var procedureId = req.params.procedureId;
-    console.log('procedureId: ', procedureId);
 
     db.destroy('procedure', procedureId, function (err) {
       if (err) {

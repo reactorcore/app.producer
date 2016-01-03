@@ -8,6 +8,7 @@ angular.module('producer.procedures', ['alertMessage'])
 
   $scope.procedure = {};
   $scope.newProcedure = {};
+  $scope.confirm = undefined;
 
   $scope.getClass = function (procedure) {
     if(procedure === undefined || $scope.selected === undefined) {
@@ -47,7 +48,12 @@ angular.module('producer.procedures', ['alertMessage'])
   };
 
   $scope.deleteProcedure = function(){
-    Procedures.deleteProcedure($scope.procedure).then(deleteSuccess, deleteError);
+    if ($scope.confirm) {
+      Procedures.deleteProcedure($scope.procedure).then(deleteSuccess, deleteError);
+      $scope.confirm = undefined;
+    } else {
+      $scope.confirm = 'content__delete--confirm';
+    }
   };
 
   $scope.setMaster = function(section) {
@@ -56,6 +62,8 @@ angular.module('producer.procedures', ['alertMessage'])
     $scope.newProcedure.text = $scope.selected.text;
     $scope.showProcedure = true;
     $scope.procedure = section;
+    $scope.confirm = undefined;
+    Messages.clearMessage();
   };
 
   var deleteSuccess = function(response) {
