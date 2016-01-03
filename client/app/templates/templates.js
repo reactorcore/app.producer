@@ -93,13 +93,22 @@ angular.module('producer.templates', ['ui.select','ngSanitize','alertMessage'])
         text: $scope.selectedProcedure[0].text,
         title: $scope.selectedProcedure[0].title
       };
-      Procedures.updateProcedure(updatedProcedure).then(function(){console.log('success!');}, function(){console.log('fail')});
+      //Submit procedure and if successful, submit template
+      Procedures.updateProcedure(updatedProcedure).then(function() {
+        Template.submitTemplate($scope.template).then(submitSuccess, submitError);
+      }, submitError);
+    } else {
+      Template.submitTemplate($scope.template).then(submitSuccess, submitError);
     }
-    Template.submitTemplate($scope.template).then(submitSuccess, submitError);
   };
 
   var submitSuccess = function(response) {
-    Messages.setMessage('Your form has been sent!', 'success');
+    if ($scope.updatingProcedure) {
+      Messages.setMessage('Your template was submitted successfully and your procedure was updated!', 'success');
+      $scope.updatingProcedure = false;
+    } else {
+      Messages.setMessage('Your template was submitted successfully!', 'success');
+    }
   };
 
   var submitError = function(response) {
