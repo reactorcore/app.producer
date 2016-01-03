@@ -7,12 +7,12 @@
       </li>
     </ul>
     <div class="nav__button--container">
-      <div ng-click="createNewEvent()" class="nav__button">Create New Procedure</div>
+      <div ng-click="createNewProcedure()" class="nav__button">Create New Procedure</div>
     </div>
   </div>
 
   <div class="content__main">
-    <h1 class="content__title">Create Procedure</h1>
+    <h1 class="content__title">{{procedure.title || 'Create Procedure'}}</h1>
 
     <div class="content__input--container">
       <label class="content__input--title">Title:</label>

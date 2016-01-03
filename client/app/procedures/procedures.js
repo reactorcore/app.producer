@@ -16,12 +16,22 @@ angular.module('producer.procedures', ['alertMessage'])
     return Hilighter.hilight(procedure.title, $scope.selected.title);
   };
 
+  $scope.createNewProcedure = function(){
+    $scope.newProcedure = {};
+    $scope.procedure = {};
+    $scope.showProcedure = false;
+    $scope.selected = undefined;
+  };
+
   $scope.submitProcedure = function(){
     Procedures.submitProcedure($scope.newProcedure).then(submitSuccess, submitError);
   };
 
   var submitSuccess = function(response) {
     Messages.setMessage('Your procedure was created!', 'success');
+    $scope.newProcedure.title = "";
+    $scope.newProcedure.text = "";
+    $scope.showProcedure = false;
     $scope.getProcedures();
   };
 
@@ -46,12 +56,6 @@ angular.module('producer.procedures', ['alertMessage'])
     $scope.newProcedure.text = $scope.selected.text;
     $scope.showProcedure = true;
     $scope.procedure = section;
-  };
-
-  $scope.createNewProcedure = function() {
-    $scope.newProcedure.title = "";
-    $scope.newProcedure.text = "";
-    $scope.showProcedure = false;
   };
 
   var deleteSuccess = function(response) {
