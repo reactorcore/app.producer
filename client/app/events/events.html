@@ -36,9 +36,9 @@
               ng-class="confirm"
               class="content__submit--left"
       >
-        {{confirm ? 'Sure?' : 'Delete'}}
+        {{confirm === 'content__delete--confirm' ? 'Sure?' : 'Delete'}}
       </button>
-      <button ng-show="showEvent" ng-click="" class="content__submit--right">Resubmit</button>
+      <button ng-show="showEvent" ng-click="updateEvent()" class="content__submit--right">Resubmit</button>
     </div>
     <alert-message></alert-message>
   </div>
