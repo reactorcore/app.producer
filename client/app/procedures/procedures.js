@@ -7,31 +7,54 @@ angular.module('producer.procedures', ['alertMessage'])
   $scope.showProcedure = false;
 
   $scope.procedure = {};
-  $scope.newProcedure = {};
   $scope.confirm = undefined;
 
   $scope.getClass = function (procedure) {
-    if(procedure === undefined || $scope.selected === undefined) {
+    if(procedure === {} || $scope.selected === undefined) {
       return '';
     }
     return Hilighter.hilight(procedure.title, $scope.selected.title);
   };
 
+  $scope.getProcedures = function(){
+    Procedures.getProcedures().then(function(response){
+      $scope.procedures = response.data.map(function(procedure) {
+        procedure.originalTitle = procedure.title;
+        return procedure;
+      });
+
+      // if existing procedure is currently selected
+      if ($scope.procedure.id) {
+        $scope.procedures.forEach(function(procedure) {
+          if (procedure.id === $scope.procedure.id) {
+            $scope.procedure = procedure;
+          }
+        });
+      }
+    });
+  };
+
+  $scope.setMaster = function(section) {
+    $scope.selected = $scope.procedure = section;
+    $scope.showProcedure = true;
+    $scope.confirm = undefined;
+    Messages.clearMessage();
+  };
+
   $scope.createNewProcedure = function(){
-    $scope.newProcedure = {};
     $scope.procedure = {};
     $scope.showProcedure = false;
     $scope.selected = undefined;
   };
 
   $scope.submitProcedure = function(){
-    Procedures.submitProcedure($scope.newProcedure).then(submitSuccess, submitError);
+    Procedures.submitProcedure($scope.procedure).then(submitSuccess, submitError);
   };
 
   var submitSuccess = function(response) {
     Messages.setMessage('Your procedure was created!', 'success');
-    $scope.newProcedure.title = "";
-    $scope.newProcedure.text = "";
+    $scope.procedure.title = "";
+    $scope.procedure.text = "";
     $scope.showProcedure = false;
     $scope.getProcedures();
   };
@@ -41,10 +64,19 @@ angular.module('producer.procedures', ['alertMessage'])
     console.log('error: ', response);
   };
 
-  $scope.getProcedures = function(){
-    Procedures.getProcedures().then(function(response){
-      $scope.procedures = response.data;
-    });
+  $scope.updateProcedure = function() {
+    Procedures.updateProcedure($scope.procedure).then(updateSuccess, updateError);
+  };
+
+  var updateSuccess = function(response) {
+    Messages.setMessage('Your procedure was updated!', 'success');
+    $scope.getProcedures();
+  };
+
+  var updateError = function(response) {
+    Messages.setMessage('Sorry, there was an error updating your Procedure. Please try again.', 'error');
+    console.log('error: ', response);
+    $scope.getProcedures();
   };
 
   $scope.deleteProcedure = function(){
@@ -56,19 +88,8 @@ angular.module('producer.procedures', ['alertMessage'])
     }
   };
 
-  $scope.setMaster = function(section) {
-    $scope.selected = section;
-    $scope.newProcedure.title = $scope.selected.title;
-    $scope.newProcedure.text = $scope.selected.text;
-    $scope.showProcedure = true;
-    $scope.procedure = section;
-    $scope.confirm = undefined;
-    Messages.clearMessage();
-  };
-
   var deleteSuccess = function(response) {
     Messages.setMessage('Procedure Deleted', 'success');
-    $scope.newProcedure = {};
     $scope.procedure = {};
     $scope.showProcedure = false;
     $scope.getProcedures();
