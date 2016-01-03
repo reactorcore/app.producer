@@ -8,7 +8,6 @@ angular.module('producer.events', ['alertMessage'])
 
   $scope.event = {};
   $scope.newEvent = {};
-  $scope.confirm = undefined;
 
   $scope.getClass = function (event) {
     return Hilighter.hilight(event, $scope.event.title);
@@ -40,12 +39,8 @@ angular.module('producer.events', ['alertMessage'])
   };
 
   $scope.deleteEvent = function(){
-    if ($scope.confirm) {
-      Events.deleteEvent($scope.event).then(deleteSuccess, deleteError);
-      $scope.confirm = undefined;
-    } else {
-      $scope.confirm = 'content__delete--confirm';
-    }
+    console.log($scope.event);
+    Events.deleteEvent($scope.event).then(deleteSuccess, deleteError);
   };
 
   $scope.setMaster = function(section) {
@@ -55,8 +50,6 @@ angular.module('producer.events', ['alertMessage'])
     $scope.newEvent.description = $scope.selected.description;
     $scope.showEvent = true;
     $scope.event = section;
-    $scope.confirm = undefined;
-    Messages.clearMessage();
   };
 
   $scope.createNewEvent = function() {
@@ -69,16 +62,12 @@ angular.module('producer.events', ['alertMessage'])
 
   var deleteSuccess = function(response) {
     Messages.setMessage('Event Deleted.', 'success');
-    $scope.event = {};
-    $scope.showEvent = false;
-    $scope.newEvent = {};
     $scope.getEvents();
   };
 
   var deleteError = function(response) {
     Messages.setMessage('Sorry, there was an error submitting your form. Please submit again.');
     console.log('error: ', response);
-    $scope.getEvents();
   };
 
   $scope.getEvents();
