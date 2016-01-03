@@ -11,8 +11,8 @@
     "aws-sdk": "^2.2.15",
     "bluebird": "^2.9.34",
     "body-parser": "^1.4.3",
-    "crypto": "0.0.3",
     "cookie-parser": "^1.4.0",
+    "crypto": "0.0.3",
     "dotenv": "^1.2.0",
     "express": "^4.13.2",
     "express-session": "^1.12.1",
@@ -26,6 +26,7 @@
     "passport-github": "^1.0.0",
     "q": "^1.0.1",
     "request": "^2.36.0",
+    "request-promise": "^1.0.2",
     "s3": "^4.4.0",
     "underscore": "^1.8.3"
   },
