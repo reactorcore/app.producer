@@ -31,8 +31,9 @@ angular.module('producer.events', ['alertMessage'])
   };
 
   $scope.getEvents = function(){
-    Events.getEvents().then(function(resp){
-      var events = resp.data;
+    Events.getEvents().then(function(response){
+      // filter out all events that don't have a cron
+      var events = response.data.filter(function(event){return !!event.cron});
       $scope.events = events;
     });
   };
