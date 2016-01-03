@@ -1,5 +1,6 @@
 var express = require('express');
 var passport = require('passport');
+var helpers = require('./config/helpers.js');
 
 var templatesController = require('./templates/templatesController.js');
 var eventsController = require('./events/eventsController');
@@ -53,6 +54,8 @@ module.exports = function (app) {
   app.get('/procedures', verify, proceduresController.getProcedures);
   app.post('/procedures', verify, proceduresController.createProcedure);
   app.delete('/procedures/:procedureId', verify, proceduresController.deleteProcedure);
+
+  app.get('/commit', verify, helpers.getCommitHash);
 
   app.param('eventName', eventsController.getEventName);
   // app.param('procedureName', proceduresController.getProcedureName);
