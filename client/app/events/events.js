@@ -8,6 +8,15 @@ angular.module('producer.events', ['alertMessage'])
 
   $scope.event = {};
   $scope.newEvent = {};
+  $scope.confirm = undefined;
+
+  $scope.getEvents = function(){
+    Events.getEvents().then(function(response){
+      // filter out all events that don't have a cron
+      var events = response.data.filter(function(event){return !!event.cron});
+      $scope.events = events;
+    });
+  };
 
   $scope.getClass = function (event) {
     return Hilighter.hilight(event, $scope.event.title);
@@ -24,23 +33,54 @@ angular.module('producer.events', ['alertMessage'])
 
   var submitError = function(response) {
     if ((400 <= response.status) && (response.status < 500)) {
-      Messages.setMessage('Sorry, there was an error submitting your form. Please submit again.', 'error');
+      Messages.setMessage('Sorry, there was an error submitting your event. Please submit again.', 'error');
     } else {
       Messages.setMessage(response.data, 'error');
     }
   };
 
-  $scope.getEvents = function(){
-    Events.getEvents().then(function(response){
-      // filter out all events that don't have a cron
-      var events = response.data.filter(function(event){return !!event.cron});
-      $scope.events = events;
-    });
+  $scope.updateEvent = function() {
+    Events.deleteEvent($scope.event)
+    .then(function() {
+      $scope.getEvents();
+      Events.submitEvent($scope.newEvent)
+      .then(updateSuccess, updateError);
+    }, deleteError);
   };
 
+  var updateSuccess = function(response) {
+    Messages.setMessage('Your event was updated!', 'success');
+    $scope.getEvents();
+  };
+
+  var updateError = function(response) {
+    if ((400 <= response.status) && (response.status < 500)) {
+      Messages.setMessage('Sorry, there was an error updating your event. Please submit again.', 'error');
+    } else {
+      Messages.setMessage(response.data, 'error');
+    }
+  }
+
   $scope.deleteEvent = function(){
-    console.log($scope.event);
-    Events.deleteEvent($scope.event).then(deleteSuccess, deleteError);
+    if ($scope.confirm) {
+      Events.deleteEvent($scope.event).then(deleteSuccess, deleteError);
+      $scope.confirm = undefined;
+    } else {
+      $scope.confirm = 'content__delete--confirm';
+    }
+  };
+
+  var deleteSuccess = function(response) {
+    Messages.setMessage('Event Deleted.', 'success');
+    $scope.event = {};
+    $scope.showEvent = false;
+    $scope.newEvent = {};
+    $scope.getEvents();
+  };
+
+  var deleteError = function(response) {
+    Messages.setMessage('Sorry, there was an error deleting your event. Please try again.');
+    console.log('error: ', response);
   };
 
   $scope.setMaster = function(section) {
@@ -50,6 +90,8 @@ angular.module('producer.events', ['alertMessage'])
     $scope.newEvent.description = $scope.selected.description;
     $scope.showEvent = true;
     $scope.event = section;
+    $scope.confirm = undefined;
+    Messages.clearMessage();
   };
 
   $scope.createNewEvent = function() {
@@ -60,17 +102,6 @@ angular.module('producer.events', ['alertMessage'])
     $scope.showEvent = false;
   };
 
-  var deleteSuccess = function(response) {
-    Messages.setMessage('Event Deleted.', 'success');
-    $scope.getEvents();
-  };
-
-  var deleteError = function(response) {
-    Messages.setMessage('Sorry, there was an error submitting your form. Please submit again.');
-    console.log('error: ', response);
-  };
-
   $scope.getEvents();
-
 
 });

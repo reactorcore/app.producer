@@ -9,27 +9,49 @@
 
     <div class="content__input--container">
       <label class="content__input--title">Title:</label>
-      <input class="content__input--field" id="template__title" autocomplete="off" ng-change="checkInput('title')" name="title" ng-model="template.title" required autofocus/>
-    </div>
-
-    <div class="content__input--container">
-      <label class="content__input--title">Role:</label>
-      <auto-select choices="roles" selected="template.role"
-        placeholder="enter roles" filter-key="name"  select-max="1">
+<!--       <input class="content__input--field"
+            id="template__title"
+            ng-change=""
+            name="title"
+            ng-model="selectedProcedure.title"
+            required
+            autofocus
+      /> -->
+      <auto-select
+        choices="procedures"
+        selected="selectedProcedure"
+        placeholder="Select title"
+        filter-key="title"
+        select-max="1">
       </auto-select>
     </div>
 
     <div class="content__input--container">
-      <label class="content__input--title">Tags:</label>
-      <auto-select choices="events" selected="tags" 
-        placeholder="enter event tags" 
+      <label class="content__input--title">Role:</label>
+      <auto-select
+        choices="roles"
+        selected="template.role"
+        placeholder="Select roles"
+        filter-key="name"
+        select-max="1">
+      </auto-select>
+    </div>
+
+    <div class="content__input--container">
+      <label class="content__input--title">Events:</label>
+      <auto-select
+        choices="events"
+        selected="selectedEvents" 
+        placeholder="Select events" 
         filter-key="title">
       </auto-select>
     </div>
 
     <div class="content__input--container">
       <label class="content__input--title">Procedure:</label>
-      <textarea class="content__input--field content__input--procedure" ng-model="template.description"></textarea>
+      <textarea class="content__input--field content__input--procedure"
+                ng-model="selectedProcedure[0].text">
+      </textarea>
     </div>
 
     <div class="content__input--container content__submit--container">

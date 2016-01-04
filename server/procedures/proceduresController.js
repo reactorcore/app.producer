@@ -37,7 +37,6 @@ module.exports = {
 
     var procedureDBModel = new Procedure(procedureData);
 
-    // TODO: remove data param in callback--second arg does not exist in leveldb put method
     db.update('procedure', procedureId, procedureDBModel, function (err) {
       if (err) {
         console.log('Error in updateProcedure ', err);
