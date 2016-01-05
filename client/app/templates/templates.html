@@ -1,15 +1,11 @@
 <nav-bar></nav-bar>
-<div id="main__content--container">
-
-  <div class="right__nav--container">
-  </div>
-
+<div class="main__content--container">
   <form name="templateForm" class="content__main" ng-submit="submitTemplate()" novalidate>
     <h1 class="content__title">Create Template</h1>
 
     <div class="content__input--container">
       <label class="content__input--title">Title:</label>
-<!--       <input class="content__input--field"
+      <!-- <input class="content__input--field"
             id="template__title"
             ng-change=""
             name="title"
@@ -41,8 +37,8 @@
       <label class="content__input--title">Events:</label>
       <auto-select
         choices="events"
-        selected="selectedEvents" 
-        placeholder="Select events" 
+        selected="selectedEvents"
+        placeholder="Select events"
         filter-key="title">
       </auto-select>
     </div>
@@ -57,9 +53,8 @@
     <div class="content__input--container content__submit--container">
       <button ng-disabled="templateForm.$invalid" class="content__input--submit">Submit</button>
     </div>
-
   </form>
-  <div class="content__main">
-    <alert-message></alert-message>
-  </div>
+  <alert-message></alert-message>
+</div>
+<div class="right__nav--container">
 </div>

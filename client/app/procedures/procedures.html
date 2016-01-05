@@ -1,38 +1,35 @@
 <nav-bar></nav-bar>
-<div id="main__content--container">
-  <div class="right__nav--container">
-    <ul>
-      <li class="right__nav--item" ng-class="getClass(procedure)" ng-repeat="procedure in procedures" ng-model="procedure" ng-click="setMaster(procedure)">
-        {{procedure.originalTitle}}
-      </li>
-    </ul>
-    <div class="nav__button--container">
-      <div ng-click="createNewProcedure()" class="nav__button">Create New Procedure</div>
-    </div>
+<div class="main__content--container">
+  <h1 class="content__title">{{procedure.originalTitle || 'Create Procedure'}}</h1>
+
+  <div class="content__input--container">
+    <label class="content__input--title">Title:</label>
+    <input class="content__input--field" ng-model="procedure.title" autofocus></input>
   </div>
-
-  <div class="content__main">
-    <h1 class="content__title">{{procedure.originalTitle || 'Create Procedure'}}</h1>
-
-    <div class="content__input--container">
-      <label class="content__input--title">Title:</label>
-      <input class="content__input--field" ng-model="procedure.title" autofocus></input>
-    </div>
-    <div class="content__input--container">
-      <label class="content__input--title">Procedure:</label>
-      <textarea class="content__input--field content__input--procedure" ng-model="procedure.text"></textarea>
-    </div>
-    <div class="content__input--container content__submit--container">
-      <button ng-show="!showProcedure" ng-click="submitProcedure()" class="content__submit--left">Submit</button>
-      <button ng-show="showProcedure"
-              ng-click="deleteProcedure()"
-              ng-class="confirm"
-              class="content__submit--left"
-      >
-        {{confirm ? 'Sure?' : 'Delete'}}
-      </button>
-      <button ng-show="showProcedure" ng-click="updateProcedure()" class="content__submit--right">Resubmit</button>
-    </div>
-    <alert-message></alert-message>
+  <div class="content__input--container">
+    <label class="content__input--title">Procedure:</label>
+    <textarea class="content__input--field content__input--procedure" ng-model="procedure.text"></textarea>
+  </div>
+  <div class="content__submit--container">
+    <button ng-show="!showProcedure" ng-click="submitProcedure()" class="content__input--submit">Submit</button>
+    <button ng-show="showProcedure"
+            ng-click="deleteProcedure()"
+            ng-class="confirm"
+            class="content__input--submit"
+    >
+      {{confirm ? 'Sure?' : 'Delete'}}
+    </button>
+    <button ng-show="showProcedure" ng-click="updateProcedure()" class="content__submit">Resubmit</button>
+  </div>
+  <alert-message></alert-message>
+</div>
+<div class="right__nav--container">
+  <ul>
+    <li class="right__nav--item" ng-class="getClass(procedure)" ng-repeat="procedure in procedures" ng-model="procedure" ng-click="setMaster(procedure)">
+      {{procedure.originalTitle}}
+    </li>
+  </ul>
+  <div class="nav__button--container">
+    <div ng-click="createNewProcedure()" class="nav__button">Create New Procedure</div>
   </div>
 </div>
