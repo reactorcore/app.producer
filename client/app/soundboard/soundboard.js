@@ -12,8 +12,8 @@ angular.module('producer.soundboard', ['alertMessage'])
   };
 
   $scope.getEvents = function () {
-    Events.getEvents().then(function (res) {
-      var events = res.data;
+    Events.getEvents().then(function (response) {
+      var events = response.data.filter(function(event){return !!event.cron});
       $scope.events = events;
     }).catch(function (error) {
       console.log(error);

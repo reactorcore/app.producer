@@ -12,7 +12,7 @@ module.exports =  {
   postSoundboard: function (req, res, next) {
     // This is the format for timezone:
     // var timezone = 'America/Los Angeles';
-    var eventName = req.eventName;
+    var eventName = req.params.eventName;
     request({
       method: 'POST',
       uri: process.env.CHOREOGRAPHER_URL + '/signal/' + eventName,
@@ -28,7 +28,7 @@ module.exports =  {
   },
 
   getSoundboardTemplate: function (req, res, next) {
-    var eventName = req.eventName;
+    var eventName = req.params.eventName;
     request({
       method: 'GET',
       uri: process.env.CHOREOGRAPHER_URL +  '/events/' + eventName + '/templates',

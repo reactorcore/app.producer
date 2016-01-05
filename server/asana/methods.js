@@ -1,6 +1,6 @@
 module.exports = function asana(client) {
   return {
-    addTask: function(title, role, event, description) {
+    addTask: function(title, roleID, event, procedure) {
       console.log(client);
       client.users.me()
         .then(function(user) {
@@ -10,7 +10,7 @@ module.exports = function asana(client) {
             name: title,
             workspace: process.env.WORKSPACE_ID,
             projects: process.env.PROJECT_ID,
-            notes: "Who: " + role + "\nWhen: " + event + "\n\nDescription: " + description + "\nTemplate: link-to-template"
+            notes: "Who: " +  'https://app.asana.com/0/0/' + roleID + "\nWhen: " + event + "\n\nProcedure: " + procedure + "\nTemplate: link-to-template"
           });
         })
         .then(function(response) {
