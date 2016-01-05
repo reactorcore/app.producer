@@ -44,10 +44,10 @@ angular.module('producer.templates', ['ui.select','ngSanitize','alertMessage'])
   // Loads roles
   var loadRoles = function() {
     return Roles.getRoles()
-      .then(function(roles){
+      .then(function(response){
         // $scope.roles = roles;
         // blank roles with ids keep appearing...
-        $scope.roles = roles.filter(function(r){return r.name !== ''});
+        $scope.roles = response.data.filter(function(r){return r.name !== ''});
       });
   };
   loadRoles();

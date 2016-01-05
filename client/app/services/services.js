@@ -82,9 +82,6 @@ angular.module('producer.services', [])
       return $http({
         method: 'Get',
         url: 'roles',
-      })
-      .then(function(resp){
-        return resp.data.data;
       });
     }
   };
