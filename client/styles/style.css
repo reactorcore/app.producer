@@ -240,7 +240,6 @@ button:disabled, button:disabled:hover {
 /* NAV BUTTONS */
 
 .nav__button--container {
-  overflow: hidden;
   width: 200px;
   text-align: center;
   height: 50px;
@@ -288,6 +287,7 @@ nav .active-nav {
   background-color: rgb(128, 184, 231);
   z-index: 1;
   box-shadow: 0.5px 0 3px #30597B;
+  overflow: hidden;
 }
 
 h1 {
@@ -328,6 +328,7 @@ h1 {
   min-height: 100vh;
   width: 200px;
   background-color: rgb(128, 184, 231);
+  overflow: hidden;
 }
 
 .right__nav--container ul {
@@ -713,15 +714,15 @@ tags-input .autocomplete .suggestion-item em {
 ******************************/
 
 /* this targets the default scrollbar (compulsory) */
-::-webkit-scrollbar {
+.scrollbar::-webkit-scrollbar {
   width: 10px;
 }
 
 /* the new scrollbar will have a flat appearance with the set background color */
-::-webkit-scrollbar-track {
+.scrollbar::-webkit-scrollbar-track {
   background-color: rgb(111, 158, 196);
 }
 
-::-webkit-scrollbar-thumb {
+.scrollbar::-webkit-scrollbar-thumb {
   background-color: rgb(78, 121, 159);
 }

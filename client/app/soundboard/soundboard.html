@@ -19,7 +19,7 @@
       </div>
     </div>
   </div>
-  <div ng-show="selectedEvent.isSelected" class="content__list--container">
+  <div ng-show="selectedEvent.isSelected" class="content__list--container scrollbar">
     <p class="content__sub--title">
       Procedures affected by {{selectedEvent.title}}
     </p>
@@ -31,7 +31,7 @@
 </div>
 
 <div class="right__nav--container">
-  <ul>
+  <ul class="scrollbar">
     <li class="right__nav--item"  ng-class="getClass(event.title)" ng-repeat="event in events" ng-click="selectEvent(event)">
       {{event.title}}
     </li>
