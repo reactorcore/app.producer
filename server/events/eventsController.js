@@ -60,6 +60,7 @@ module.exports = {
             title: event.eventName,
             text: event.eventName,
             eventName: event.eventName,
+            eventKey: event.eventName,
             date: event.date,
             description: event.eventName + " - " + event.date,
             cron: null

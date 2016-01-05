@@ -81,9 +81,9 @@ angular.module('producer.templates', ['ui.select','ngSanitize','alertMessage'])
       return currEvent.eventKey ? eventList += currEvent.eventKey : eventList;
     }, '');
     //temporarily sends only first role even though autocomplete can handle multiple
-    $scope.template.role = $scope.template.role[0].name;
+    $scope.template.roleID = $scope.template.role[0].id;
     $scope.template.title = $scope.selectedProcedure[0].title;
-    $scope.template.description = $scope.selectedProcedure[0].text;
+    $scope.template.procedure = $scope.selectedProcedure[0].text;
     if ($scope.updatingProcedure) {
       // make new obj without originalTitle and originalText k/v pairs
       var updatedProcedure = {
