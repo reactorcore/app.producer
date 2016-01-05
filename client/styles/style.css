@@ -234,6 +234,8 @@ h3.content__title {
   right: 0;
   top: 0;
   background-color: rgba(000, 113, 206, 0.5);
+  overflow-y: scroll;
+  overflow-x: hidden;
 /*  z-index: 1;
   box-shadow: -0.5px 0 3px #30597B;*/
 }
@@ -377,6 +379,16 @@ h3.content__title {
   border: 2px solid rgba(000, 113, 206, 0.2);
   outline: 4px solid rgba(000, 113, 206, 0.2);
   cursor: pointer;
+  transition: 0.2s;
+}
+
+.content__submit--left:hover,
+.content__submit--right:hover,
+.content__input--submit:hover {
+  border: 2px solid rgb(204, 226, 245);
+  outline: 4px solid rgb(163, 203, 237);
+  background-color: rgb(163, 203, 237);
+  transition: 0.2s;
 }
 
 .content__delete--confirm {
@@ -646,7 +658,7 @@ nav > .active-nav {
   background-color: rgb(33, 131, 213) !important;
 }
 
-button:disabled {
+button:disabled, button:disabled:hover {
   background-color: rgb(219, 227, 234);
   border: none;
   outline: none;
