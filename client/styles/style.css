@@ -676,31 +676,38 @@ tags-input .autocomplete .suggestion-item em {
 *
 ******************************/
 
-.alert {
-  float: left;
+.alert{
   display: flex;
-  justify-content: space-between;
-  margin: 0 calc(50% - 50px);
-}
-
-.alert {
-  padding: 5px 10px;
-  border: 2px solid;
-  width: 300px;
+  position:fixed;
+  bottom:0;
+  left:0;
+  width:100%;
+  z-index:999999;
+  color:#fff;
+  font-size:1em;
+  background:#2ea91a;
+  height:55px;
+  margin-bottom:-55px;
+  line-height:55px;
+  text-align:center;
 }
 
 .alert-success {
   border-color: #b0e771;
   background-color: #f1fae6;
+  margin-bottom: 0;
+  transition: 1s;
 }
 
 .alert-error {
-  border-color: #e77175;
-  background-color: #fae6e7;
+  background-color: #e77175;;
+  margin-bottom: 0;
+  transition: 1s;
 }
 
 .alert-hide {
-  fill: #878787;
+  margin: 0 10px;
+  color: #514545;
 }
 
 .alert-hide:hover {
