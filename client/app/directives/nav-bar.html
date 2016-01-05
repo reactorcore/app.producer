@@ -6,7 +6,9 @@
     <a ng-class="getClass('procedures')" ng-href="#/procedures"><span>Procedures</span></a>
     <a ng-class="getClass('soundboard')" ng-href="#/soundboard"><span>Soundboard</span></a>
     <div class="nav__button--container">
-    <a class="nav__button" ng-href="/logout"><span>Logout</span></a>
+    <div class="nav__button" ng-click="logout()">
+      Logout
+    </div>
     </div>
   </nav>
 </div>

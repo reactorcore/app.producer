@@ -162,6 +162,13 @@ angular.module('producer.services', [])
   return {
     isAuthenticated: function () {
       return $cookies.get('session') === "true" ? true : false;
+    },
+
+    logout : function () {
+      $http({
+        method: 'GET',
+        url: '/logout'
+      });
     }
   };
 })

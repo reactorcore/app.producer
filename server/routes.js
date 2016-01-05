@@ -31,13 +31,9 @@ module.exports = function (app) {
 
 
   app.get('/logout', function (req, res){
-    res.cookie('session', '');
     req.logout();
-    if(process.env.NODE_ENV === 'dev') {
-      res.redirect('/');
-    } else {
-      res.redirect('/producer/v0/');
-    }
+    res.cookie('session', '');
+    res.sendStatus(401);
   });
 
 
