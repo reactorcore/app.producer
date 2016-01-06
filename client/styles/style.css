@@ -262,36 +262,43 @@ button:disabled, button:disabled:hover {
   margin: 30px 20px 10px 20px;
   width: 200px;
   height: 50px;
-  background-color: rgb(204, 226, 245);
-  font-size: 2rem;
+  font-size: 1.5rem;
   font-weight: 200;
   letter-spacing: 1px;
-  color: #FFF;
-  border: 2px solid rgb(163, 203, 237);
-  outline: 4px solid rgb(204, 226, 245);
+  color: #333;
+  border: none;
+  background-color: rgb(204, 226, 245);
   cursor: pointer;
   transition: 0.2s;
 }
 
+.content__input--submit:focus {
+  outline: 2px solid rgb(102, 169, 225);
+  transition: 0s;
+}
+
+.content__input--submit:active {
+  background-color: green;
+}
+
 .content__input--submit:hover {
-  border: 2px solid rgb(204, 226, 245);
-  outline: 4px solid rgb(163, 203, 237);
   background-color: rgb(163, 203, 237);
   transition: 0.2s;
 }
 
 .content__delete--confirm {
-  border: 2px solid #FFBABD;
+  border: none;
   background-color: #fae6e7;
-  outline: 4px solid #fae6e7;
-  color: #ff9ca0;
+  color: #333;
 }
 
 .content__delete--confirm:hover {
-  border: 2px solid #fae6e7;
   background-color: #FFBABD;
-  outline: 4px solid #FFBABD;
-  color: #fae6e7;
+  color: #333;
+}
+
+.content__delete--confirm:focus {
+  outline: 2px solid #FFBABD;
 }
 
 .content__submit--container {
@@ -410,6 +417,14 @@ h1 {
   font-weight: 100;
   color: #000;
   font-size: 1.5rem;
+}
+
+.content__subsection--header {
+  text-align: center;
+  padding: 40px 0;
+  font-weight: 500;
+  font-size: 1em;
+  color: #333;
 }
 
 .content__input--title {
