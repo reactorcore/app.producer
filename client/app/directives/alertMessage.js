@@ -7,7 +7,7 @@ angular.module('alertMessage', [])
       template:
         ['<div class="content__message--container alert alert-{{message.kind}}" ng-show="message.text">',
           '<div class="alert-message" data="message.text">{{message.text}}</div>',
-          '<div class="alert-hide" ng-click="clearMessage()">X</div>',
+          '<div class="alert-hide" ng-click="clearMessage()"> &#x2573;</div>',
         '</div>'
         ].join(''),
       controller: function ($scope, Messages) {

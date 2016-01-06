@@ -1,4 +1,4 @@
-angular.module('producer.procedures', ['alertMessage'])
+angular.module('producer.procedures', [])
 
 .controller('proceduresController', function ($scope, Procedures, Messages, Hilighter) {
   //TODO: hacky way to not carry over message

@@ -3,7 +3,7 @@
   <form name="templateForm" class="content__main" ng-submit="submitTemplate()" novalidate>
     <h1 class="content__title">Create Template</h1>
 
-    <div class="content__input--container">
+    <div>
       <label class="content__input--title">Title:</label>
       <!-- <input class="content__input--field"
             id="template__title"
@@ -22,7 +22,7 @@
       </auto-select>
     </div>
 
-    <div class="content__input--container">
+    <div>
       <label class="content__input--title">Role:</label>
       <auto-select
         choices="roles"
@@ -33,7 +33,7 @@
       </auto-select>
     </div>
 
-    <div class="content__input--container">
+    <div>
       <label class="content__input--title">Events:</label>
       <auto-select
         choices="events"
@@ -43,18 +43,17 @@
       </auto-select>
     </div>
 
-    <div class="content__input--container">
+    <div>
       <label class="content__input--title">Procedure:</label>
       <textarea class="content__input--field content__input--procedure"
                 ng-model="selectedProcedure[0].text">
       </textarea>
     </div>
 
-    <div class="content__input--container content__submit--container">
+    <div class="content__submit--container">
       <button ng-disabled="templateForm.$invalid" class="content__input--submit">Submit</button>
     </div>
   </form>
-  <alert-message></alert-message>
 </div>
 <div class="right__nav--container">
 </div>

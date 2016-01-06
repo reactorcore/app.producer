@@ -105,6 +105,7 @@ set to important to override "active" choice*/
 .ui-select-bootstrap .ui-select-choices-row>a:hover, .ui-select-bootstrap .ui-select-choices-row>a:focus {
   background: rgba(000, 113, 206, 0.2) !important;
   color: black;
+  z-index: 999;
 }
 /* "active" choice (can add using arrows) currently set to hide*/
 .ui-select-bootstrap .ui-select-choices-row.active>a {
@@ -188,7 +189,7 @@ input.ui-select-search {
 h1.content__title {
   font-size: 3em;
   margin-top: 30px;
-  margin-bottom: 60px;
+  margin-bottom: 30px;
 }
 
 h3.content__title {
@@ -256,6 +257,48 @@ button:disabled, button:disabled:hover {
   margin: 0;
   padding: 0;
 }
+
+.content__input--submit {
+  margin: 30px 20px 10px 20px;
+  width: 200px;
+  height: 50px;
+  background-color: rgb(204, 226, 245);
+  font-size: 2rem;
+  font-weight: 200;
+  letter-spacing: 1px;
+  color: #FFF;
+  border: 2px solid rgb(163, 203, 237);
+  outline: 4px solid rgb(204, 226, 245);
+  cursor: pointer;
+  transition: 0.2s;
+}
+
+.content__input--submit:hover {
+  border: 2px solid rgb(204, 226, 245);
+  outline: 4px solid rgb(163, 203, 237);
+  background-color: rgb(163, 203, 237);
+  transition: 0.2s;
+}
+
+.content__delete--confirm {
+  border: 2px solid #FFBABD;
+  background-color: #fae6e7;
+  outline: 4px solid #fae6e7;
+  color: #ff9ca0;
+}
+
+.content__delete--confirm:hover {
+  border: 2px solid #fae6e7;
+  background-color: #FFBABD;
+  outline: 4px solid #FFBABD;
+  color: #fae6e7;
+}
+
+.content__submit--container {
+  display: flex;
+  justify-content: center;
+}
+
 
 /******************************
 *
@@ -362,18 +405,18 @@ h1 {
   font-size: 2.5rem;
 }
 
+.content__subtitle {
+  text-align: center;
+  font-weight: 100;
+  color: #000;
+  font-size: 1.5rem;
+}
+
 .content__input--title {
   display: block;
   font-weight: 300;
   margin-bottom: 5px;
   margin-top: 20px;
-}
-
-.content__display--container {
-  margin-left: 225px;
-  display: flex;
-  justify-content: space-between;
-
 }
 
 .content__main--body-text {
@@ -387,7 +430,7 @@ h1 {
   flex-direction: column;
   align-items: center;
   overflow-y: scroll;
-  max-height: 46vh;
+  max-height: 58vh;
   background-color: rgb(220, 239, 255);
 }
 
@@ -414,40 +457,6 @@ h1 {
   height: 200px;
 }
 
-.content__input--submit {
-  display: block;
-  margin: 30px 20px;
-  width: 200px;
-  height: 50px;
-  background-color: rgb(204, 226, 245);
-  font-size: 2rem;
-  font-weight: 200;
-  letter-spacing: 1px;
-  color: #FFF;
-  border: 2px solid rgb(163, 203, 237);
-  outline: 4px solid rgb(204, 226, 245);
-  cursor: pointer;
-  transition: 0.2s;
-}
-
-.content__input--submit:hover {
-  border: 2px solid rgb(204, 226, 245);
-  outline: 4px solid rgb(163, 203, 237);
-  background-color: rgb(163, 203, 237);
-  transition: 0.2s;
-}
-
-.content__delete--confirm {
-  border: 2px solid #FFBABD;
-  background-color: #fae6e7;
-  outline: 4px solid #fae6e7;
-  color: #ff9ca0;
-}
-
-.content__submit--container {
-  display: flex;
-  justify-content: center;
-}
 
 .content__main--card {
   padding: 20px 0;
@@ -685,7 +694,6 @@ tags-input .autocomplete .suggestion-item em {
   z-index:999999;
   color:#fff;
   font-size:1em;
-  background:#2ea91a;
   height:55px;
   margin-bottom:-55px;
   line-height:55px;
@@ -693,8 +701,7 @@ tags-input .autocomplete .suggestion-item em {
 }
 
 .alert-success {
-  border-color: #b0e771;
-  background-color: #f1fae6;
+  background-color: #49B36A;
   margin-bottom: 0;
   transition: 1s;
 }
@@ -706,6 +713,7 @@ tags-input .autocomplete .suggestion-item em {
 }
 
 .alert-hide {
+  font-size: 2em;
   margin: 0 10px;
   color: #514545;
 }
@@ -732,4 +740,27 @@ tags-input .autocomplete .suggestion-item em {
 
 .scrollbar::-webkit-scrollbar-thumb {
   background-color: rgb(78, 121, 159);
+}
+
+
+/******************************
+*
+* HACKY CSS - TODO : REFACTOR
+*
+******************************/
+
+.flex-row {
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: center;
+}
+
+.flex-col {
+  display: flex;
+  flex-flow: column nowrap;
+  align-items: center;
+}
+
+.flex-row p {
+  padding: 5px 20px;
 }

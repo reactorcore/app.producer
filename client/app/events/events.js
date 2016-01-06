@@ -1,4 +1,4 @@
-angular.module('producer.events', ['alertMessage'])
+angular.module('producer.events', [])
 
 .controller('eventsController', function ($scope, Events, Messages, Hilighter) {
   //TODO: hacky way to not carry over message
