@@ -1,42 +1,32 @@
 <nav-bar></nav-bar>
-<div id="main__content--container">
-  <div class="right__nav--container">
-    <ul>
-      <li class="right__nav--item"  ng-class="getClass(event.title)" ng-repeat="event in events" ng-click="selectEvent(event)">
-        {{event.title}}
-      </li>
-    </ul>
-  </div>
 
-  <div class="content__main">
-    <h1 class="content__title">Soundboard</h1>
-    <div class="content__main--card" ng-show="selectedEvent.isSelected">
-      <div class="content__display--container">
-        <p class="content__display--title">{{selectedEvent.title}}</p>
-        <p class="content__display--title">{{selectedEvent.cron}}</p>
-        <p class="content__display--title">{{selectedEvent.description}}</p>
-      </div>
+<div class="main__content--container">
+  <h1 class="content__title">Soundboard</h1>
+  <div class="content__main--card flex-col" ng-show="selectedEvent.isSelected">
+    <div class="flex-row">
+      <p>{{selectedEvent.title}}</p>
+      <p>{{selectedEvent.cron}}</p>
+      <p>{{selectedEvent.description}}</p>
     </div>
-    <div class="content__input--container">
-    </div>
-      <div class="content__main--card">
-        <div class="content__input--container">
-          <p ng-hide="selectedEvent.isSelected" class="content__input--title">
-            Select an event before triggering task assignment.
-          </p>
-          <div class="content__submit--container">
-            <button ng-show="selectedEvent.isSelected" ng-click="triggerEvent()" class="content__submit--left" disabled>Trigger</button>
-          </div>
-        </div>
-      </div>
-      <div ng-show="selectedEvent.isSelected" class="content__main--card content__list--container">
-        <p ng-show="selectedEvent.isSelected" class="content__bold--title content__input--container">
-          Procedures affected by {{selectedEvent.title}}
-        </p>
-        <div ng-show="selectedEvent.isSelected" class="content__input--title">
-        <div class="content__input--container" ng-repeat="template in templates track by $index">
-          <p class="content__main--body-text">{{template}}</p>
-      </div>
-    <alert-message></alert-message>
+    <button ng-show="selectedEvent.isSelected" ng-click="triggerEvent()" class="content__input--submit" disabled>Trigger</button>
   </div>
+  <p ng-hide="selectedEvent.isSelected" class="content__subtitle">
+    Select an event before triggering task assignment.
+  </p>
+  <div ng-show="selectedEvent.isSelected" class="content__list--container scrollbar">
+    <p class="content__subsection--header">
+      Procedures affected by {{selectedEvent.title}}
+    </p>
+    <div class="content__input--container" ng-repeat="template in templates track by $index">
+      <p class="content__main--body-text">{{template}}</p>
+    </div>
+  </div>
+</div>
+
+<div class="right__nav--container">
+  <ul class="scrollbar">
+    <li class="right__nav--item"  ng-class="getClass(event.title)" ng-repeat="event in events" ng-click="selectEvent(event)">
+      {{event.title}}
+    </li>
+  </ul>
 </div>
