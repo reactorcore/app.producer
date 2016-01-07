@@ -19,11 +19,11 @@
     >
       {{confirm ? 'Sure?' : 'Delete'}}
     </button>
-    <button ng-show="showProcedure" ng-click="updateProcedure()" class="content__submit">Resubmit</button>
+    <button ng-show="showProcedure" ng-click="updateProcedure()" class="content__input--submit">Resubmit</button>
   </div>
 </div>
 <div class="right__nav--container">
-  <ul>
+  <ul class="scrollbar">
     <li class="right__nav--item" ng-class="getClass(procedure)" ng-repeat="procedure in procedures" ng-model="procedure" ng-click="setMaster(procedure)">
       {{procedure.originalTitle}}
     </li>
