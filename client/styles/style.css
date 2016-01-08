@@ -434,6 +434,10 @@ h1 {
   margin-top: 20px;
 }
 
+.noEdit {
+  pointer-events: none;
+}
+
 .content__main--body-text {
   font-weight: 200;
   font-size: 1rem;
