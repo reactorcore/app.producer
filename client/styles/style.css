@@ -388,7 +388,6 @@ h1 {
 .right__nav--container ul {
   overflow-y: auto;
   overflow-x: hidden;
-  text-overflow: ellipsis;
 }
 
 .right__nav--container li {
@@ -402,11 +401,6 @@ h1 {
   border-bottom: 1px solid rgb(33, 131, 213);
   width: 200px;
   text-align: center;
-  text-overflow: ellipsis;
-}
-
-.right__nav--item {
-  text-overflow: ellipsis;
 }
 
 /******************************
