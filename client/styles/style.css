@@ -156,7 +156,7 @@ input.ui-select-search {
   /*line-height: 2em !important;*/
 }
 /*input field width (not the div with the box around it)*/
-#template__tags>div{
+#template__tags > div {
   cursor: text;
   display: flex;
   flex-wrap: wrap;
@@ -469,7 +469,7 @@ h1 {
   width: 100%;
   height: 30px;
   border: 4px solid rgb(204, 226, 245);
-  padding: 5px;
+  padding: 5px; 
 }
 
 .content__input--field:focus {
@@ -486,6 +486,11 @@ h1 {
 .content__main--card {
   padding: 20px 0;
   background-color: rgb(184, 215, 241);
+}
+
+.form-title-input {
+  height: 2.3em ;
+  margin: 0 ;
 }
 
 /******************************
@@ -789,3 +794,4 @@ tags-input .autocomplete .suggestion-item em {
 .flex-row p {
   padding: 5px 20px;
 }
+
