@@ -177,7 +177,8 @@ input.ui-select-search {
   display: flex;
   flex-direction: column;
   flex-grow: 1;
-  margin: 0 40px;
+  padding: 0 40px;
+  overflow: scroll;
 }
 
 /******************************
