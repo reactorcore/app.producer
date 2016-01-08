@@ -88,12 +88,13 @@ angular.module('producer.templates', ['ui.select','ngSanitize','alertMessage'])
     document.querySelector('.main__content--container').scrollTop = 0;
     document.querySelector("form[name='templateForm']").querySelector('input').focus();
     Array.prototype.slice.call(document.querySelectorAll('.content__input--field'))
-      .forEach(function(field){
+      .forEach(function(field) {
         field.value='';
       });
+    // digest loop upset without setTimeoute
     setTimeout(function() {
       Array.prototype.slice.call(document.querySelectorAll('.ui-select-match-close'))
-        .forEach(function(Xclose){
+        .forEach(function(Xclose) {
           Xclose.dispatchEvent(new Event('click'));
         });
     });
@@ -107,6 +108,10 @@ angular.module('producer.templates', ['ui.select','ngSanitize','alertMessage'])
     } else {
       Messages.setMessage('Your template was submitted successfully!', 'success');
     }
+    setTimeout(function(){
+      Messages.clearMessage();
+      $scope.$apply();
+    },3000);
   };
 
   var submitError = function(response) {
@@ -115,5 +120,9 @@ angular.module('producer.templates', ['ui.select','ngSanitize','alertMessage'])
     } else {
       Messages.setMessage(response.data, 'error');
     }
+    setTimeout(function(){
+      Messages.clearMessage();
+      $scope.$apply();
+    },3000);
   };
 });
