@@ -13,7 +13,7 @@
   <p ng-hide="selectedEvent.isSelected" class="content__subtitle">
     Select an event before triggering task assignment.
   </p>
-  <div ng-show="selectedEvent.isSelected" class="content__list--container scrollbar">
+  <div ng-show="selectedEvent.isSelected" class="content__list--container">
     <p class="content__subsection--header">
       Procedures affected by {{selectedEvent.title}}
     </p>
@@ -24,7 +24,7 @@
 </div>
 
 <div class="right__nav--container">
-  <ul class="scrollbar">
+  <ul>
     <li class="right__nav--item"  ng-class="getClass(event.title)" ng-repeat="event in events" ng-click="selectEvent(event)">
       {{event.title}}
     </li>
