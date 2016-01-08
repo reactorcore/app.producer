@@ -53,6 +53,7 @@ angular.module('autoSelect', ['ui.select', 'ngSanitize'])
             elem[0].querySelector('.ui-select-multiple')
               .classList.add('custom-ui-select-force-focus');
           };
+
           childTextArea.onblur = function() {
             angular.element(elem[0].querySelector('.ui-select-multiple'))
               .removeClass('custom-ui-select-force-focus');
@@ -64,21 +65,21 @@ angular.module('autoSelect', ['ui.select', 'ngSanitize'])
           childTextArea.focus();
           childTextArea.dispatchEvent(new Event('click'));
         });
-        
-        // keep input width at minimum necessesary
-        // ^^ auto-select to one line  in ui when possible
-        $scope.placeholder.length > 16 ? console.log("TO FIX: please enlarge width in class 'input.ui-select-search' to fit your placeholder value"):null;
 
-        $scope.update = function() {
-          // replaces last selected element if limit exceeds selectMax
+        // make sure selection # doesn't go over selectMax
+        elem.on('click', function(){
           if($scope.selectMax && $scope.temp.selected.length > +$scope.selectMax) {
             //emit syntehsized click on X element to remove from line
             //ul where divs are located has class 'custom-ui-select-dropdown__top'
             elem[0].querySelector('.custom-ui-select-dropdown__top')
               .children[$scope.selectMax-1]
-              .querySelector('.ui-select-match-close').dispatchEvent(new Event('click'));
+              .querySelector('.ui-select-match-close')
+              .dispatchEvent(new Event('click'));
           }
-          // set public output array = to private opperation array
+        });
+        //ran each time a tag is added or removed
+        $scope.update = function() {
+          // set client facing output array to match ui-select array
           $scope.selected = $scope.temp.selected;
         };
  
