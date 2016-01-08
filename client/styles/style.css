@@ -149,6 +149,8 @@ Directive link func allows us to focus
 on input without clicking on it directly.
 Keep important */
 input.ui-select-search {
+  display:flex;
+  flex-grow:1;
   width: 120px !important;
   padding: 0 0 0 4px;
   /*line-height: 2em !important;*/
