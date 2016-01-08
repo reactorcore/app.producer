@@ -1,5 +1,5 @@
 <nav-bar></nav-bar>
-<div class="main__content--container scrollbar">
+<div class="main__content--container">
   <h1 class="content__title" ng-show="!showEvent">Create Event</h1>
   <h1 class="content__title" ng-show="showEvent">{{newEvent.title}}</h1>
   <div class="content__input--container">
@@ -28,7 +28,7 @@
   </div>
 </div>
 <div class="right__nav--container">
-  <ul class="scrollbar">
+  <ul>
     <li class="right__nav--item" ng-class="getClass(event.title)" ng-repeat="event in events" ng-click="setMaster(event)">
       {{event.title}}
     </li>
