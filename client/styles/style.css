@@ -410,6 +410,13 @@ h1 {
   text-align: center;
 }
 
+.right__nav--item {
+  width: 200px;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
 /******************************
 *
 *        MAIN CONTENT
