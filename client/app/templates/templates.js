@@ -3,43 +3,32 @@ angular.module('producer.templates', ['ui.select','ngSanitize','alertMessage'])
 .controller('templatesController', function ($scope, Template, Roles, Events, Procedures, Messages) {
   //TODO: hacky way to not carry over message
   Messages.clearMessage();
-  $scope.template = {role: null, event: ''};
+  $scope.template = {title: '', role: null, event: '', procedure: ''};
   $scope.roles = [];
   $scope.events = [];
   $scope.selectedEvents = [];
   $scope.procedures = [];
-  $scope.selectedProcedure = [{text: '', originalText:''}];
-  $scope.updatingProcedure = false;
+  $scope.noEdit = false;
 
-  // Reset selectedProcedure if user deletes selection to prevent null errors
-  $scope.$watch(function() {
-    return $scope.selectedProcedure;
-  }, function() {
-    if ($scope.selectedProcedure === null || $scope.selectedProcedure === undefined) {
-      $scope.selectedProcedure = [{text: '', originalText:''}];
+  $scope.getClass = function (procedure) {
+    if(procedure === {} || $scope.selected === undefined) {
+      return '';
     }
-  }, true);
+    return Hilighter.hilight(procedure.title, $scope.selected.title);
+  };
 
-  // Watch procedure text for changes
-  $scope.$watch(function() {
-    if ($scope.selectedProcedure[0]) {
-      return $scope.selectedProcedure[0].text;
-    }
-  }, function(oldText, newText) {
-    // prevents triggering on first $digets loop and rendering message on page initialization
-    if (oldText !== newText) {
-      if ($scope.selectedProcedure[0]) {
-        if ($scope.selectedProcedure[0].text !== $scope.selectedProcedure[0].originalText) {
-          // trigger notification that they'll be updating the procedure
-          Messages.setMessage('Procedure text has changed - you will be updating this procedure.', 'success');
-          $scope.updatingProcedure = true;
-        } else {
-          Messages.clearMessage();
-          $scope.updatingProcedure = false;
-        }
-      }
-    }
-  });
+  $scope.clearProcedure = function() {
+    $scope.template.title = '';
+    $scope.template.procedure = '';
+    $scope.noEdit = false;
+  }
+
+  $scope.setMaster = function(procedure) {
+    $scope.template.title = procedure.title;
+    $scope.template.procedure = procedure.text;
+    $scope.noEdit = true;
+    Messages.clearMessage();
+  };
 
   // Loads roles
   var loadRoles = function() {
@@ -82,19 +71,12 @@ angular.module('producer.templates', ['ui.select','ngSanitize','alertMessage'])
     }, '');
     //temporarily sends only first role even though autocomplete can handle multiple
     $scope.template.roleID = $scope.template.role[0].id;
-    $scope.template.title = $scope.selectedProcedure[0].title;
-    $scope.template.procedure = $scope.selectedProcedure[0].text;
-    if ($scope.updatingProcedure) {
-      // make new obj without originalTitle and originalText k/v pairs
-      var updatedProcedure = {
-        $$hashKey: $scope.selectedProcedure[0].$$hashKey,
-        DateAdded: $scope.selectedProcedure[0].DateAdded,
-        id: $scope.selectedProcedure[0].id,
-        text: $scope.selectedProcedure[0].text,
-        title: $scope.selectedProcedure[0].title
-      };
+
+    // if no existing procedure was selected, make a new one
+    if (!$scope.noEdit) {
+      var procedure = {title: $scope.template.title, text: $scope.template.procedure};
       //Submit procedure and if successful, submit template
-      Procedures.updateProcedure(updatedProcedure).then(function() {
+      Procedures.updateProcedure(procedure).then(function() {
         Template.submitTemplate($scope.template).then(submitSuccess, submitError);
       }, submitError);
     } else {

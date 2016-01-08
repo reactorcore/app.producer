@@ -3,23 +3,9 @@
   <form name="templateForm" class="content__main" ng-submit="submitTemplate()" novalidate>
     <h1 class="content__title">Create Template</h1>
 
-    <div>
-      <label class="content__input--title">Title:</label>
-      <!-- <input class="content__input--field"
-            id="template__title"
-            ng-change=""
-            name="title"
-            ng-model="selectedProcedure.title"
-            required
-            autofocus
-      /> -->
-      <auto-select
-        choices="procedures"
-        selected="selectedProcedure"
-        placeholder="Select title"
-        filter-key="title"
-        select-max="1">
-      </auto-select>
+    <div class="content__input--container">
+        <label class="content__input--title">Title:</label>
+        <textarea class="content__input--field content__input--title" ng-class="{noEdit: noEdit}" ng-model="template.title" ng-readonly="noEdit"></textarea>
     </div>
 
     <div>
@@ -46,7 +32,7 @@
     <div>
       <label class="content__input--title">Procedure:</label>
       <textarea class="content__input--field content__input--procedure"
-                ng-model="selectedProcedure[0].text">
+                ng-readonly="noEdit" ng-class="{noEdit: noEdit}" ng-model="template.procedure">
       </textarea>
     </div>
 
@@ -56,4 +42,12 @@
   </form>
 </div>
 <div class="right__nav--container">
+  <ul class="scrollbar">
+    <li class="right__nav--item" ng-class="getClass(procedure)" ng-repeat="procedure in procedures" ng-model="procedure" ng-click="setMaster(procedure)">
+      {{procedure.title}}
+    </li>
+  </ul>
+  <div class="nav__button--container">
+    <div ng-click="clearProcedure()" class="nav__button">Clear Selected Procedure</div>
+  </div>
 </div>
