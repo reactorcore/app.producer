@@ -47,13 +47,15 @@ angular.module('autoSelect', ['ui.select', 'ngSanitize'])
         // add listeners to add and remove focus styling for auto-select box
         var childTextArea = null;
         setTimeout(function() {
-          childTextArea = elem[0].children[0].children[0].children[1];
+          childTextArea = elem[0].querySelector('input');
 
           childTextArea.onfocus = function() {
-            elem[0].children[0].classList.add('custom-ui-select-force-focus');
+            elem[0].querySelector('.ui-select-multiple')
+              .classList.add('custom-ui-select-force-focus');
           };
           childTextArea.onblur = function() {
-            angular.element(elem[0].children[0]).removeClass('custom-ui-select-force-focus');
+            angular.element(elem[0].querySelector('.ui-select-multiple'))
+              .removeClass('custom-ui-select-force-focus');
           };
         });
 
@@ -72,8 +74,9 @@ angular.module('autoSelect', ['ui.select', 'ngSanitize'])
           if($scope.selectMax && $scope.temp.selected.length > +$scope.selectMax) {
             //emit syntehsized click on X element to remove from line
             //ul where divs are located has class 'custom-ui-select-dropdown__top'
-            elem[0].children[0].children[0].children[0].children[$scope.selectMax-1]
-              .children[0].children[0].dispatchEvent(new Event('click'));
+            elem[0].querySelector('.custom-ui-select-dropdown__top')
+              .children[$scope.selectMax-1]
+              .querySelector('.ui-select-match-close').dispatchEvent(new Event('click'));
           }
           // set public output array = to private opperation array
           $scope.selected = $scope.temp.selected;
@@ -88,22 +91,21 @@ angular.module('autoSelect', ['ui.select', 'ngSanitize'])
         // Bug occurs when we force child focus from parent
         // has to do with a validation function in ui-select
         setTimeout(function() {
-          var choicesContainer = elem.querySelectorAll('.ui-select-choices');
+          var validationLi = elem[0].querySelector('.ui-select-choices-group');
           for(var i = 0; i < 2; i++){
             var div = document.createElement('div');
             div.className = 'ui-select-choices-row';
-            choicesContainer[0].children[0].appendChild(div);
+            validationLi.appendChild(div);
           }
         });
-
       }
     }
   }]);
 
-// track by throws error unless mod to ui-select
-// replace ~line 1281 in select.js with
+// track by throws error unless modified in select.js
+// replace line in function "checkFnMultiple" (add a check for if matches exists)
 // if(matches && matches.length>0 && result[matches[1]] == value[matches[1]]){
-// Now track by line ~39 can be uncommented above
+// Now trackby can be used in ui-choices repete attribute
 
 
 
