@@ -44,39 +44,65 @@ angular.module('autoSelect', ['ui.select', 'ngSanitize'])
         '</ui-select>',
 
       link: function($scope, elem, attrs) {
-        // add listeners to add and remove focus styling for auto-select box
-        var childTextArea = null;
-        setTimeout(function() {
-          childTextArea = elem[0].querySelector('input');
-
-          childTextArea.onfocus = function() {
-            elem[0].querySelector('.ui-select-multiple')
-              .classList.add('custom-ui-select-force-focus');
-          };
-
-          childTextArea.onblur = function() {
-            angular.element(elem[0].querySelector('.ui-select-multiple'))
-              .removeClass('custom-ui-select-force-focus');
-          };
-        });
-
-        // focuses & activates childTextArea on parent click
-        elem.on('mouseup', function(e) {
-          childTextArea.focus();
-          childTextArea.dispatchEvent(new Event('click'));
-        });
-
-        // make sure selection # doesn't go over selectMax
-        elem.on('click', function(){
+        // max select allows a max number to be set on selected tags
+        var enforceSelectMax = function() {
           if($scope.selectMax && $scope.temp.selected.length > +$scope.selectMax) {
-            //emit syntehsized click on X element to remove from line
+            //emit synthetic click on X element to remove from line
             //ul where divs are located has class 'custom-ui-select-dropdown__top'
             elem[0].querySelector('.custom-ui-select-dropdown__top')
               .children[$scope.selectMax-1]
               .querySelector('.ui-select-match-close')
               .dispatchEvent(new Event('click'));
           }
+        };
+        // add listeners to add and remove focus styling for auto-select box
+        var childTextArea = null;
+        setTimeout(function() {
+          childTextArea = elem[0].querySelector('input');
+
+          childTextArea.onfocus = function() {
+            // remove extra input area when not in focus
+            angular.element(childTextArea).removeClass('remove-min-width');
+            // add force focus to parent div to give illusion of single
+            // component synchronicity between child input and parent div
+            elem[0].querySelector('.ui-select-multiple')
+              .classList.add('custom-ui-select-force-focus');
+          };
+
+          childTextArea.onblur = function() {
+            // child temporarily loses focus, check if focus loss is real.
+            // if so, we remove extra text input width. css :focus breaks.
+            // doesnt wait to check if blur is real or not
+            setTimeout(function(){
+              if(document.activeElement !== childTextArea){
+                childTextArea.classList.add('remove-min-width');
+              }
+            },6);
+
+            angular.element(elem[0].querySelector('.ui-select-multiple'))
+              .removeClass('custom-ui-select-force-focus');
+          };
+          // make sure selection # doesn't go over selectMax with return press
+          childTextArea.onkeydown = function(e) {
+            if(e.keyCode === 13){
+              enforceSelectMax();
+            }
+          }
         });
+
+
+        // focuses & activates childTextArea on parent click
+        // use mouseup to avoid event forever-loop w/ click
+        elem.on('mouseup', function(e) {
+          childTextArea.focus();
+          childTextArea.dispatchEvent(new Event('click'));
+        });
+
+        // make sure selection # doesn't go over selectMax with clicks
+        elem.on('click', function(e) {
+          enforceSelectMax();
+        });
+
         //ran each time a tag is added or removed
         $scope.update = function() {
           // set client facing output array to match ui-select array
