@@ -167,11 +167,6 @@ when is selected, causes error .
   flex-wrap: wrap;
 }
 
-.no-wrap {
-  flex-wrap: nowrap !important;
-  flex-direction: row !important;
-}
-
 
 /******************************
 *

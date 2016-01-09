@@ -1,5 +1,5 @@
 angular.module('alertMessage', [])
-  .directive('alertMessage', function () {
+  .directive('alertMessage', ['$timeout', 'Messages', function ($timeout, Messages) {
     return {
       restrict: 'E',
       replace: true,
@@ -13,6 +13,13 @@ angular.module('alertMessage', [])
       controller: function ($scope, Messages) {
         $scope.message = Messages.message;
         $scope.clearMessage = Messages.clearMessage;
+      },
+      link: function (scope){
+        scope.$watch('message', function() {
+          $timeout(function() {
+            Messages.clearMessage();
+          }, 3000);
+        }, true);
       }
     };
-});
+}]);

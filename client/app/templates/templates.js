@@ -108,10 +108,6 @@ angular.module('producer.templates', ['ui.select','ngSanitize','alertMessage'])
     } else {
       Messages.setMessage('Your template was submitted successfully!', 'success');
     }
-    setTimeout(function(){
-      Messages.clearMessage();
-      $scope.$apply();
-    },3000);
   };
 
   var submitError = function(response) {
@@ -120,9 +116,5 @@ angular.module('producer.templates', ['ui.select','ngSanitize','alertMessage'])
     } else {
       Messages.setMessage(response.data, 'error');
     }
-    setTimeout(function(){
-      Messages.clearMessage();
-      $scope.$apply();
-    },3000);
   };
 });
