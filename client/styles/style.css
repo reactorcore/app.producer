@@ -178,6 +178,7 @@ when is selected, causes error .
   display: flex;
   max-height:100vh;
   max-width: 100vw;
+  justify-content: center;
 }
 
 .main__content--container {
@@ -408,6 +409,13 @@ h1 {
   border-bottom: 1px solid rgb(33, 131, 213);
   width: 200px;
   text-align: center;
+}
+
+.right__nav--item {
+  width: 200px;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
 }
 
 /******************************

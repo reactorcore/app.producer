@@ -25,7 +25,7 @@
 
 <div class="right__nav--container">
   <ul>
-    <li class="right__nav--item"  ng-class="getClass(event.title)" ng-repeat="event in events" ng-click="selectEvent(event)">
+    <li title="{{event.title}}" class="right__nav--item"  ng-class="getClass(event.title)" ng-repeat="event in events" ng-click="selectEvent(event)">
       {{event.title}}
     </li>
   </ul>

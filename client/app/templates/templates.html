@@ -43,7 +43,7 @@
 </div>
 <div class="right__nav--container">
   <ul class="scrollbar">
-    <li class="right__nav--item" ng-class="getClass(procedure)" ng-repeat="procedure in procedures" ng-model="procedure" ng-click="setMaster(procedure)">
+    <li title="{{procedure.title}}" class="right__nav--item" ng-class="getClass(procedure)" ng-repeat="procedure in procedures" ng-model="procedure" ng-click="setMaster(procedure)">
       {{procedure.title}}
     </li>
   </ul>
