@@ -6,12 +6,13 @@ var headers = {
   "access-control-allow-methods": "GET, POST, PUT, DELETE, OPTIONS",
   "access-control-allow-headers": "content-type, accept",
   "access-control-max-age": 10, // Seconds.
-  "Content-Type": "application/json"
+  "Content-Type": "application/json",
+  "secret": process.env.CHOREOGRAPHER_SECRET
 };
 
 module.exports = {
   getEventsData: function (req, res, next) {
-    // There are events from two different locations: Metronome and Melody. 
+    // There are events from two different locations: Metronome and Melody.
     // We make a get request to each endpoint. The data coming back from each API is different.
     // We alter the data and combine it into one object before sending back to the client.
     requestPromise({
