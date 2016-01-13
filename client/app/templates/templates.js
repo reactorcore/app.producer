@@ -84,7 +84,24 @@ angular.module('producer.templates', ['ui.select','ngSanitize','alertMessage'])
     }
   };
 
+  var resetTemplate = function() {
+    document.querySelector('.main__content--container').scrollTop = 0;
+    document.querySelector("form[name='templateForm']").querySelector('input').focus();
+    Array.prototype.slice.call(document.querySelectorAll('.content__input--field'))
+      .forEach(function(field) {
+        field.value='';
+      });
+    // digest loop upset without setTimeoute
+    setTimeout(function() {
+      Array.prototype.slice.call(document.querySelectorAll('.ui-select-match-close'))
+        .forEach(function(Xclose) {
+          Xclose.dispatchEvent(new Event('click'));
+        });
+    });
+  };
+
   var submitSuccess = function(response) {
+    resetTemplate();
     if ($scope.updatingProcedure) {
       Messages.setMessage('Your template was submitted successfully and your procedure was updated!', 'success');
       $scope.updatingProcedure = false;

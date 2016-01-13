@@ -106,7 +106,7 @@ set to important to override "active" choice*/
   z-index: 999;
 }
 /* "active" choice (can add using arrows) currently set to hide*/
-.ui-select-bootstrap .ui-select-choices-row.active>a {
+.ui-select-bootstrap .ui-select-choices-row.active > a {
   background-color: #4195DB;
   /*color: #333;*/
 }
@@ -149,12 +149,19 @@ Directive link func allows us to focus
 on input without clicking on it directly.
 Keep important */
 input.ui-select-search {
-  width: 120px !important;
+  /*width: 120px !important;*/
   padding: 0 0 0 4px;
-  /*line-height: 2em !important;*/
+  flex:1 1 20em;
 }
+/*child text focus is momentarily lost
+when is selected, causes error .
+*/
+.remove-min-width {
+  flex: 0 1 0px !important;
+}
+
 /*input field width (not the div with the box around it)*/
-#template__tags>div{
+#template__tags > div {
   cursor: text;
   display: flex;
   flex-wrap: wrap;
@@ -467,7 +474,7 @@ h1 {
   width: 100%;
   height: 30px;
   border: 4px solid rgb(204, 226, 245);
-  padding: 5px;
+  padding: 5px; 
 }
 
 .content__input--field:focus {
@@ -484,6 +491,11 @@ h1 {
 .content__main--card {
   padding: 20px 0;
   background-color: rgb(184, 215, 241);
+}
+
+.form-title-input {
+  height: 2.3em ;
+  margin: 0 ;
 }
 
 /******************************
@@ -787,3 +799,4 @@ tags-input .autocomplete .suggestion-item em {
 .flex-row p {
   padding: 5px 20px;
 }
+
