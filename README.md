@@ -52,6 +52,7 @@ These should be inside of the .env file:
 * **ASANA_ACCESS_TOKEN**=YOUR_ACCESS_TOKEN
 * **EVENTS_URL**=http://api.staging.hackreactor.com/choreographer/v0/metronome/events
 * **CHOREOGRAPHER_URL**=http://api.staging.hackreactor.com/choreographer/v0
+* **CHOREOGRAPHER_SECRET**=FROM_TEAMMATES
 * **PORT**=8000
 
 For local development, a Github Application will need to be registered. Follow these steps and add these additional variables to your .env file:
