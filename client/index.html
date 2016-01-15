@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html ng-app='producer'>
+  <head>
+    <meta charset="utf-8" />
+    <title>Producer</title>
+    <!-- ui-select css added first so style.css can override, potential refactor applicable-->
+    <link rel="stylesheet" type="text/css" href="lib/ui-select/dist/select.min.css"/>
+    <link rel="stylesheet" type="text/css" href="styles/style.css"/>
+    <link rel="stylesheet" type="text/css" href="lib/jquery-ui/themes/smoothness/jquery-ui.css"/>
+    <link rel="stylesheet" type="text/css" href="lib/angular-material/angular-material.min.css"/>
+    <link rel="stylesheet" type="text/css" href="lib/angular-material/angular-material.layouts.min.css"/>
+    <link href='http://fonts.googleapis.com/css?family=Lato:400,900,300,100' rel='stylesheet' type='text/css'>
+
+  </head>
+  <body>
+        <!-- the ng-view directive is where our templates will be loaded into when navigated to -->
+        <div class="app-container" ui-view></div>
+        <alert-message></alert-message>
+
+    <script src="lib/jquery/dist/jquery.js"></script>
+    <script src="lib/jquery-ui/jquery-ui.js"></script>
+
+    <script src="lib/underscore/underscore-min.js"></script>
+
+    <script src="lib/angular/angular.js"></script>
+    <script src="lib/angular-ui-router/release/angular-ui-router.min.js"></script>
+    <script src="lib/angular-cookies/angular-cookies.min.js"></script>
+    <script src="lib/angular-sanitize/angular-sanitize.min.js"></script>
+    <script src="lib/ui-select/dist/select.js"></script>
+
+    <script src="app/templates/templates.js"></script>
+    <script src="app/events/events.js"></script>
+    <script src="app/services/services.js"></script>
+    <script src="app/procedures/procedures.js"></script>
+    <script src="app/soundboard/soundboard.js"></script>
+    <script src="app/login/login.js"></script>
+    <script src="app/cron/cronDirective.js"></script>
+    <script src="app/directives/alertMessage.js"></script>
+    <script src="app/directives/autoSelect.js"></script>
+    <script src="app/directives/navBar.js"></script>
+    <script src="app/directives/directives.js"></script>
+    <script src="app/app.js"></script>
+
+    <script src="lib/typeahead.js/dist/bloodhound.js"></script>
+    <script src="lib/ng-tags-input/ng-tags-input.js"></script>
+    <script src="lib/angular-cron-jobs/dist/angular-cron-jobs.js"></script>
+
+  </body>
+</html>

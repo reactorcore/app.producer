@@ -1,0 +1,41 @@
+<nav-bar></nav-bar>
+<div class="main__content--container">
+  <h1 class="content__title" ng-show="!showEvent">Create Event</h1>
+  <h1 class="content__title" ng-show="showEvent">{{newEvent.title}}</h1>
+  <div class="content__input--container">
+    <label class="content__input--title">Title:</label>
+    <input class="content__input--field" ng-model="newEvent.title" autofocus></input>
+  </div>
+  <div class="content__input--container">
+    <label class="content__input--title">Cron:</label>
+    <input class="content__input--field" ng-model="newEvent.cron"></input>
+    <cron-select output="newEvent.cron"></cron-select>
+  </div>
+  <div class="content__input--container">
+    <label class="content__input--title">Description:</label>
+    <textarea class="content__input--field content__input--procedure" ng-model="newEvent.description"></textarea>
+  </div>
+  <div class="content__input--container content__submit--container">
+    <button ng-show="!showEvent" ng-click="submitEvent()" class="content__input--submit">Submit</button>
+    <button ng-show="showEvent"
+            ng-click="deleteEvent()"
+            ng-class="confirm"
+            class="content__input--submit"
+    >
+      {{confirm === 'content__delete--confirm' ? 'Sure?' : 'Delete'}}
+    </button>
+    <button ng-show="showEvent" ng-click="updateEvent()" class="content__input--submit">Resubmit</button>
+  </div>
+</div>
+<div class="right__nav--container">
+  <ul>
+    <li title="{{event.title}}" class="right__nav--item" ng-class="getClass(event.title)" ng-repeat="event in events" ng-click="setMaster(event)">
+      {{event.title}}
+    </li>
+  </ul>
+  <div class="nav__button--container">
+    <div class="nav__button" ng-click="createNewEvent()">
+      Create New Event
+    </div>
+  </div>
+</div>

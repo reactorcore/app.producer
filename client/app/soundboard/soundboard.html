@@ -1,0 +1,32 @@
+<nav-bar></nav-bar>
+
+<div class="main__content--container">
+  <h1 class="content__title">Soundboard</h1>
+  <div class="content__main--card flex-col" ng-show="selectedEvent.isSelected">
+    <div class="flex-row">
+      <p>{{selectedEvent.title}}</p>
+      <p>{{selectedEvent.cron}}</p>
+      <p>{{selectedEvent.description}}</p>
+    </div>
+    <button ng-show="selectedEvent.isSelected" ng-click="triggerEvent()" class="content__input--submit" disabled>Trigger</button>
+  </div>
+  <p ng-hide="selectedEvent.isSelected" class="content__subtitle">
+    Select an event before triggering task assignment.
+  </p>
+  <div ng-show="selectedEvent.isSelected" class="content__list--container">
+    <p class="content__subsection--header">
+      Procedures affected by {{selectedEvent.title}}
+    </p>
+    <div class="content__input--container" ng-repeat="template in templates track by $index">
+      <p class="content__main--body-text">{{template}}</p>
+    </div>
+  </div>
+</div>
+
+<div class="right__nav--container">
+  <ul>
+    <li title="{{event.title}}" class="right__nav--item"  ng-class="getClass(event.title)" ng-repeat="event in events" ng-click="selectEvent(event)">
+      {{event.title}}
+    </li>
+  </ul>
+</div>

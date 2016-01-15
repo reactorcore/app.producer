@@ -1,0 +1,53 @@
+<nav-bar></nav-bar>
+<div class="main__content--container">
+  <form name="templateForm" ng-submit="submitTemplate()" novalidate>
+    <h1 class="content__title">Create Template</h1>
+
+    <div class="content__input--container">
+        <label class="content__input--title">Title:</label>
+        <input class="content__input--field content__input--title form-title-input" ng-class="{noEdit: noEdit}" ng-model="template.title" ng-readonly="noEdit" autofocus></input>
+    </div>
+
+    <div>
+      <label class="content__input--title">Role:</label>
+      <auto-select
+        choices="roles"
+        selected="template.role"
+        placeholder="Select roles"
+        filter-key="name"
+        select-max="1">
+      </auto-select>
+    </div>
+
+    <div>
+      <label class="content__input--title">Events:</label>
+      <auto-select
+        choices="events"
+        selected="selectedEvents"
+        placeholder="Select events"
+        filter-key="title">
+      </auto-select>
+    </div>
+
+    <div>
+      <label class="content__input--title">Procedure:</label>
+      <textarea class="content__input--field content__input--procedure"
+                ng-readonly="noEdit" ng-class="{noEdit: noEdit}" ng-model="template.procedure">
+      </textarea>
+    </div>
+
+    <div class="content__submit--container">
+      <button ng-disabled="templateForm.$invalid" class="content__input--submit">Submit</button>
+    </div>
+  </form>
+</div>
+<div class="right__nav--container">
+  <ul class="scrollbar">
+    <li title="{{procedure.title}}" class="right__nav--item" ng-class="getClass(procedure)" ng-repeat="procedure in procedures" ng-model="procedure" ng-click="setMaster(procedure)">
+      {{procedure.title}}
+    </li>
+  </ul>
+  <div class="nav__button--container">
+    <div ng-click="clearProcedure()" class="nav__button">Clear Selected Procedure</div>
+  </div>
+</div>

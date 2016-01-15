@@ -1,0 +1,810 @@
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed,
+figure, figcaption, footer, header, hgroup,
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font-size: 100%;
+  font: inherit;
+  vertical-align: baseline;
+}
+/* HTML5 display-role reset for older browsers */
+article, aside, details, figcaption, figure,
+footer, header, hgroup, menu, nav, section {
+  display: block;
+}
+
+body {
+  line-height: 1;
+}
+ol, ul {
+  list-style: none;
+}
+blockquote, q {
+  quotes: none;
+}
+blockquote:before, blockquote:after,
+q:before, q:after {
+  content: '';
+  content: none;
+}
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: inherit;
+}
+
+html {
+  box-sizing: border-box;
+  background: #FFF;
+  height: 100%;
+  width: 100%;
+  font-family: 'Museo Sans', 'Lato', sans-serif;
+}
+
+body {
+  height: 100%;
+  background-color: rgb(255, 255, 255);
+}
+
+
+
+/******************************
+*
+*           LINKS
+*
+******************************/
+
+a {
+  text-decoration: none;
+  color: #FFF;
+}
+
+a:visited {
+  color: #FFF;
+}
+
+
+/******************************
+*
+*           UI-SELECT
+*
+******************************/
+
+/*space above the tags, if add padding-bottom, empty space appends to end of ul*/
+.ui-select-multiple.ui-select-bootstrap{
+  padding: 3px 0 0 0;
+}
+/*used to force focus outer divs from child focus*/
+.custom-ui-select-force-focus {
+  border: 4px solid rgba(000, 113, 206, 0.6) !important;
+}
+/* access to dropdown row unfocused unhovered background */
+.ui-select-bootstrap .ui-select-choices-row>a {
+  background: white;
+}
+/* Affects the dropdown hovered choice elements
+set to important to override "active" choice*/
+.ui-select-bootstrap .ui-select-choices-row>a:hover, .ui-select-bootstrap .ui-select-choices-row>a:focus {
+  background: rgba(000, 113, 206, 0.2) !important;
+  color: black;
+  z-index: 999;
+}
+/* "active" choice (can add using arrows) currently set to hide*/
+.ui-select-bootstrap .ui-select-choices-row.active > a {
+  background-color: #4195DB;
+  /*color: #333;*/
+}
+.custom-ui-select-dropdown__top{
+  display: flex;
+  flex-wrap: wrap;
+}
+/* dropdown menu container*/
+.ui-select-choices {
+  /*max-height: 300px*/
+}
+/* access to the sweet buttons!!! */
+.ui-select-multiple.ui-select-bootstrap .ui-select-match-item {
+  display: inherit;
+  margin: 1px 3px 5px 3px;
+  padding: 0 10px 2px 0;
+  background : #CCE2F5;
+  border: 3px solid #4195DB;
+  border-radius : 5px;
+  cursor: default;
+}
+/* magical css prop that makes dropdown load @ top of list */
+.ui-select-choices-group {
+  position: relative;
+}
+
+/* removed due to spacing error when multiples added */
+/* selected tag-button X  */
+.ui-select-multiple.ui-select-bootstrap .ui-select-match .close {
+  font-size: 1.3em;
+  cursor: pointer;
+}
+/* button text => padding separates buttons a bit*/
+span.ng-binding {
+  padding: 0 0 0 3px;
+}
+/* set inner text field very small to
+keep text input and tags on same line.
+Directive link func allows us to focus
+on input without clicking on it directly.
+Keep important */
+input.ui-select-search {
+  /*width: 120px !important;*/
+  padding: 0 0 0 4px;
+  flex:1 1 20em;
+}
+/*child text focus is momentarily lost
+when is selected, causes error .
+*/
+.remove-min-width {
+  flex: 0 1 0px !important;
+}
+
+/*input field width (not the div with the box around it)*/
+#template__tags > div {
+  cursor: text;
+  display: flex;
+  flex-wrap: wrap;
+}
+
+
+/******************************
+*
+*       APP CONTAINER
+*
+******************************/
+
+.app-container {
+  display: flex;
+  max-height:100vh;
+  max-width: 100vw;
+  justify-content: center;
+}
+
+.main__content--container {
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+  padding: 0 40px;
+  max-width: calc(100vw - 400px);
+  overflow-y: auto;
+}
+
+/******************************
+*
+*           TITLES
+*
+******************************/
+
+h1.content__title {
+  font-size: 3em;
+  margin-top: 30px;
+  margin-bottom: 30px;
+}
+
+h3.content__title {
+  font-size: 1.5em;
+}
+
+/******************************
+*
+*          BUTTONS
+*
+******************************/
+
+/* AUTH BUTTONS */
+
+.nav__login {
+  display: block;
+  margin: 20px 0;
+  padding: 10px 15px;
+  height: 50px;
+  background-color: rgb(65, 149, 219);
+  font-size: 1.5rem;
+  font-weight: 200;
+  letter-spacing: 1px;
+  color: #FFF;
+  border: none;
+  outline: none;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.nav__login:hover {
+  background-color: rgb(34, 131, 212);
+}
+
+.left__nav--logout {
+  bottom: 0;
+  position: absolute;
+}
+
+/* DISABLED */
+
+button:disabled, button:disabled:hover {
+  background-color: rgb(219, 227, 234);
+  border: none;
+  outline: none;
+  color: #BDC4CA;
+}
+
+/* NAV BUTTONS */
+
+.nav__button--container {
+  width: 200px;
+  text-align: center;
+  height: 50px;
+  line-height: 50px;
+  color: #FFF;
+  font-weight: 300;
+  border-top: 1px solid rgb(33, 131, 213);
+  background-color: rgb(65, 149, 219);
+  cursor: pointer;
+}
+
+.nav__button {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+.content__input--submit {
+  margin: 30px 20px 10px 20px;
+  width: 200px;
+  height: 50px;
+  font-size: 1.5rem;
+  font-weight: 200;
+  letter-spacing: 1px;
+  color: #333;
+  border: none;
+  background-color: rgb(204, 226, 245);
+  cursor: pointer;
+  transition: 0.2s;
+}
+
+.content__input--submit:focus {
+  outline: 2px solid rgb(102, 169, 225);
+  transition: 0s;
+}
+
+.content__input--submit:active {
+  background-color: green;
+}
+
+.content__input--submit:hover {
+  background-color: rgb(163, 203, 237);
+  transition: 0.2s;
+}
+
+.content__delete--confirm {
+  border: none;
+  background-color: #fae6e7;
+  color: #333;
+}
+
+.content__delete--confirm:hover {
+  background-color: #FFBABD;
+  color: #333;
+}
+
+.content__delete--confirm:focus {
+  outline: 2px solid #FFBABD;
+}
+
+.content__submit--container {
+  display: flex;
+  justify-content: center;
+}
+
+
+/******************************
+*
+*        NAV - GENERAL
+*
+******************************/
+
+nav .active-nav {
+  background-color: rgb(33, 131, 213) !important;
+}
+
+.active-item {
+  background-color: rgb(33, 131, 213) !important;
+}
+
+/******************************
+*
+*         LEFT NAV
+*
+******************************/
+
+.left__nav--container {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 100vh;
+  min-height: 100vh;
+  width: 200px;
+  max-width: 200px;
+  background-color: rgb(128, 184, 231);
+  z-index: 1;
+  box-shadow: 0.5px 0 3px #30597B;
+  overflow: hidden;
+}
+
+h1 {
+  font-size: 2rem;
+  font-weight: 100;
+  text-align: center;
+  margin: 20px;
+  color: rgb(000, 113, 206);
+}
+
+.left__nav--container a {
+  display: block;
+  text-decoration: none;
+  color: #FFF;
+  font-weight: 300;
+  letter-spacing: 1px;
+  background-color: rgb(65, 149, 219);
+  padding: 20px;
+  border-bottom: 1px solid rgb(33, 131, 213);
+  width: 200px;
+}
+
+.left__nav--link {
+  border-top: 1px solid rgb(33, 131, 213);
+}
+
+/******************************
+*
+*          RIGHT NAV
+*
+******************************/
+
+.right__nav--container {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 100vh;
+  min-height: 100vh;
+  width: 200px;
+  max-width: 200px;
+  background-color: rgb(128, 184, 231);
+  overflow: hidden;
+}
+
+.right__nav--container ul {
+  overflow-y: auto;
+  overflow-x: hidden;
+}
+
+.right__nav--container li {
+  cursor: pointer;
+  display: block;
+  color: #FFF;
+  font-weight: 300;
+  letter-spacing: 1px;
+  background-color: rgb(65, 149, 219);
+  padding: 20px;
+  border-bottom: 1px solid rgb(33, 131, 213);
+  width: 200px;
+  text-align: center;
+}
+
+.right__nav--item {
+  width: 200px;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
+/******************************
+*
+*        MAIN CONTENT
+*
+******************************/
+
+.content__title {
+  text-align: center;
+  font-weight: 100;
+  color: #000;
+  font-size: 2.5rem;
+}
+
+.content__subtitle {
+  text-align: center;
+  font-weight: 100;
+  color: #000;
+  font-size: 1.5rem;
+}
+
+.content__subsection--header {
+  text-align: center;
+  padding: 40px 0;
+  font-weight: 500;
+  font-size: 1em;
+  color: #333;
+}
+
+.content__input--title {
+  display: block;
+  font-weight: 300;
+  margin-bottom: 5px;
+  margin-top: 20px;
+}
+
+.noEdit {
+  pointer-events: none;
+}
+
+.content__main--body-text {
+  font-weight: 200;
+  font-size: 1rem;
+  padding: 5px 5px;
+}
+
+.content__list--container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  overflow-y: auto;
+  max-height: 58vh;
+  background-color: rgb(220, 239, 255);
+}
+
+.content__message--container {
+  display: flex;
+  justify-content: center;
+  width: calc(100% - 200px);
+}
+
+.content__input--field {
+  width: 100%;
+  height: 30px;
+  border: 4px solid rgb(204, 226, 245);
+  padding: 5px; 
+}
+
+.content__input--field:focus {
+  border: 4px solid rgb(102, 169, 225) !important;
+  outline: 0;
+}
+
+.content__input--procedure {
+  resize: none;
+  height: 200px;
+}
+
+
+.content__main--card {
+  padding: 20px 0;
+  background-color: rgb(184, 215, 241);
+}
+
+.form-title-input {
+  height: 2.3em ;
+  margin: 0 ;
+}
+
+/******************************
+*
+*           FOOTER
+*
+******************************/
+
+.footer-text {
+  position: fixed;
+  bottom: 0;
+  text-align: center;
+  width: 100%;
+  font-size: 11px;
+}
+
+/******************************
+*
+*            TAGS
+*
+******************************/
+
+tags-input .tags .tag-item button {
+  background: transparent;
+  color: #000;
+  opacity: .4;
+}
+
+tags-input {
+  display: block;
+}
+tags-input *, tags-input *:before, tags-input *:after {
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+}
+tags-input .host {
+  position: relative;
+  margin-top: 5px;
+  margin-bottom: 5px;
+  height: 100%;
+}
+tags-input .host:active {
+  outline: none;
+}
+
+tags-input .tags {
+  transition: border-color ease-in-out .15s, box-shadow ease-in-out .15s;
+  -moz-appearance: textfield;
+  -webkit-appearance: textfield;
+  padding: 1px;
+  overflow: hidden;
+  word-wrap: break-word;
+  cursor: text;
+  background-color: #fff;
+  border: 4px solid rgba(000, 113, 206, 0.2);
+  border-radius: 4px;
+  box-shadow: inset 0 1px 1px rgba(0,0,0,0.075);
+  height: 100%;
+}
+
+tags-input .tags.focused {
+  outline: none;
+  border-color: #66afe9;
+  -webkit-box-shadow: inset 0 1px 1px rgba(0,0,0,0.075), 0 0 8px rgba(102,175,233,0.6);
+  -moz-box-shadow: inset 0 1px 1px rgba(0,0,0,0.075), 0 0 8px rgba(102,175,233,0.6);
+      box-shadow: inset 0 1px 1px rgba(0,0,0,0.075), 0 0 8px rgba(102,175,233,0.6);
+}
+
+tags-input .tags .tag-list {
+  margin: 0;
+  padding: 0;
+  list-style-type: none;
+}
+
+tags-input .tags .tag-item {
+  color: #fff;
+  margin: 5px;
+  padding: 0 5px;
+  display: inline-block;
+  float: left;
+  font: 14px "Helvetica Neue", Helvetica, Arial, sans-serif;
+  height: 26px;
+  line-height: 25px;
+  border: 1px solid #357ebd;
+  border-radius: 4px;
+  background: #428bca;
+}
+
+tags-input .tags .tag-item.selected {
+  background: #d9534f;
+  border: 1px solid #d43f3a;
+  border-radius: 4px;
+  color: #fff;
+}
+
+tags-input .tags .tag-item .remove-button {
+  display: none;
+}
+
+tags-input .tags .tag-item .remove-button:active {
+  color: #ff0000;
+}
+
+tags-input .tags .input {
+  border: 0;
+  outline: none;
+  margin: 2px;
+  padding: 0;
+  padding-left: 5px;
+  float: left;
+  height: 26px;
+  font: 14px "Helvetica Neue", Helvetica, Arial, sans-serif;
+}
+
+tags-input .tags .input.invalid-tag {
+  color: #ff0000;
+}
+
+tags-input .tags .input::-ms-clear {
+  display: none;
+}
+
+tags-input[disabled] .host:focus {
+  outline: none;
+}
+
+tags-input[disabled] .tags {
+  background-color: #eee;
+  cursor: default;
+}
+
+tags-input[disabled] .tags .tag-item {
+  opacity: 0.65;
+  background: -webkit-linear-gradient(top, #f0f9ff 0%, rgba(203, 235, 255, 0.75) 47%, rgba(161, 219, 255, 0.62) 100%);
+  background: linear-gradient(to bottom, #f0f9ff 0%, rgba(203, 235, 255, 0.75) 47%, rgba(161, 219, 255, 0.62) 100%);
+}
+
+tags-input[disabled] .tags .tag-item .remove-button {
+  cursor: default;
+}
+
+tags-input[disabled] .tags .tag-item .remove-button:active {
+  color: #585858;
+}
+
+tags-input[disabled] .tags .input {
+  background-color: #eee;
+  cursor: default;
+}
+
+tags-input .autocomplete {
+  margin-top: 5px;
+  position: absolute;
+  z-index: 999;
+  width: 100%;
+  background-color: #fff;
+  border: 1px solid rgba(0, 0, 0, 0.2);
+  border-radius: 4px;
+  -webkit-box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+  -moz-box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+}
+
+tags-input .autocomplete .suggestion-list {
+  margin: 0;
+  padding: 0;
+  list-style-type: none;
+  max-height: 280px;
+  overflow-y: auto;
+  position: relative;
+}
+
+tags-input .autocomplete .suggestion-item {
+  padding: 5px 10px;
+  cursor: pointer;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  font: 16px "Helvetica Neue", Helvetica, Arial, sans-serif;
+  color: #000;
+  background-color: #fff;
+}
+
+tags-input .autocomplete .suggestion-item.selected {
+  color: #262626;
+  background-color: rgba(000, 113, 206, 0.2);
+}
+
+tags-input .autocomplete .suggestion-item.selected em {
+  font-weight: normal;
+  color: #262626;
+  background-color: rgba(000, 113, 206, 0.2);
+}
+
+tags-input .autocomplete .suggestion-item em {
+  font-weight: normal;
+  color: #000;
+  background-color: rgba(000, 113, 206, 0.2);
+}
+
+/******************************
+*
+*         CRON INPUT
+*
+******************************/
+
+.cron-col {
+  width: 22%;
+  display: inline-block;
+}
+.cron-col span {
+  text-align: right;
+}
+.cron-row {
+  padding: 2px 0;
+}
+
+/******************************
+*
+*           ALERT
+*
+******************************/
+
+.alert{
+  display: flex;
+  position:fixed;
+  bottom:0;
+  left:0;
+  width:100%;
+  z-index:999999;
+  color:#fff;
+  font-size:1em;
+  height:55px;
+  margin-bottom:-55px;
+  line-height:55px;
+  text-align:center;
+}
+
+.alert-success {
+  background-color: #49B36A;
+  margin-bottom: 0;
+  transition: 1s;
+}
+
+.alert-error {
+  background-color: #e77175;;
+  margin-bottom: 0;
+  transition: 1s;
+}
+
+.alert-hide {
+  font-size: 2em;
+  margin: 0 10px;
+  color: #514545;
+}
+
+.alert-hide:hover {
+  cursor: pointer;
+}
+
+/******************************
+*
+*         SCROLLBAR
+*
+******************************/
+
+/* this targets the default scrollbar (compulsory) */
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+/* the new scrollbar will have a flat appearance with the set background color */
+::-webkit-scrollbar-track {
+  background-color: rgb(111, 158, 196);
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: rgb(78, 121, 159);
+}
+
+
+/******************************
+*
+* HACKY CSS - TODO : REFACTOR
+*
+******************************/
+
+.flex-row {
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: center;
+}
+
+.flex-col {
+  display: flex;
+  flex-flow: column nowrap;
+  align-items: center;
+}
+
+.flex-row p {
+  padding: 5px 20px;
+}
+
