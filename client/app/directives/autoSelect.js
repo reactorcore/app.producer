@@ -26,6 +26,7 @@ angular.module('autoSelect', ['ui.select', 'ngSanitize'])
           'class="content__input--field" '+
           'multiple '+
           'ng-model="temp.selected" '+
+          'ui-select-required ' + 
           'ng-disabled="disabled">'+
           '<ui-select-match '+
             'class="custom-ui-select-dropdown__top" '+

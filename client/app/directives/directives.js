@@ -1,1 +1,1 @@
-angular.module('producer.directives', ['autoSelect', 'alertMessage', 'navBar']);
+angular.module('producer.directives', ['autoSelect', 'alertMessage', 'navBar', 'uiSelectRequired']);
