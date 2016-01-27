@@ -4,7 +4,6 @@ angular.module('uiSelectRequired', [])
     require: 'ngModel',
     link: function(scope, elm, attrs, ctrl) {
       ctrl.$validators.uiSelectRequired = function(modelValue, viewValue) {
-        var determineVal;
         if (angular.isArray(modelValue)) {
           return modelValue.length > 0;
         } else {
