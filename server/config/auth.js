@@ -38,10 +38,10 @@ passport.use(new GitHubStrategy({
               }
       },
     function(err, res, body){
-      var authorized = false;
+      var authorized = 'user';
       body.forEach(function(ea) {
         if (ea.slug === process.env.TEAM_NAME && ea.organization.login === process.env.ORG_NAME) {
-          authorized = true;
+          if (ea.permission === 'push') { authorized = 'admin'; }
         }
       });
       profile.__authorized = authorized;
