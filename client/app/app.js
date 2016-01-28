@@ -22,25 +22,29 @@ angular.module('producer', [
       url: '/templates',
       templateUrl: 'app/templates/templates.html',
       controller: 'templatesController',
-      authenticate: true
+      authenticate: true,
+      permission: 'user'
     })
     .state('events', {
       url: '/events',
       templateUrl: 'app/events/events.html',
       controller: 'eventsController',
-      authenticate: true
+      authenticate: true,
+      permission: 'user'
     })
     .state('procedures', {
       url: '/procedures',
       templateUrl: 'app/procedures/procedures.html',
       controller: "proceduresController",
-      authenticate: true
+      authenticate: true,
+      permission: 'user'
     })
     .state('soundboard', {
       url: '/soundboard',
       templateUrl: 'app/soundboard/soundboard.html',
       controller: 'soundboardController',
-      authenticate: true
+      authenticate: true,
+      permission: 'admin'
     });
 
   //invoking .otherwise with a callback function prevents an infinite digest loop
@@ -56,10 +60,17 @@ angular.module('producer', [
 
 })
 .run(function ($rootScope, $location, $state, Auth) {
+
+  Auth.getRole();
+
   $rootScope.$on('$stateChangeStart',
   function (event, toState, toParams, fromState, fromParams) {
     if (toState.authenticate && !Auth.isAuthenticated()) {
       $state.transitionTo('login');
+      event.preventDefault();
+    }
+    if (toState.permission === 'admin') {
+      $state.transitionTo('templates');
       event.preventDefault();
     }
   });

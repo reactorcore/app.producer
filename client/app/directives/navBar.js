@@ -6,6 +6,9 @@ angular.module('navBar', [])
       scope: true,
       templateUrl: 'app/directives/nav-bar.html',
       controller: function ($scope, $location, Auth) {
+
+        $scope.isAdmin = Auth.user.permission === 'admin';
+
         $scope.getClass = function (currentPath) {
           return currentPath === $location.path().split('/')[1] ? 'active-nav' : '';
         };
