@@ -7,6 +7,7 @@ var eventsController = require('./events/eventsController');
 var rolesController = require('./roles/rolesController.js');
 var proceduresController = require('./procedures/proceduresController.js');
 var soundboardController = require('./soundboard/soundboardController.js');
+var permissionsController = require('./permissions/permissionsController.js');
 
 module.exports = function (app) {
   // could be abstracted out into router file
@@ -51,6 +52,7 @@ module.exports = function (app) {
   app.post('/procedures', helpers.verify, proceduresController.createProcedure);
   app.put('/procedures/:procedureId', helpers.verify, proceduresController.updateProcedure);
   app.delete('/procedures/:procedureId', helpers.verify, proceduresController.deleteProcedure);
+  app.get('/permissions', helpers.verify, permissionsController.getPermissions);
 
   app.get('/commit', helpers.getCommitHash);
 
