@@ -23,11 +23,7 @@ module.exports = function (app) {
     passport.authenticate('github', { failureRedirect: '/login' }),
     function (req, res) {
       res.cookie('session', 'true', { httpOnly: false });
-      if(process.env.NODE_ENV === 'dev') {
-        res.redirect('/');
-      } else {
-        res.redirect('/producer/v0/');
-      }
+      res.redirect('/');
   });
 
 
