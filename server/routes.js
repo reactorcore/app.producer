@@ -7,6 +7,7 @@ var eventsController = require('./events/eventsController');
 var rolesController = require('./roles/rolesController.js');
 var proceduresController = require('./procedures/proceduresController.js');
 var soundboardController = require('./soundboard/soundboardController.js');
+var permissionsController = require('./permissions/permissionsController.js');
 
 module.exports = function (app) {
   // could be abstracted out into router file
@@ -40,31 +41,19 @@ module.exports = function (app) {
 
   // 'verify' is authentication middleware added to all protected routes
 
-  app.post('/templates', verify, templatesController.postTemplate);
-  app.get('/roles', verify, rolesController.getRoles);
-  app.get('/events', verify, eventsController.getEventsData);
-  app.post('/events', verify, eventsController.createEvent);
-  app.delete('/events/:eventName', verify, eventsController.deleteEvent);
-  app.post('/soundboard/:eventName', verify, soundboardController.postSoundboard);
-  app.get('/soundboard/:eventName', verify, soundboardController.getSoundboardTemplate);
-  app.get('/procedures', verify, proceduresController.getProcedures);
-  app.post('/procedures', verify, proceduresController.createProcedure);
-  app.put('/procedures/:procedureId', verify, proceduresController.updateProcedure);
-  app.delete('/procedures/:procedureId', verify, proceduresController.deleteProcedure);
+  app.post('/templates', helpers.verify, templatesController.postTemplate);
+  app.get('/roles', helpers.verify, rolesController.getRoles);
+  app.get('/events', helpers.verify, eventsController.getEventsData);
+  app.post('/events', helpers.verify, eventsController.createEvent);
+  app.delete('/events/:eventName', helpers.verify, eventsController.deleteEvent);
+  app.post('/soundboard/:eventName', helpers.verify, helpers.authorize, soundboardController.postSoundboard);
+  app.get('/soundboard/:eventName', helpers.verify, helpers.authorize, soundboardController.getSoundboardTemplate);
+  app.get('/procedures', helpers.verify, proceduresController.getProcedures);
+  app.post('/procedures', helpers.verify, proceduresController.createProcedure);
+  app.put('/procedures/:procedureId', helpers.verify, proceduresController.updateProcedure);
+  app.delete('/procedures/:procedureId', helpers.verify, proceduresController.deleteProcedure);
+  app.get('/permissions', helpers.verify, permissionsController.getPermissions);
 
   app.get('/commit', helpers.getCommitHash);
-
-  function verify(req, res, next) {
-    if (req.isAuthenticated() && req.user) {
-     return next();
-   }
-    if (req.user && req.user.__error) {
-      res.cookie('message', req.user.__error);
-    } else {
-      res.cookie('session', '');
-    }
-    //Do not redirect here, client will handle redirection to login page;
-    res.sendStatus(401);
-  }
 
 };
