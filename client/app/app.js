@@ -61,8 +61,6 @@ angular.module('producer', [
 })
 .run(function ($rootScope, $location, $state, Auth) {
 
-  Auth.getRole();
-
   $rootScope.$on('$stateChangeStart',
   function (event, toState, toParams, fromState, fromParams) {
     if (toState.authenticate && !Auth.isAuthenticated()) {

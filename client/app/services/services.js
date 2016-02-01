@@ -159,7 +159,7 @@ angular.module('producer.services', [])
   return {
 
     user: {
-      permission: 'admin'
+      permission: null
     },
 
     isAuthenticated: function () {
@@ -167,17 +167,16 @@ angular.module('producer.services', [])
     },
 
     getRole: function () {
-      $http({
+      return $http({
         method: 'GET',
-        url: 'user/role',
-
+        url: 'permissions'
       }).then(function (data) {
-        this.user.permission = data.permission;
+        return this.user.permission = data.data;
       }.bind(this))
       .catch(function (err) {
         console.log(err);
       })
-    }
+    },
 
     logout : function () {
       $http({
