@@ -59,7 +59,7 @@ angular.module('producer', [
   $httpProvider.interceptors.push('RedirectInterceptor');
 
 })
-.run(function ($rootScope, $location, $state, Auth) {
+.run(function ($rootScope, $location, $state, Auth, Messages) {
 
   $rootScope.$on('$stateChangeStart',
   function (event, toState, toParams, fromState, fromParams) {
@@ -67,8 +67,8 @@ angular.module('producer', [
       $state.transitionTo('login');
       event.preventDefault();
     }
-    if (toState.permission === 'admin') {
-      $state.transitionTo('templates');
+    if (toState.permission === 'admin' && Auth.user.permission !== 'admin') {
+      Messages.setMessage('Sorry, you are not authorized', 'error');
       event.preventDefault();
     }
   });
