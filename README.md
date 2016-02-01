@@ -108,3 +108,22 @@ dev-dependencies
 * [karma-phantomjs-launcher](https://www.npmjs.com/package/karma-phantomjs-launcher)
 * [karma-spec-reporter](https://www.npmjs.com/package/karma-spec-reporter)
 * [phantomjs](https://www.npmjs.com/package/phantom)
+
+## List of Terms
+* Choreographer: A service containing three services: Melody, Metronome, and Choreographer. The Choreographer sub-service is responsible for addings tasks to Asana to the appropriate person when a template is triggered.
+* Event: A model of a specification for when a procedure should happen. Takes a title, an optional cron job, and an optional description (Ex. '9am on the 3rd of every month'). Events can also be Hack Reactor-specific cyclical events, which have the form 'WXDX' where 'WX' is the week and DX is the day. Note: events are *not* associated with specific procedures upon creation; they are only associated with procedures when a template is made.
+* Melody: A sub-service of Choreographer responsible for Hack Reactor-specific cyclical events, which take the form of ('W4D2');
+* Metronome: A sub-service of Choreographer responsible for cron events. Has its own database, and sends triggers for templates to the Choreographer sub-service whenever cron events fire.
+* Procedure: A model of a task to be done. Takes a title and an optional description (Ex. 'Take out the trash').
+* Producer: A service and UI that allows users to:
+    * create procedures
+    * create events
+    * create templates
+    * trigger templates
+* Role: A model that functions similarly to a job title in that it captures that one person should have various responsibilities. Those responsibilities are procedures and are linked to roles and events with templates (Ex. 'Space Ops Associate').
+* Soundboard: A page of Producer that allows a user to trigger a template manually.
+* Template: A model that links roles, procedures, and events together (Ex. 'Space Ops associate should take out the trash at 9am on the 3rd of every month'). Templates submitted to the Choreographer UI are sent to Asana. Choreographer then reads templates from Asana and uses Metronome to trigger templates, which assigns that task at the appropriate time to the person in that role in Asana.
+
+
+
+
