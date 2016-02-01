@@ -214,7 +214,7 @@ h3.content__title {
 
 /* AUTH BUTTONS */
 
-.nav__login {
+a.nav__login {
   display: block;
   margin: 20px 0;
   padding: 10px 15px;
@@ -482,7 +482,7 @@ h1 {
   width: 100%;
   height: 30px;
   border: 4px solid rgb(204, 226, 245);
-  padding: 5px; 
+  padding: 5px;
 }
 
 .content__input--field:focus {
