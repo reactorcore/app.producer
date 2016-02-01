@@ -25,7 +25,6 @@ module.exports = {
   },
 
   authorize: function(req, res, next) {
-    console.log(req.user);
     if (req.user.__authorized === 'user') {
       return res.status(403).send('Not authorized');
     }
