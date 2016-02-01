@@ -25,7 +25,7 @@ module.exports = {
   },
 
   authorize: function(req, res, next) {
-    if (req.user.profile.__authorized === 'user') {
+    if (req.user.__authorized === 'user') {
       return res.status(403).send('Not authorized');
     }
 
