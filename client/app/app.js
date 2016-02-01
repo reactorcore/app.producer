@@ -43,7 +43,11 @@ angular.module('producer', [
       authenticate: true
     });
 
-  $urlRouterProvider.otherwise('/templates');
+  //invoking .otherwise with a callback function prevents an infinite digest loop
+  $urlRouterProvider.otherwise( function ($injector) {
+    var $state = $injector.get('$state');
+    $state.go('templates');
+  });
 
   // Include our custom interceptor to the http Provider
   // This catches status codes from the server, and if 401,
