@@ -157,8 +157,25 @@ angular.module('producer.services', [])
 .factory('Auth', function ($http, $cookies) {
 
   return {
+
+    user: {
+      permission: null
+    },
+
     isAuthenticated: function () {
       return $cookies.get('session') === "true" ? true : false;
+    },
+
+    getRole: function () {
+      return $http({
+        method: 'GET',
+        url: 'permissions'
+      }).then(function (data) {
+        return this.user.permission = data.data;
+      }.bind(this))
+      .catch(function (err) {
+        console.log(err);
+      })
     },
 
     logout : function () {

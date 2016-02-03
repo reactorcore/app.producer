@@ -22,5 +22,26 @@ module.exports = {
         res.send(stdout);
       }
     });
+  },
+
+  authorize: function(req, res, next) {
+    if (req.user.__authorized === 'user') {
+      return res.status(403).send('Not authorized');
+    }
+
+    next();
+  },
+
+  verify: function(req, res, next) {
+    if (req.isAuthenticated() && req.user) {
+     return next();
+   }
+    if (req.user && req.user.__error) {
+      res.cookie('message', req.user.__error);
+    } else {
+      res.cookie('session', '');
+    }
+    //Do not redirect here, client will handle redirection to login page;
+    res.sendStatus(401);
   }
 };
